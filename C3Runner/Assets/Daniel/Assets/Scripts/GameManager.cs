@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
     private static Vector2 inputWASD = new Vector2();
     private static Vector2 inputArrows = new Vector2();
 
+    private void Start()
+    {
+        Physics.gravity = Physics.gravity * gravityScale;
+    }
     public static Vector2 GetInputWASD()
     {
         //reset input

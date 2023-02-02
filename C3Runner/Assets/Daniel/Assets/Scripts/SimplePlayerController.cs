@@ -27,7 +27,6 @@ public class SimplePlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Physics.gravity = Physics.gravity * GameManager.gravityScale;
         speed *= GameManager.gravityScale;
         jumpForce *= GameManager.gravityScale;
 
