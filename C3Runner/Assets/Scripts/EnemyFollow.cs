@@ -18,24 +18,21 @@ public class EnemyFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x - player.transform.position.x < 10f)
+        if (transform.position.x - player.transform.position.x < 50f)
         {
             activado = true;
         }
-        if (transform.position.x - player.transform.position.x > 10f)
+        
+        if (player.transform.position.x - transform.position.x > 30f && activado)
         {
             Destroy(gameObject);
         }
-    }
-
-    private void FixedUpdate()
-    {
+        
         if (activado)
         {
-           Vector3 direction = (player.transform.position - transform.position).normalized;
+            Vector3 direction = (player.transform.position - transform.position).normalized;
            
             _rigidbody.AddForce(moveForce * direction, ForceMode.Force); 
         }
-        
     }
 }

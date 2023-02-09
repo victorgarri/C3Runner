@@ -10,7 +10,8 @@ public class SimplePlayerController : MonoBehaviour
     Rigidbody rb;
     public float speed = 20;
     public float jumpForce = 20;
-
+    private bool PositivePowerUp;
+    private bool NegativePowerUp;
     Vector2 inputWASD = new Vector2();
     Vector2 inputArrows = new Vector2();
     Vector2 vel = new Vector2();
@@ -47,6 +48,7 @@ public class SimplePlayerController : MonoBehaviour
 
         inputWASD.Normalize();
         inputArrows.Normalize();
+        Debug.Log(speed);
     }
 
     void FixedUpdate()
@@ -122,6 +124,19 @@ public class SimplePlayerController : MonoBehaviour
         isGrounded = groundCount > 0;
         
     }
+
+    void powerUpOff()
+    {
+        if (PositivePowerUp)
+        {
+            PositivePowerUp = false;
+            speed -= 10;
+        }else if (NegativePowerUp)
+        {
+            NegativePowerUp = false;
+            speed += 5;
+        }
+    }
     private void OnCollisionEnter(Collision c)
     {
         var g = c.gameObject;
@@ -146,17 +161,27 @@ public class SimplePlayerController : MonoBehaviour
         }
 
     }
-
+    
     private void OnTriggerEnter(Collider c)
     {
         var g = c.gameObject;
         switch (g.tag)
         {
             case "PositiveArrow":
-                speed += 10;
+                if (!PositivePowerUp && !NegativePowerUp)
+                {
+                    PositivePowerUp = true;
+                    speed += 10;
+                    Invoke("powerUpOff", 5f);
+                }
                 break;
             case  "NegativeArrow":
-                speed -= 5;
+                if (!PositivePowerUp && !NegativePowerUp)
+                {
+                    NegativePowerUp = true;
+                    speed -= 5; 
+                    Invoke("powerUpOff", 5f);
+                }
                 break;
         }
     }
