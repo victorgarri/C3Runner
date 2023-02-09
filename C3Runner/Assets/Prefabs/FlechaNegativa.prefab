@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2477679908842314158}
   - component: {fileID: 398159506212384100}
   - component: {fileID: 4672838578631252946}
+  - component: {fileID: 1963526184950067063}
   m_Layer: 0
   m_Name: FlechaNegativa
-  m_TagString: Untagged
+  m_TagString: NegativeArrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2199576886182694065}
-  m_LocalRotation: {x: 4.32978e-17, y: -0.7071067, z: 4.3297793e-17, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.60366124, y: 1.0009661, z: 0.60366124}
+  m_LocalScale: {x: 0.60366094, y: 1.0009661, z: 0.60366094}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &2477679908842314158
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -104,3 +105,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!65 &1963526184950067063
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2199576886182694065}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.108496, y: 0.47739828, z: 3.2240686}
+  m_Center: {x: -8.0547806e-25, y: 0.23741627, z: 0.06787389}
