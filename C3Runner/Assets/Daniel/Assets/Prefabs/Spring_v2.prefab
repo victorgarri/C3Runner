@@ -41,9 +41,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3596510694765366015}
-  - component: {fileID: 3596510694765366014}
   - component: {fileID: 3596510694765365985}
   - component: {fileID: 7281864021380651236}
+  - component: {fileID: 928986254}
   m_Layer: 0
   m_Name: Spring_v2
   m_TagString: Untagged
@@ -58,9 +58,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3596510694765366012}
-  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 254.16, y: -1.6504, z: 29.48}
-  m_LocalScale: {x: 7.535527, y: 7.535527, z: 7.535527}
+  m_LocalScale: {x: 5.581656, y: 5.581656, z: 5.581656}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3919229087071254944}
@@ -68,19 +68,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &3596510694765366014
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3596510694765366012}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.4, z: 0.8}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3596510694765365985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,7 +91,7 @@ Animator:
   m_GameObject: {fileID: 3596510694765366012}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d38c82a4d63b0594d985ee27629885eb, type: 2}
+  m_Controller: {fileID: 9100000, guid: b2bf96f0405fa8349a74ed2f19f822e2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -114,6 +101,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!135 &928986254
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3596510694765366012}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3596510692863106635
 PrefabInstance:
   m_ObjectHideFlags: 0

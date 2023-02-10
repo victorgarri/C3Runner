@@ -23,7 +23,7 @@ public class EnemyFollow : MonoBehaviour
             activado = true;
         }
         
-        if (player.transform.position.x - transform.position.x > 30f && activado)
+        if (player.transform.position.x - transform.position.x > 20f && activado)
         {
             Destroy(gameObject);
         }
