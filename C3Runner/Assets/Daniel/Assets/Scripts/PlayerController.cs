@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SimplePlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     //PHYSICS
     Rigidbody rb;
@@ -18,12 +18,16 @@ public class SimplePlayerController : MonoBehaviour
     //space key buffer
     bool space, spaceConsumed = true;
     float spaceConsumeTimer;
-    readonly float spaceConsumeMaxTime = 1f;
+    readonly float spaceConsumeMaxTime = 0.5f;
 
     //ground stuff
     int groundCount = 0;
     bool grounded;
 
+
+    //Model
+    Animator anim;
+    GameObject model;
 
 
     void Start()
@@ -32,14 +36,19 @@ public class SimplePlayerController : MonoBehaviour
         speed *= GameManager.gravityScale;
         jumpForce *= GameManager.gravityScale;
 
+        model = transform.Find("Character").gameObject;
+        anim = model.GetComponent<Animator>();
+
     }
 
 
     void Update()
     {
+        isGrounded();
+
         inputWASD = GameManager.GetInputMovement();
         inputArrows = GameManager.GetInputCamera();
-        space = Input.GetKeyDown(KeyCode.Space);
+        space = GameManager.GetInputButtonSouth();
 
         SpaceBuffer();
 
@@ -51,19 +60,36 @@ public class SimplePlayerController : MonoBehaviour
     {
         vel = inputWASD * speed;
 
-        if (!isGrounded())
+        if (!grounded)
         {
             vel /= 4;//midair velocity
         }
 
+        Animation();
+
         Move();
         Rotate();
+        Jump();
 
-        if (isGrounded() && !spaceConsumed)
+
+
+    }
+
+    void Animation()
+    {
+        anim.SetFloat("vel", vel.normalized.magnitude);
+
+        //bool jumpAnimStarted = false;
+
+        if (grounded && !spaceConsumed)
         {
-            spaceConsumed = true;
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            anim.SetTrigger("jump");
+            //jumpAnimStarted = true;
         }
+        anim.SetFloat("vely", Mathf.Abs(rb.velocity.y));
+        anim.SetBool("grounded", grounded);
+
+
 
     }
 
@@ -96,8 +122,6 @@ public class SimplePlayerController : MonoBehaviour
 
     void Move()
     {
-        //rb.AddForce(new Vector3(vel.x, 0, vel.y)); //old
-
         var forward = Camera.main.transform.forward;
         var right = Camera.main.transform.right;
         forward.y = 0;
@@ -109,6 +133,15 @@ public class SimplePlayerController : MonoBehaviour
 
 
 
+    }
+
+    void Jump()
+    {
+        if (isGrounded() && !spaceConsumed)
+        {
+            spaceConsumed = true;
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     float rotationSpeed = 2;
@@ -127,7 +160,6 @@ public class SimplePlayerController : MonoBehaviour
         {
             case "Ground":
                 groundCount++;
-                //isGrounded = true;
                 break;
         }
     }
@@ -139,7 +171,6 @@ public class SimplePlayerController : MonoBehaviour
         {
             case "Ground":
                 groundCount--;
-                //isGrounded = false;
                 break;
         }
 
