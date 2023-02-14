@@ -27,6 +27,15 @@ public class SimplePlayerController : MonoBehaviour
 
     private int groundCount = 0;
 
+    private float PosX;
+    private float PosY;
+    private float PosZ;
+    private Vector3 Posicion;
+    
+    public float InicialX;
+    public float InicialY;
+    public float InicialZ;
+    private bool isPlayerEnter;
 
     void Start()
     {
@@ -184,6 +193,42 @@ public class SimplePlayerController : MonoBehaviour
                 }
                 break;
         }
+        
+        if (g.CompareTag("CambioEscena"))
+        {
+            Debug.Log("funciona");
+            isPlayerEnter = true;
+        }
+        
+    }
+    
+    public void GuardarPosicion()
+    {
+        PlayerPrefs.SetFloat("PosicionX", transform.position.x+4);
+        PlayerPrefs.SetFloat("PosicionY", transform.position.y);
+        PlayerPrefs.SetFloat("PosicionZ", transform.position.z);
+    }
+
+    public void CargarPosicion()
+    {
+        PosX = PlayerPrefs.GetFloat("PosicionX");
+        PosY = PlayerPrefs.GetFloat("PosicionY");
+        PosZ = PlayerPrefs.GetFloat("PosicionZ");
+        
+        Posicion.x = PosX;
+        Posicion.y = PosY;
+        Posicion.z = PosZ;
+
+        this.transform.position = Posicion;
+    }
+    
+    private void ResetearPosicion()
+    {
+        CargarPosicion();
+        
+        PlayerPrefs.SetFloat("PosicionX", InicialX);
+        PlayerPrefs.SetFloat("PosicionY", InicialY);
+        PlayerPrefs.SetFloat("PosicionZ", InicialZ);
     }
 }
 
