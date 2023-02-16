@@ -5,11 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    string VEL = "vel", VELY = "vely", GROUNDED = "grounded", JUMP = "jump";
-
     //PHYSICS
     Rigidbody rb;
-    Collider col;
     public float speed = 20;
     public float jumpForce = 20;
 
@@ -36,7 +33,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        col = GetComponent<Collider>();
         speed *= GameManager.gravityScale;
         jumpForce *= GameManager.gravityScale;
 
@@ -96,35 +92,27 @@ public class PlayerController : MonoBehaviour
 
     void Animation()
     {
-        anim.SetFloat(VEL, vel.normalized.magnitude);
+        anim.SetFloat("vel", vel.normalized.magnitude);
 
         //bool jumpAnimStarted = false;
 
-        //if (grounded && !spaceConsumed)
-        //{
-        //    anim.SetTrigger(JUMP);
-        //    //jumpAnimStarted = true;
-        //}
-        anim.SetFloat(VELY, Mathf.Abs(rb.velocity.y));
-        anim.SetBool(GROUNDED, grounded);
+        if (grounded && !spaceConsumed)
+        {
+            anim.SetTrigger("jump");
+            //jumpAnimStarted = true;
+        }
+        anim.SetFloat("vely", Mathf.Abs(rb.velocity.y));
+        anim.SetBool("grounded", grounded);
 
         RotateCharacter();
 
     }
 
-    public float dist = .3f;
     bool isGrounded()
     {
-        Debug.DrawRay(transform.position, Vector3.down * (col.bounds.extents.y + dist), Color.red, 1 / 60);
-        grounded = Physics.Raycast(transform.position, Vector3.down, col.bounds.extents.y + dist);
+        grounded = groundCount > 0;
         return grounded;
     }
-
-    //bool isGrounded()
-    //{
-    //    grounded = groundCount > 0;
-    //    return grounded;
-    //}
 
     void SpaceBuffer()
     {
@@ -167,10 +155,8 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded() && !spaceConsumed)
         {
-            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             spaceConsumed = true;
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            anim.SetTrigger(JUMP);
         }
     }
 
