@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SimplePlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
+    string VEL = "vel", VELY = "vely", GROUNDED = "grounded", JUMP = "jump";
+
     //PHYSICS
     Rigidbody rb;
+    Collider col;
     public float speed = 20;
     public float jumpForce = 20;
 
@@ -18,28 +21,38 @@ public class SimplePlayerController : MonoBehaviour
     //space key buffer
     bool space, spaceConsumed = true;
     float spaceConsumeTimer;
-    readonly float spaceConsumeMaxTime = 1f;
+    readonly float spaceConsumeMaxTime = 0.5f;
 
     //ground stuff
     int groundCount = 0;
     bool grounded;
 
 
+    //Model
+    Animator anim;
+    GameObject model;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
         speed *= GameManager.gravityScale;
         jumpForce *= GameManager.gravityScale;
+
+        model = transform.Find("Character").gameObject;
+        anim = model.GetComponent<Animator>();
 
     }
 
 
     void Update()
     {
+        isGrounded();
+
         inputWASD = GameManager.GetInputMovement();
         inputArrows = GameManager.GetInputCamera();
-        space = Input.GetKeyDown(KeyCode.Space);
+        space = GameManager.GetInputButtonSouth();
 
         SpaceBuffer();
 
@@ -51,27 +64,67 @@ public class SimplePlayerController : MonoBehaviour
     {
         vel = inputWASD * speed;
 
-        if (!isGrounded())
+        if (!grounded)
         {
             vel /= 4;//midair velocity
         }
 
+        Animation();
+
         Move();
         Rotate();
-
-        if (isGrounded() && !spaceConsumed)
-        {
-            spaceConsumed = true;
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
+        Jump();
 
     }
 
+    Vector3 lookVel = new Vector3();
+
+    void RotateCharacter()
+    {
+
+        lookVel.x = vel.x;
+        lookVel.y = 0;
+        lookVel.z = vel.y;
+
+        lookVel = transform.rotation * lookVel;
+        if (lookVel != Vector3.zero)
+        {
+            model.transform.rotation = Quaternion.LookRotation(lookVel);
+            model.transform.forward = lookVel;
+        }
+    }
+
+    void Animation()
+    {
+        anim.SetFloat(VEL, vel.normalized.magnitude);
+
+        //bool jumpAnimStarted = false;
+
+        //if (grounded && !spaceConsumed)
+        //{
+        //    anim.SetTrigger(JUMP);
+        //    //jumpAnimStarted = true;
+        //}
+        anim.SetFloat(VELY, Mathf.Abs(rb.velocity.y));
+        anim.SetBool(GROUNDED, grounded);
+
+        RotateCharacter();
+
+    }
+
+    public float dist = .3f;
     bool isGrounded()
     {
-        grounded = groundCount > 0;
+        Debug.DrawRay(transform.position, Vector3.down * (col.bounds.extents.y + dist), Color.red, 1 / 60);
+        grounded = Physics.Raycast(transform.position, Vector3.down, col.bounds.extents.y + dist);
         return grounded;
     }
+
+    //bool isGrounded()
+    //{
+    //    grounded = groundCount > 0;
+    //    return grounded;
+    //}
 
     void SpaceBuffer()
     {
@@ -94,10 +147,9 @@ public class SimplePlayerController : MonoBehaviour
     }
 
 
+
     void Move()
     {
-        //rb.AddForce(new Vector3(vel.x, 0, vel.y)); //old
-
         var forward = Camera.main.transform.forward;
         var right = Camera.main.transform.right;
         forward.y = 0;
@@ -109,6 +161,17 @@ public class SimplePlayerController : MonoBehaviour
 
 
 
+    }
+
+    void Jump()
+    {
+        if (isGrounded() && !spaceConsumed)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            spaceConsumed = true;
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            anim.SetTrigger(JUMP);
+        }
     }
 
     float rotationSpeed = 2;
@@ -127,7 +190,6 @@ public class SimplePlayerController : MonoBehaviour
         {
             case "Ground":
                 groundCount++;
-                //isGrounded = true;
                 break;
         }
     }
@@ -139,7 +201,6 @@ public class SimplePlayerController : MonoBehaviour
         {
             case "Ground":
                 groundCount--;
-                //isGrounded = false;
                 break;
         }
 
