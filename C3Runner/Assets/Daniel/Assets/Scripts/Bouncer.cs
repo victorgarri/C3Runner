@@ -7,8 +7,8 @@ using UnityEngine;
 public class Bouncer : MonoBehaviour
 {
     public float force = 10;
-    private float cooldownTime = .3f;
-    private float timer = .3f;
+    public float cooldownTime = .3f;
+    public float timer = .3f;
 
     private void Start()
     {
@@ -25,8 +25,9 @@ public class Bouncer : MonoBehaviour
         if (obj.CompareTag("Player") && timer >= cooldownTime)
         {
             timer = 0;
-            Vector3 dir = obj.transform.position - transform.position;
-            //dir.Normalize();
+            //Vector3 dir = obj.transform.position - transform.position;
+            Vector3 dir = -collision.contacts[0].normal;
+
             dir.y = .4f;
             obj.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Impulse);
         }

@@ -1,66 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     public static float gravityScale = 3;
     private static Vector2 inputWASD = new Vector2();
     private static Vector2 inputArrows = new Vector2();
+    private static bool buttonSouth;
+    static PlayerInput pi;
 
     private void Start()
     {
         Physics.gravity = Physics.gravity * gravityScale;
+        pi = GetComponent<PlayerInput>();
     }
-    public static Vector2 GetInputWASD()
+
+    public static Vector2 GetInputMovement()
     {
         //reset input
         inputWASD = Vector2.zero;
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            inputWASD.y = 1;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            inputWASD.y = -1;
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            inputWASD.x = 1;
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            inputWASD.x = -1;
-        }
+        inputWASD = pi.actions["Movement"].ReadValue<Vector2>().normalized;
 
         return inputWASD;
     }
 
-    public static Vector2 GetInputArrows()
+    public static Vector2 GetInputCamera()
     {
         //reset input
         inputArrows = Vector2.zero;
-
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            inputArrows.y = 1;
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            inputArrows.y = -1;
-        }
-
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            inputArrows.x = 1;
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            inputArrows.x = -1;
-        }
+        inputArrows = pi.actions["Camera"].ReadValue<Vector2>().normalized;
 
         return inputArrows;
+    }
+
+    public static bool GetInputButtonSouth()
+    {
+        //reset input
+        buttonSouth = false;
+        buttonSouth = pi.actions["Jump"].WasPressedThisFrame();
+
+        return buttonSouth;
     }
 }
