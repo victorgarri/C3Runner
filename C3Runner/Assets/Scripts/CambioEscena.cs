@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class CambioEscena : MonoBehaviour
 {
-    private float speed = 0.008f;
+    private float speed = 0.04f;
     
     public GameObject player;
     //public GameObject cinemachine;
@@ -23,10 +23,10 @@ public class CambioEscena : MonoBehaviour
         
         //Debug.Log(Application.loadedLevelName);
 
-        if (Application.loadedLevelName == "MainScene")
+        if (Application.loadedLevelName == "Arjona")
         {
             
-            if (isPlayerExit && Application.loadedLevelName == "MainScene")
+            if (isPlayerExit && Application.loadedLevelName == "Arjona")
             {
                 //cinemachine.SetActive(true);
                 //timeline.SetActive(true);
@@ -39,9 +39,9 @@ public class CambioEscena : MonoBehaviour
 
         }
 
-        if (Application.loadedLevelName == "2D")
+        if (Application.loadedLevelName == "Level 1")
         {
-            if (isPlayerExit && Application.loadedLevelName == "2D")
+            if (isPlayerExit && Application.loadedLevelName == "Level 1")
             {
                 StartCoroutine(EndLevel2D(exitToScene2D));
             }
@@ -77,7 +77,7 @@ public class CambioEscena : MonoBehaviour
         
         yield return new WaitForSeconds(2);
 
-        SceneManager.LoadScene("2D");
+        SceneManager.LoadScene("Level 1");
         
     }
     
@@ -87,6 +87,6 @@ public class CambioEscena : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("Arjona");
     }
 }

@@ -32,6 +32,16 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     GameObject model;
 
+    private float PosX;
+    private float PosY;
+    private float PosZ;
+    private Vector3 Posicion;
+    
+    public float InicialX;
+    public float InicialY;
+    public float InicialZ;
+    private bool isPlayerEnter;
+
 
     void Start()
     {
@@ -42,6 +52,8 @@ public class PlayerController : MonoBehaviour
 
         model = transform.Find("Character").gameObject;
         anim = model.GetComponent<Animator>();
+        
+        ResetearPosicion();
 
     }
 
@@ -75,6 +87,10 @@ public class PlayerController : MonoBehaviour
         Rotate();
         Jump();
 
+        if (isPlayerEnter)
+        {
+            GuardarPosicion();
+        }
     }
 
     Vector3 lookVel = new Vector3();
@@ -204,5 +220,46 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
+    }
+
+    private void OnTriggerEnter(Collider c)
+    {
+        var g = c.gameObject;
+        switch (g.tag)
+        {
+            case "CambioEscena":
+                isPlayerEnter = true;
+                Debug.Log("funciona");
+                break;
+        }
+    }
+    
+    public void GuardarPosicion()
+    {
+        PlayerPrefs.SetFloat("PosicionX", transform.position.x+10);
+        PlayerPrefs.SetFloat("PosicionY", transform.position.y);
+        PlayerPrefs.SetFloat("PosicionZ", transform.position.z);
+    }
+
+    public void CargarPosicion()
+    {
+        PosX = PlayerPrefs.GetFloat("PosicionX");
+        PosY = PlayerPrefs.GetFloat("PosicionY");
+        PosZ = PlayerPrefs.GetFloat("PosicionZ");
+        
+        Posicion.x = PosX;
+        Posicion.y = PosY;
+        Posicion.z = PosZ;
+
+        this.transform.position = Posicion;
+    }
+    
+    private void ResetearPosicion()
+    {
+        CargarPosicion();
+        
+        PlayerPrefs.SetFloat("PosicionX", InicialX);
+        PlayerPrefs.SetFloat("PosicionY", InicialY);
+        PlayerPrefs.SetFloat("PosicionZ", InicialZ);
     }
 }

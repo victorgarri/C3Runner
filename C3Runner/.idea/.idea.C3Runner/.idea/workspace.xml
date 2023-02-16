@@ -10,8 +10,15 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Daniel/Assets/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Level2D/Assets/Scripts/Level2DGameManager.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2LBIiq0MyhcXRXvDXq8t4d72MvV" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -92,6 +99,9 @@
       <workItem from="1676373814377" duration="151000" />
       <workItem from="1676375113453" duration="639000" />
       <workItem from="1676544101365" duration="13000" />
+      <workItem from="1676549623663" duration="9000" />
+      <workItem from="1676549799134" duration="22000" />
+      <workItem from="1676549919267" duration="508000" />
     </task>
     <servers />
   </component>

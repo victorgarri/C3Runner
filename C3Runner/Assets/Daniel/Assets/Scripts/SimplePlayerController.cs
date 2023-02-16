@@ -75,6 +75,11 @@ public class SimplePlayerController : MonoBehaviour
             spaceConsumed = true;
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
+        
+        if (isPlayerEnter)
+        {
+            GuardarPosicion();
+        }
 
     }
 
