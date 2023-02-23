@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     int groundCount = 0;
     bool grounded;
 
+    private bool PositivePowerUp;
+    private bool NegativePowerUp;
 
     //Model
     Animator anim;
@@ -222,6 +224,20 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void powerUpOff()
+    {
+        if (PositivePowerUp)
+        {
+            PositivePowerUp = false;
+            speed -= 20;
+            
+        }else if (NegativePowerUp)
+        {
+            NegativePowerUp = false;
+            speed += 10;
+        }
+    }
+    
     private void OnTriggerEnter(Collider c)
     {
         var g = c.gameObject;
@@ -230,6 +246,22 @@ public class PlayerController : MonoBehaviour
             case "CambioEscena":
                 isPlayerEnter = true;
                 Debug.Log("funciona");
+                break;
+            case "PositiveArrow":
+                if (!PositivePowerUp && !NegativePowerUp)
+                {
+                    PositivePowerUp = true;
+                    speed += 20;
+                    Invoke("powerUpOff", 5f);
+                }
+                break;
+            case  "NegativeArrow":
+                if (!PositivePowerUp && !NegativePowerUp)
+                {
+                    NegativePowerUp = true;
+                    speed -= 10; 
+                    Invoke("powerUpOff", 5f);
+                }
                 break;
         }
     }
