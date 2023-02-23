@@ -1,9 +1,10 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     public static float gravityScale = 3;
     private static Vector2 inputWASD = new Vector2();
@@ -13,8 +14,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Physics.gravity = Physics.gravity * gravityScale;
-        //pi = GetComponent<PlayerInput>();
+        if (isClient)
+        {
+            Physics.gravity = Physics.gravity * gravityScale;
+            //pi = GetComponent<PlayerInput>();
+        }
     }
 
     //public static Vector2 GetInputMovement()
