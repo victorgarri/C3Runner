@@ -201,6 +201,10 @@ PrefabInstance:
       propertyPath: m_AdditionalVertexStreams
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8301953562645591671, guid: 6039b0d699d55c94ab4afddcedb3fdf3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8301953562645591673, guid: 6039b0d699d55c94ab4afddcedb3fdf3, type: 3}
       propertyPath: _material
       value: 

@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +30,14 @@ public class Bouncer : MonoBehaviour
             Vector3 dir = -collision.contacts[0].normal;
 
             dir.y = .4f;
-            obj.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Impulse);
+            //obj.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Impulse);
+            ApplyForce(obj, dir * force);
         }
+    }
+
+    
+    void ApplyForce(GameObject obj, Vector3 force)
+    {
+        obj.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
     }
 }

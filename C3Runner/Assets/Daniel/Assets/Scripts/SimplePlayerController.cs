@@ -37,8 +37,8 @@ public class SimplePlayerController : MonoBehaviour
 
     void Update()
     {
-        inputWASD = GameManager.GetInputMovement();
-        inputArrows = GameManager.GetInputCamera();
+        //inputWASD = GameManager.GetInputMovement();
+        //inputArrows = GameManager.GetInputCamera();
         space = Input.GetKeyDown(KeyCode.Space);
 
         SpaceBuffer();

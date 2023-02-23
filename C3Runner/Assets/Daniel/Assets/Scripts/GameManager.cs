@@ -14,33 +14,33 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Physics.gravity = Physics.gravity * gravityScale;
-        pi = GetComponent<PlayerInput>();
+        //pi = GetComponent<PlayerInput>();
     }
 
-    public static Vector2 GetInputMovement()
-    {
-        //reset input
-        inputWASD = Vector2.zero;
-        inputWASD = pi.actions["Movement"].ReadValue<Vector2>().normalized;
+    //public static Vector2 GetInputMovement()
+    //{
+    //    //reset input
+    //    inputWASD = Vector2.zero;
+    //    inputWASD = pi.actions["Movement"].ReadValue<Vector2>().normalized;
 
-        return inputWASD;
-    }
+    //    return inputWASD;
+    //}
 
-    public static Vector2 GetInputCamera()
-    {
-        //reset input
-        inputArrows = Vector2.zero;
-        inputArrows = pi.actions["Camera"].ReadValue<Vector2>().normalized;
+    //public static Vector2 GetInputCamera()
+    //{
+    //    //reset input
+    //    inputArrows = Vector2.zero;
+    //    inputArrows = pi.actions["Camera"].ReadValue<Vector2>().normalized;
 
-        return inputArrows;
-    }
+    //    return inputArrows;
+    //}
 
-    public static bool GetInputButtonSouth()
-    {
-        //reset input
-        buttonSouth = false;
-        buttonSouth = pi.actions["Jump"].WasPressedThisFrame();
+    //public static bool GetInputButtonSouth()
+    //{
+    //    //reset input
+    //    buttonSouth = false;
+    //    buttonSouth = pi.actions["Jump"].WasPressedThisFrame();
 
-        return buttonSouth;
-    }
+    //    return buttonSouth;
+    //}
 }
