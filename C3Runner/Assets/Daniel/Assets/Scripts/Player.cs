@@ -1,3 +1,4 @@
+using Cinemachine;
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,13 +8,15 @@ using UnityEngine.InputSystem;
 
 public class Player : NetworkBehaviour
 {
+    public bool LOCAL_DEBUG;
+
     string VEL = "vel", VELY = "vely", GROUNDED = "grounded", JUMP = "jump";
 
     //PHYSICS
     Rigidbody rb;
     Collider col;
-    public float speed = 20;
-    public float jumpForce = 20;
+    public float speed = 10;
+    public float jumpForce = 5;
 
     Vector2 inputWASD = new Vector2();
     Vector2 inputArrows = new Vector2();
@@ -26,14 +29,15 @@ public class Player : NetworkBehaviour
     readonly float spaceConsumeMaxTime = 0.5f;
 
     //ground stuff
-    int groundCount = 0;
+    //int groundCount = 0;
     bool grounded;
 
 
     //Model
     Animator anim;
     GameObject model;
-
+    CinemachineVirtualCamera cam;
+    CinemachineComposer fram;
 
 
     //
@@ -48,16 +52,18 @@ public class Player : NetworkBehaviour
 
         model = transform.Find("Character").gameObject;
         anim = model.GetComponent<Animator>();
+        cam = gameObject.transform.Find("CM player").GetComponent<CinemachineVirtualCamera>();
+        //fram = cam.AddCinemachineComponent<CinemachineFramingTransposer>();
+        fram = cam.GetCinemachineComponent<CinemachineComposer>();
 
-
-        if (!isLocalPlayer)
+        if (!localPlayer())
         {
             gameObject.transform.Find("Main Camera").gameObject.SetActive(false);
             gameObject.transform.Find("CM player").gameObject.SetActive(false);
         }
 
         //if (isLocalPlayer)
-        if (focused && isLocalPlayer)
+        if (focused && localPlayer())
         {
 
             //rb = GetComponent<Rigidbody>();
@@ -88,7 +94,7 @@ public class Player : NetworkBehaviour
     private void OnApplicationFocus(bool focus)
     {
         focused = focus;
-        if (focus && isLocalPlayer)
+        if (focus && localPlayer())
         {
             GetComponent<Renderer>().material.color = new Color(0, 1, 1, 0.3f);
         }
@@ -99,10 +105,15 @@ public class Player : NetworkBehaviour
     }
 
 
+    bool localPlayer()
+    {
+        return isLocalPlayer || LOCAL_DEBUG;
+    }
+
     void Update()
     {
         //if (isLocalPlayer)
-        if (focused && isLocalPlayer)
+        if (focused && localPlayer())
         {
             isGrounded();
 
@@ -120,7 +131,7 @@ public class Player : NetworkBehaviour
     void FixedUpdate()
     {
         //if (isLocalPlayer)
-        if (focused && isLocalPlayer)
+        if (focused && localPlayer())
         {
             //vel = inputWASD * speed;
             UpdateVel(inputWASD * speed);
@@ -135,7 +146,7 @@ public class Player : NetworkBehaviour
 
         Animation();
 
-        if (focused && isLocalPlayer)
+        if (focused && localPlayer())
         {
             Move();
             Rotate();
@@ -144,12 +155,43 @@ public class Player : NetworkBehaviour
     }
 
 
+    public bool DEBUG_adjustToSlope;
+
     [Command]
     void UpdateVel(Vector2 newVel)
     {
         if (vel != newVel)
+        {
+            //adjust to terrain
+            
+            if(DEBUG_adjustToSlope) newVel = AdjustVelocityToSlope(newVel);
+            //newVel.y += ySpeed;
+
+
             vel = newVel;
+        }
     }
+
+
+    //Not sure if it works
+    private Vector3 AdjustVelocityToSlope(Vector3 velocity)
+    {
+        var ray = new Ray(transform.position, Vector3.down);
+
+        if(Physics.Raycast(ray,out RaycastHit hitInfo, 0.2f))
+        {
+            var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+            var adjustedVelocity = slopeRotation * velocity;
+
+            if (adjustedVelocity.y < 0)
+            {
+                return adjustedVelocity;
+            }
+        }
+
+        return velocity;
+    }
+
 
     Vector3 lookVel = new Vector3();
 
@@ -186,11 +228,11 @@ public class Player : NetworkBehaviour
 
     }
 
-    public float dist = .3f;
+    public float isGroundedDist = .3f;
     bool isGrounded()
     {
-        Debug.DrawRay(transform.position, Vector3.down * (col.bounds.extents.y + dist), Color.red, 1 / 60);
-        grounded = Physics.Raycast(transform.position, Vector3.down, col.bounds.extents.y + dist);
+        Debug.DrawRay(transform.position, Vector3.down * (col.bounds.extents.y + isGroundedDist), Color.red, 1 / 60);
+        grounded = Physics.Raycast(transform.position, Vector3.down, col.bounds.extents.y + isGroundedDist);
         return grounded;
     }
 
@@ -249,37 +291,58 @@ public class Player : NetworkBehaviour
     }
 
     float rotationSpeed = 2;
+    float deadzone = 0.6f;
+    //public float vOffset = 0.5f, vUpThreshold = 0.725f, vDownThreshold = -0.25f;
+    public float vOffset = 0.7f, vUpThreshold = 1f, vDownThreshold = 0f;
     void Rotate()
     {
-        if (inputArrows.x != 0)
+        if (Mathf.Abs(inputArrows.x) > deadzone) //deadzone
         {
             transform.Rotate(new Vector3(0, inputArrows.x * rotationSpeed, 0));
         }
-    }
 
-    private void OnCollisionEnter(Collision c)
-    {
-        var g = c.gameObject;
-        switch (g.tag)
+        if (Mathf.Abs(inputArrows.y) > deadzone) //deadzone
         {
-            case "Ground":
-                groundCount++;
-                break;
+            //vertical camera rotation
+            fram.m_ScreenY =
+                Mathf.Lerp(
+                    Mathf.Clamp(
+                                (inputArrows.y) + vOffset
+                                , vDownThreshold, vUpThreshold)
+                , vOffset, .5f)
+                ; //aim does not exist, need to find property to acess aim>screen.y, which is by default 0.5
         }
-    }
-
-    private void OnCollisionExit(Collision c)
-    {
-        var g = c.gameObject;
-        switch (g.tag)
+        else
         {
-            case "Ground":
-                groundCount--;
-                break;
+            fram.m_ScreenY = Mathf.Lerp(fram.m_ScreenY, vOffset, .5f);
         }
 
+
+
     }
 
+    //private void OnCollisionEnter(Collision c)
+    //{
+    //    var g = c.gameObject;
+    //    switch (g.tag)
+    //    {
+    //        case "Ground":
+    //            groundCount++;
+    //            break;
+    //    }
+    //}
+
+    //private void OnCollisionExit(Collision c)
+    //{
+    //    var g = c.gameObject;
+    //    switch (g.tag)
+    //    {
+    //        case "Ground":
+    //            groundCount--;
+    //            break;
+    //    }
+
+    //}
 
 
 
@@ -288,7 +351,8 @@ public class Player : NetworkBehaviour
 
 
 
-    //////////////
+
+    /////INPUT/////////
     ///
     Vector2 inputHandlerWASD = new Vector2();
     Vector2 inputHandlerArrows = new Vector2();

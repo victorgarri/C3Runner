@@ -1,12 +1,13 @@
 using Cinemachine;
 using UnityEngine;
+using Mirror;
 
 /*
 	Documentation: https://mirror-networking.gitbook.io/docs/components/network-manager
 	API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkManager.html
 */
 
-namespace Mirror.Examples.NetworkRoom
+namespace C3Runner.Multiplayer
 {
     [AddComponentMenu("")]
     public class NetworkRoomManagerExt : NetworkRoomManager

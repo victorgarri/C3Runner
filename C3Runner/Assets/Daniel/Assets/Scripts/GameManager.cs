@@ -3,14 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : NetworkBehaviour
 {
     public static float gravityScale = 3;
-    private static Vector2 inputWASD = new Vector2();
-    private static Vector2 inputArrows = new Vector2();
-    private static bool buttonSouth;
-    static PlayerInput pi;
+    public bool DEBUG;
+    //private static Vector2 inputWASD = new Vector2();
+    //private static Vector2 inputArrows = new Vector2();
+    //private static bool buttonSouth;
+    //static PlayerInput pi;
+
+    private void Update()
+    {
+        if (DEBUG)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                
+            }
+        }
+    }
 
     private void Start()
     {

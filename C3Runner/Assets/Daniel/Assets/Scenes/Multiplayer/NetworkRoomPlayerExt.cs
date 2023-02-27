@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Mirror;
 
-namespace Mirror.Examples.NetworkRoom
+namespace C3Runner.Multiplayer
 {
     [AddComponentMenu("")]
     public class NetworkRoomPlayerExt : NetworkRoomPlayer

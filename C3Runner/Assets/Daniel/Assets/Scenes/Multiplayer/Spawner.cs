@@ -1,6 +1,7 @@
 using UnityEngine;
+using Mirror;
 
-namespace Mirror.Examples.NetworkRoom
+namespace C3Runner.Multiplayer
 {
     internal class Spawner
     {
