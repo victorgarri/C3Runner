@@ -163,8 +163,8 @@ public class Player : NetworkBehaviour
         if (vel != newVel)
         {
             //adjust to terrain
-            
-            if(DEBUG_adjustToSlope) newVel = AdjustVelocityToSlope(newVel);
+
+            if (DEBUG_adjustToSlope) newVel = AdjustVelocityToSlope(newVel);
             //newVel.y += ySpeed;
 
 
@@ -178,7 +178,7 @@ public class Player : NetworkBehaviour
     {
         var ray = new Ray(transform.position, Vector3.down);
 
-        if(Physics.Raycast(ray,out RaycastHit hitInfo, 0.2f))
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f))
         {
             var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
             var adjustedVelocity = slopeRotation * velocity;
@@ -294,6 +294,8 @@ public class Player : NetworkBehaviour
     float deadzone = 0.6f;
     //public float vOffset = 0.5f, vUpThreshold = 0.725f, vDownThreshold = -0.25f;
     public float vOffset = 0.7f, vUpThreshold = 1f, vDownThreshold = 0f;
+
+    public float damping = .3f;
     void Rotate()
     {
         if (Mathf.Abs(inputArrows.x) > deadzone) //deadzone
@@ -304,22 +306,19 @@ public class Player : NetworkBehaviour
         if (Mathf.Abs(inputArrows.y) > deadzone) //deadzone
         {
             //vertical camera rotation
-            fram.m_ScreenY =
-                Mathf.Lerp(
-                    Mathf.Clamp(
-                                (inputArrows.y) + vOffset
-                                , vDownThreshold, vUpThreshold)
-                , vOffset, .5f)
-                ; //aim does not exist, need to find property to acess aim>screen.y, which is by default 0.5
+            var newscreenY = Mathf.Clamp((inputArrows.y) + vOffset, vDownThreshold, vUpThreshold);
+
+            fram.m_ScreenY = Mathf.Lerp(fram.m_ScreenY, newscreenY, Mathf.SmoothStep(0, 1, damping));
         }
         else
         {
-            fram.m_ScreenY = Mathf.Lerp(fram.m_ScreenY, vOffset, .5f);
+            fram.m_ScreenY = Mathf.Lerp(fram.m_ScreenY, vOffset, Mathf.SmoothStep(0, 1, damping));
         }
 
 
 
     }
+
 
     //private void OnCollisionEnter(Collision c)
     //{
