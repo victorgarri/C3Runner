@@ -8,6 +8,7 @@ TagManager:
   - PositiveArrow
   - NegativeArrow
   - CambioEscena
+  - Vallas
   layers:
   - Default
   - TransparentFX
