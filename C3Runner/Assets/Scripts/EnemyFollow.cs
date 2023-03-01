@@ -9,15 +9,18 @@ public class EnemyFollow : MonoBehaviour
     private Rigidbody _rigidbody;
     [SerializeField] private float moveForce = 20f;
     private bool activado;
+
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (transform.position.x - player.transform.position.x < 50f)
         {
             activado = true;
@@ -30,9 +33,12 @@ public class EnemyFollow : MonoBehaviour
         
         if (activado)
         {
+            Debug.Log("enemy");
             Vector3 direction = (player.transform.position - transform.position).normalized;
            
-            _rigidbody.AddForce(moveForce * direction, ForceMode.Force); 
+            Debug.Log(direction);
+
+            _rigidbody.AddForce(moveForce * direction, ForceMode.Force);
         }
     }
 }
