@@ -23,10 +23,10 @@ public class CambioEscena : MonoBehaviour
         
         //Debug.Log(Application.loadedLevelName);
 
-        if (Application.loadedLevelName == "Arjona")
+        if (Application.loadedLevelName == "MainScene")
         {
             
-            if (isPlayerExit && Application.loadedLevelName == "Arjona")
+            if (isPlayerExit && Application.loadedLevelName == "MainScene")
             {
                 //cinemachine.SetActive(true);
                 //timeline.SetActive(true);
@@ -87,6 +87,6 @@ public class CambioEscena : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
-        SceneManager.LoadScene("Arjona");
+        SceneManager.LoadScene("MainScene");
     }
 }
