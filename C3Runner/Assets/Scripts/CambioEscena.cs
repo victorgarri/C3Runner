@@ -10,7 +10,7 @@ public class CambioEscena : MonoBehaviour
 {
     private float speed = 0.04f;
     
-    public GameObject player;
+    //public GameObject player;
     //public GameObject cinemachine;
     //public GameObject timeline;
     
@@ -53,9 +53,9 @@ public class CambioEscena : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider col)
     {
-        if (other.gameObject == player)
+        if (col.gameObject.tag == "Player")
         {
             isPlayerExit = true;
         }
@@ -63,7 +63,7 @@ public class CambioEscena : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject == player)
+        if (col.gameObject.tag == "Player")
         {
             isPlayerExit = true;
         }

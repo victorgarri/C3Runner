@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : NetworkBehaviour
+public class Player3D : NetworkBehaviour
 {
     public bool LOCAL_DEBUG;
 

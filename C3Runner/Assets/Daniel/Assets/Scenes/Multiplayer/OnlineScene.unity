@@ -3894,10 +3894,6 @@ PrefabInstance:
       propertyPath: sceneId
       value: 453338464
       objectReference: {fileID: 0}
-    - target: {fileID: 6810935908958214930, guid: 6ba21f46ed6a73f4d9240e53d358ac2d, type: 3}
-      propertyPath: m_Name
-      value: BouncerSphereRotate
-      objectReference: {fileID: 0}
     - target: {fileID: 6810935909570505372, guid: 6ba21f46ed6a73f4d9240e53d358ac2d, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -3946,11 +3942,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: SphereRotator
       objectReference: {fileID: 0}
-    - target: {fileID: 8909841005432829302, guid: 6ba21f46ed6a73f4d9240e53d358ac2d, type: 3}
-      propertyPath: sceneId
-      value: 3001300410
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5498918939958689882, guid: 6ba21f46ed6a73f4d9240e53d358ac2d, type: 3}
-    - {fileID: 8909841005432829302, guid: 6ba21f46ed6a73f4d9240e53d358ac2d, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ba21f46ed6a73f4d9240e53d358ac2d, type: 3}
