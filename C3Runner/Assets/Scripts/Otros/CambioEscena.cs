@@ -9,55 +9,82 @@ using UnityEngine.UI;
 public class CambioEscena : MonoBehaviour
 {
     private float speed = 0.04f;
-    
+
     //public GameObject player;
     //public GameObject cinemachine;
     //public GameObject timeline;
-    
+
     private bool isPlayerExit = false;
 
     public Image exitToScene2D;
 
     void Update()
     {
-        
+
         //Debug.Log(Application.loadedLevelName);
 
-        if (Application.loadedLevelName == "MainScene")
+        switch (Application.loadedLevelName)
         {
-            
-            if (isPlayerExit && Application.loadedLevelName == "MainScene")
-            {
-                //cinemachine.SetActive(true);
-                //timeline.SetActive(true);
-                StartCoroutine(EndLevel3D(exitToScene2D));
-            }
-            else if (exitToScene2D.color.a > 0)
-            {
-                exitToScene2D.color = new Color(exitToScene2D.color.r, exitToScene2D.color.g, exitToScene2D.color.b, exitToScene2D.color.a - speed);
-            }
+            case "MainScene":
+                if (isPlayerExit)
+                {
+                    StartCoroutine(EndLevel3D(exitToScene2D));
+                }
+                else if (exitToScene2D.color.a > 0)
+                {
+                    exitToScene2D.color = new Color(exitToScene2D.color.r, exitToScene2D.color.g, exitToScene2D.color.b, exitToScene2D.color.a - speed);
+                }
+                break;
+            case "Level 1":
+                if (isPlayerExit)
+                {
+                    StartCoroutine(EndLevel2D(exitToScene2D));
+                }
+                else if (exitToScene2D.color.a > 0)
+                {
+                    exitToScene2D.color = new Color(exitToScene2D.color.r, exitToScene2D.color.g, exitToScene2D.color.b, exitToScene2D.color.a - speed);
+                }
+                break;
+
 
         }
 
-        if (Application.loadedLevelName == "Level 1")
-        {
-            if (isPlayerExit && Application.loadedLevelName == "Level 1")
-            {
-                StartCoroutine(EndLevel2D(exitToScene2D));
-            }
-            else if (exitToScene2D.color.a > 0)
-            {
-                exitToScene2D.color = new Color(exitToScene2D.color.r, exitToScene2D.color.g, exitToScene2D.color.b, exitToScene2D.color.a - speed);
-            }
-            
-        }
+        //if (Application.loadedLevelName == "MainScene")
+        //{
+
+        //    if (isPlayerExit && Application.loadedLevelName == "MainScene")
+        //    {
+        //        //cinemachine.SetActive(true);
+        //        //timeline.SetActive(true);
+        //        StartCoroutine(EndLevel3D(exitToScene2D));
+        //    }
+        //    else if (exitToScene2D.color.a > 0)
+        //    {
+        //        exitToScene2D.color = new Color(exitToScene2D.color.r, exitToScene2D.color.g, exitToScene2D.color.b, exitToScene2D.color.a - speed);
+        //    }
+
+        //}
+
+        //if (Application.loadedLevelName == "Level 1")
+        //{
+        //    if (isPlayerExit && Application.loadedLevelName == "Level 1")
+        //    {
+        //        StartCoroutine(EndLevel2D(exitToScene2D));
+        //    }
+        //    else if (exitToScene2D.color.a > 0)
+        //    {
+        //        exitToScene2D.color = new Color(exitToScene2D.color.r, exitToScene2D.color.g, exitToScene2D.color.b, exitToScene2D.color.a - speed);
+        //    }
+
+        //}
     }
 
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Player")
         {
-            isPlayerExit = true;
+            if (col.gameObject.GetComponent<Player3D>().isLocalPlayer)
+                isPlayerExit = true;
         }
     }
 
@@ -65,22 +92,23 @@ public class CambioEscena : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            isPlayerExit = true;
+            if (col.gameObject.GetComponent<Player3D>().isLocalPlayer)
+                isPlayerExit = true;
         }
     }
 
     IEnumerator EndLevel3D(Image canvas)
     {
         yield return new WaitForSeconds(3);
-        
+
         canvas.color = new Color(canvas.color.r, canvas.color.g, canvas.color.b, canvas.color.a + speed);
-        
+
         yield return new WaitForSeconds(2);
 
         SceneManager.LoadScene("Level 1");
-        
+
     }
-    
+
     IEnumerator EndLevel2D(Image canvas)
     {
         canvas.color = new Color(canvas.color.r, canvas.color.g, canvas.color.b, canvas.color.a + speed);
