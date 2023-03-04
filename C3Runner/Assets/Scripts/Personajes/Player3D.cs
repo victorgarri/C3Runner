@@ -20,7 +20,7 @@ public class Player3D : NetworkBehaviour
     public float jumpForce = 5;
 
     //Input
-    PlayerInput pi;
+    public PlayerInput pi;
     Vector2 inputWASD = new Vector2();
     Vector2 inputArrows = new Vector2();
     [SyncVar] Vector2 vel = new Vector2();
@@ -39,6 +39,9 @@ public class Player3D : NetworkBehaviour
     CinemachineVirtualCamera cam;
     CinemachineComposer fram;
 
+    //Networking
+    public bool _isLocalPlayer; //para que otros scripts lo puedan referenciar
+
 
     void Start()
     {
@@ -51,6 +54,8 @@ public class Player3D : NetworkBehaviour
         anim = model.GetComponent<Animator>();
         cam = gameObject.transform.Find("CM player").GetComponent<CinemachineVirtualCamera>();
         fram = cam.GetCinemachineComponent<CinemachineComposer>();
+
+        _isLocalPlayer = localPlayer();
 
         if (!localPlayer())
         {
