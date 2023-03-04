@@ -32,7 +32,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metarig|T-Pose
+  m_Name: metarig|JumpEnd
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -176,6 +176,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: vely
     m_EventTreshold: 0.1
+  - m_ConditionMode: 1
+    m_ConditionEvent: grounded
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5227625602546593352}
   m_Solo: 0
@@ -323,6 +326,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: vely
     m_EventTreshold: 0.1
+  - m_ConditionMode: 1
+    m_ConditionEvent: grounded
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3790117882710370547}
   m_Solo: 0
