@@ -17,6 +17,9 @@ public class CambioEscena : MonoBehaviour
     private bool isPlayerExit = false;
 
     public Image exitToScene2D;
+    public CanvasGroup mainSceneControls;
+
+    private bool couroutineStarted = false;
 
     void Update()
     {
@@ -51,6 +54,13 @@ public class CambioEscena : MonoBehaviour
             }
             
         }
+
+        if(!couroutineStarted)
+        {
+            Debug.Log("pepe");
+            StartCoroutine("exitControls");
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -88,5 +98,18 @@ public class CambioEscena : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         SceneManager.LoadScene("MainScene");
+    }
+    
+    IEnumerator exitControls()
+    {
+        yield return new WaitForSeconds(2);
+
+        if (mainSceneControls.alpha == 0)
+        {
+            couroutineStarted = true;
+        }else
+        {
+            mainSceneControls.alpha -= speed;
+        }
     }
 }
