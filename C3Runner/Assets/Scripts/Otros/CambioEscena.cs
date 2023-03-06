@@ -86,7 +86,7 @@ public class CambioEscena : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            if (col.gameObject.GetComponent<Player3D>().isLocalPlayer)
+            if (col.gameObject.GetComponent<Player>())
             {
                 //isPlayerExit = true;
                 SwitchSceneFade();
