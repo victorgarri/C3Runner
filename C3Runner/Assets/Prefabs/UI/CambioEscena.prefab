@@ -719,6 +719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitToScene2D: {fileID: 6560741184197739260}
+  anim: {fileID: 1493077934015115373}
 --- !u!95 &1435200934443942418
 Animator:
   serializedVersion: 5
@@ -1725,7 +1726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6560741184246800920
 RectTransform:
   m_ObjectHideFlags: 0

@@ -74,7 +74,7 @@ public class UIControlsFade : MonoBehaviour
     {
         if (isLocalPlayer)
         {
-            gameObject.GetComponent<Animator>().Play("Fade");
+            gameObject.GetComponent<Animator>().Play("FadeIn");
             yield return new WaitForSeconds(2);
             mainSceneControls.gameObject.SetActive(false);
         }

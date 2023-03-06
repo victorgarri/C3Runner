@@ -13,7 +13,7 @@ public class CambioEscena : MonoBehaviour
     private float speed = 0.04f;
     private bool isPlayerExit = false;
     public Image exitToScene2D;
-
+    public Animator anim;
 
     void Start()
     {
@@ -24,7 +24,8 @@ public class CambioEscena : MonoBehaviour
 
             if (transform.parent.GetComponent<Player3D>() != null)
             {
-                
+                transform.parent = null;
+                transform.position = Vector3.zero;
             }
             else
             {
@@ -35,10 +36,10 @@ public class CambioEscena : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (isPlayerExit)
-        {
-            SwitchSceneFade();
-        }
+        //if (isPlayerExit)
+        //{
+        //    SwitchSceneFade();
+        //}
     }
 
     void SwitchSceneFade()
@@ -48,21 +49,21 @@ public class CambioEscena : MonoBehaviour
             case "MainScene":
                 if (isPlayerExit)
                 {
-                    StartCoroutine(EndLevel3D(exitToScene2D));
+                    SceneManager.LoadScene("Level 1");
                 }
-                else if (exitToScene2D.color.a > 0)
+                else
                 {
-                    exitToScene2D.color = new Color(exitToScene2D.color.r, exitToScene2D.color.g, exitToScene2D.color.b, exitToScene2D.color.a - speed);
+                    StartCoroutine("Fade");
                 }
                 break;
             case "Level 1":
                 if (isPlayerExit)
                 {
-                    StartCoroutine(EndLevel2D(exitToScene2D));
+                    SceneManager.LoadScene("MainScene");
                 }
-                else if (exitToScene2D.color.a > 0)
+                else
                 {
-                    exitToScene2D.color = new Color(exitToScene2D.color.r, exitToScene2D.color.g, exitToScene2D.color.b, exitToScene2D.color.a - speed);
+                    StartCoroutine("Fade");
                 }
                 break;
 
@@ -75,7 +76,9 @@ public class CambioEscena : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             if (col.gameObject.GetComponent<Player3D>().isLocalPlayer)
-                isPlayerExit = true;
+            {
+                SwitchSceneFade();
+            }
         }
     }
 
@@ -84,30 +87,45 @@ public class CambioEscena : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             if (col.gameObject.GetComponent<Player3D>().isLocalPlayer)
-                isPlayerExit = true;
+            {
+                //isPlayerExit = true;
+                SwitchSceneFade();
+            }
         }
     }
 
-    IEnumerator EndLevel3D(Image canvas)
+    IEnumerator Fade()
     {
-        yield return new WaitForSeconds(3);
-
-        canvas.color = new Color(canvas.color.r, canvas.color.g, canvas.color.b, canvas.color.a + speed);
-
-        yield return new WaitForSeconds(2);
-
-        SceneManager.LoadScene("Level 1");
-
+        if (anim != null)
+        {
+            anim.Play("FadeOut");
+        }
+        yield return new WaitForSeconds(1);
+        isPlayerExit = true;
+        SwitchSceneFade();
     }
 
-    IEnumerator EndLevel2D(Image canvas)
-    {
-        canvas.color = new Color(canvas.color.r, canvas.color.g, canvas.color.b, canvas.color.a + speed);
 
-        yield return new WaitForSeconds(2);
+    //IEnumerator EndLevel3D(Image canvas)
+    //{
+    //    yield return new WaitForSeconds(3);
 
-        SceneManager.LoadScene("MainScene");
-    }
+    //    canvas.color = new Color(canvas.color.r, canvas.color.g, canvas.color.b, canvas.color.a + speed);
 
-   
+    //    yield return new WaitForSeconds(2);
+
+    //    SceneManager.LoadScene("Level 1");
+
+    //}
+
+    //IEnumerator EndLevel2D(Image canvas)
+    //{
+    //    canvas.color = new Color(canvas.color.r, canvas.color.g, canvas.color.b, canvas.color.a + speed);
+
+    //    yield return new WaitForSeconds(2);
+
+    //    SceneManager.LoadScene("MainScene");
+    //}
+
+
 }
