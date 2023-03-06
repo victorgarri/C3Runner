@@ -11,22 +11,9 @@ using UnityEngine.UI;
 public class CambioEscena : MonoBehaviour
 {
     private float speed = 0.04f;
-
-    //public GameObject player;
-    //public GameObject cinemachine;
-    //public GameObject timeline;
-
     private bool isPlayerExit = false;
-
     public Image exitToScene2D;
-    public CanvasGroup mainSceneControls;
 
-    //private bool couroutineStarted = false;
-    private bool hiddenMainSceneControls;
-
-    PlayerInput pi;
-
-    bool isLocalPlayer;
 
     void Start()
     {
@@ -37,28 +24,7 @@ public class CambioEscena : MonoBehaviour
 
             if (transform.parent.GetComponent<Player3D>() != null)
             {
-                //ESCENA 3D
-                Player3D p = transform.parent.GetComponent<Player3D>();
-                isLocalPlayer = p.isLocalPlayer;
-
-                if (isLocalPlayer)
-                {
-                    var players = GameObject.FindObjectsOfType(p.GetType());
-                    foreach (var item in players)
-                    {
-                        if (item.GetComponent<Player3D>()._isLocalPlayer)
-                        {
-                            pi = item.GetComponent<Player3D>().pi;
-                        }
-                    }
-
-                }
-                else
-                {
-                    gameObject.SetActive(false);
-                }
-                transform.parent = null;
-                transform.position = Vector3.zero;
+                
             }
             else
             {
@@ -67,30 +33,9 @@ public class CambioEscena : MonoBehaviour
             }
         }
     }
-
-
-    void Update()
-    {
-        if (isLocalPlayer)
-        {
-            //Debug.Log(Application.loadedLevelName);
-            //switch (Application.loadedLevelName)
-
-            //SwitchScene();
-
-            //if (!couroutineStarted)
-            if (focused && GetInputButtonStart() && !hiddenMainSceneControls)
-            {
-                hiddenMainSceneControls = true;
-                Debug.Log("pepe");
-                StartCoroutine("exitControls");
-            }
-        }
-    }
-
     void FixedUpdate()
     {
-        if (isLocalPlayer)
+        if (isPlayerExit)
         {
             SwitchSceneFade();
         }
@@ -164,30 +109,5 @@ public class CambioEscena : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
-    IEnumerator exitControls()
-    {
-        if (isLocalPlayer)
-        {
-            gameObject.GetComponent<Animator>().Play("Fade");
-            yield return new WaitForSeconds(2);
-            mainSceneControls.gameObject.SetActive(false);
-        }
-    }
-
-    bool inputHandlerButtonStart;
-    public bool GetInputButtonStart()
-    {
-        //reset input
-        inputHandlerButtonStart = false;
-        inputHandlerButtonStart = pi.actions["Menu"].WasPressedThisFrame();
-
-        return inputHandlerButtonStart;
-    }
-
-
-    bool focused = true;
-    private void OnApplicationFocus(bool focus)
-    {
-        focused = focus;
-    }
+   
 }
