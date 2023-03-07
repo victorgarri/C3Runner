@@ -10,11 +10,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Daniel/Assets/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Level2D/Assets/Scripts/Level2DGameManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/DestroyRocks.cs" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -106,6 +101,7 @@
       <workItem from="1676287447671" duration="661000" />
       <workItem from="1676544101365" duration="13000" />
       <workItem from="1677576466922" duration="2648000" />
+      <workItem from="1678178061860" duration="337000" />
     </task>
     <servers />
   </component>
