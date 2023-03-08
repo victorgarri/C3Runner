@@ -94,8 +94,9 @@ public class Player : MonoBehaviour
         {
             // hInput = Input.GetAxisRaw("Horizontal");
             // vInput = Input.GetAxisRaw("Vertical");
-            hInput = GetInputMovement().x;
-            vInput = GetInputMovement().y;
+            hInput = GetInputMovement().normalized.x;
+            vInput = Mathf.Abs(GetInputMovement().y) >= 0.7f ? GetInputMovement().y : 0;
+            //vInput = GetInputMovement().y;
 
 
             //updatePhysics();
@@ -247,7 +248,8 @@ public class Player : MonoBehaviour
     {
         //reset input
         inputHandlerWASD = Vector2.zero;
-        inputHandlerWASD = pi.actions["Movement"].ReadValue<Vector2>().normalized;
+        //inputHandlerWASD = pi.actions["Movement"].ReadValue<Vector2>().normalized;
+        inputHandlerWASD = pi.actions["Movement"].ReadValue<Vector2>();
 
         return inputHandlerWASD;
     }
