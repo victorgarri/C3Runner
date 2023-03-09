@@ -43,6 +43,9 @@ public class Player3D : NetworkBehaviour
     public bool _isLocalPlayer; //para que otros scripts lo puedan referenciar
 
 
+    public AudioClip jumpSound;
+    private AudioSource audioSource;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -50,11 +53,14 @@ public class Player3D : NetworkBehaviour
         speed *= GameManager.gravityScale;
         jumpForce *= GameManager.gravityScale;
 
+        audioSource = GetComponent<AudioSource>();
+        
+
         model = transform.Find("Character").gameObject;
         anim = model.GetComponent<Animator>();
         cam = gameObject.transform.Find("CM player").GetComponent<CinemachineVirtualCamera>();
         fram = cam.GetCinemachineComponent<CinemachineComposer>();
-
+        
         _isLocalPlayer = localPlayer();
 
         if (!localPlayer())
@@ -252,6 +258,7 @@ public class Player3D : NetworkBehaviour
             spaceConsumed = true;
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             anim.SetTrigger(JUMP);
+            audioSource.PlayOneShot(jumpSound, 1);
         }
     }
 
