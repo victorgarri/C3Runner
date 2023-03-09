@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    [Header("Lives & Invulnerability")]
-    public int numberOfLives = 3;
+    [Header("Lives & Invulnerability")] public int numberOfLives = 3;
     public bool invulnerable = false;
     public float invulnerabilityPeriod = 2;
     public GameObject livesUI;
     public GameObject lifeUnit;
 
-    [Header("Forces")]
-    public float forceMove = 1000f;
+    [Header("Forces")] public float forceMove = 1000f;
     public float forceJump = 750f;
     public float forceKnockback = 10;
 
@@ -25,9 +24,10 @@ public class Player : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public BoxCollider2D bc;
 
-    [Header("Inputs")]
-    public bool jumping = false;
+    [Header("Inputs")] public bool jumping = false;
+
     public int collisionCount = 0;
+
     //
     float hInput, vInput;
     public bool isInControl = true;
@@ -36,14 +36,18 @@ public class Player : MonoBehaviour
     [Header("Input Buffer")]
     //simple input buffer for jumping
     public float bufferTime = 0.1f;
+
     bool jumpConsumed = true;
 
-    [Header("Others")]
-    public Sprite winSprite;
+    [Header("Others")] public Sprite winSprite;
 
+
+    private PlayerInput pi;
 
     void Start()
     {
+        pi = GetComponent<PlayerInput>();
+
         Camera cam = Camera.main;
         rb = this.gameObject.GetComponent<Rigidbody2D>();
         sr = this.gameObject.GetComponent<SpriteRenderer>();
@@ -54,8 +58,6 @@ public class Player : MonoBehaviour
         {
             var obj = Instantiate(lifeUnit, livesUI.transform);
         }
-
-
     }
 
     void RemoveLife()
@@ -65,14 +67,12 @@ public class Player : MonoBehaviour
 
     public void AddLife()
     {
-        
         //Si el n�mero de vidas actual es menor que las vidas totales, activamos el �ltimo elemento desactivado
         if (numberOfLives < livesUI.transform.childCount)
         {
             numberOfLives++;
             livesUI.transform.GetChild(numberOfLives - 1).gameObject.SetActive(true);
         }
-        
     }
 
 
@@ -92,12 +92,15 @@ public class Player : MonoBehaviour
         //
         if (isInControl)
         {
-            hInput = Input.GetAxisRaw("Horizontal");
-            vInput = Input.GetAxisRaw("Vertical");
+            // hInput = Input.GetAxisRaw("Horizontal");
+            // vInput = Input.GetAxisRaw("Vertical");
+            hInput = GetInputMovement().normalized.x;
+            vInput = Mathf.Abs(GetInputMovement().y) >= 0.7f ? GetInputMovement().y : 0;
+            //vInput = GetInputMovement().y;
 
 
             //updatePhysics();
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (GetInputButtonSouth())
             {
                 //jumpConsumed = false;
                 StartCoroutine("jumpBuffer");
@@ -134,11 +137,9 @@ public class Player : MonoBehaviour
         }
         else
         {
-
             //
             transform.position = (Vector2)transform.position + outOfControl;
         }
-
     }
 
     private void FixedUpdate()
@@ -198,7 +199,6 @@ public class Player : MonoBehaviour
         CancelInvoke("flashSprite");
         sr.enabled = true;
         invulnerable = false;
-
     }
 
     IEnumerator jumpBuffer()
@@ -220,7 +220,6 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-
         if (col.gameObject.CompareTag("ground"))
         {
             //if above
@@ -235,5 +234,41 @@ public class Player : MonoBehaviour
         {
             collisionCount--;
         }
+    }
+
+
+    /////INPUT/////////
+    ///
+    Vector2 inputHandlerWASD = new Vector2();
+
+    Vector2 inputHandlerArrows = new Vector2();
+    bool inputHandlerButtonSouth;
+
+    public Vector2 GetInputMovement()
+    {
+        //reset input
+        inputHandlerWASD = Vector2.zero;
+        //inputHandlerWASD = pi.actions["Movement"].ReadValue<Vector2>().normalized;
+        inputHandlerWASD = pi.actions["Movement"].ReadValue<Vector2>();
+
+        return inputHandlerWASD;
+    }
+
+    public Vector2 GetInputCamera()
+    {
+        //reset input
+        inputHandlerArrows = Vector2.zero;
+        inputHandlerArrows = pi.actions["Camera"].ReadValue<Vector2>().normalized;
+
+        return inputHandlerArrows;
+    }
+
+    public bool GetInputButtonSouth()
+    {
+        //reset input
+        inputHandlerButtonSouth = false;
+        inputHandlerButtonSouth = pi.actions["Jump"].WasPressedThisFrame();
+
+        return inputHandlerButtonSouth;
     }
 }

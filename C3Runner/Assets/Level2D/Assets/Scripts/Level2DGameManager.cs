@@ -68,6 +68,6 @@ public class Level2DGameManager : MonoBehaviour
     IEnumerator Restart()
     {
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(0);//this current scene
+        SceneManager.LoadScene("Level 1"); //this current scene
     }
 }
