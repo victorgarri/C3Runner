@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class NewRockSpawner : MonoBehaviour
 {
-    public float spawnheight = 140;
     public float spawnRate = 0.3f;
 
     public GameObject[] rocks;
@@ -56,11 +55,5 @@ public class NewRockSpawner : MonoBehaviour
         return keepSpawning;
     }
 
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.yellow;
-    //    Gizmos.DrawWireSphere(transform.position, radius);
-    //}
 
 }
