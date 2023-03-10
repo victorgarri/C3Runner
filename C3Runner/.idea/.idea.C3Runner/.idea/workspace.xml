@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26f37f37-ed16-4ebe-9dc3-ec5203530fc6" name="Changes" comment="" />
+    <list default="true" id="26f37f37-ed16-4ebe-9dc3-ec5203530fc6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.C3Runner/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.C3Runner/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Obstaculos/pCube365.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Obstaculos/pCube365.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Obstaculos/pCube367.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Obstaculos/pCube367.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Obstaculos/pCube368.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Obstaculos/pCube368.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Personajes/Player/PlayerN.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Personajes/Player/PlayerN.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Personajes/Player3D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Personajes/Player3D.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,6 +110,8 @@
       <workItem from="1676544101365" duration="13000" />
       <workItem from="1677576466922" duration="2648000" />
       <workItem from="1678178061860" duration="337000" />
+      <workItem from="1678363053721" duration="949000" />
+      <workItem from="1678365337696" duration="8000" />
     </task>
     <servers />
   </component>
