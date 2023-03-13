@@ -42,10 +42,16 @@ public class Player3D : NetworkBehaviour
     //Networking
     public bool _isLocalPlayer; //para que otros scripts lo puedan referenciar
 
-
+    //Audio
     public AudioClip jumpSound;
     private AudioSource audioSource;
-    
+
+    //Others
+    public float distanceFromZero;
+    public int spot = 1;
+
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -54,13 +60,13 @@ public class Player3D : NetworkBehaviour
         jumpForce *= GameManager.gravityScale;
 
         audioSource = GetComponent<AudioSource>();
-        
+
 
         model = transform.Find("Character").gameObject;
         anim = model.GetComponent<Animator>();
         cam = gameObject.transform.Find("CM player").GetComponent<CinemachineVirtualCamera>();
         fram = cam.GetCinemachineComponent<CinemachineComposer>();
-        
+
         _isLocalPlayer = localPlayer();
 
         if (!localPlayer())
@@ -119,6 +125,9 @@ public class Player3D : NetworkBehaviour
 
     void FixedUpdate()
     {
+        UpdateDistanceFromZero();
+
+
         if (focused && localPlayer())
         {
             UpdateVel(inputWASD * speed);
@@ -138,6 +147,11 @@ public class Player3D : NetworkBehaviour
             Rotate();
             Jump();
         }
+    }
+
+    void UpdateDistanceFromZero()
+    {
+        distanceFromZero = Vector3.Distance(transform.position, Vector3.zero);
     }
 
 
