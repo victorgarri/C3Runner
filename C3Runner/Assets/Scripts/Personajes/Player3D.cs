@@ -73,6 +73,7 @@ public class Player3D : NetworkBehaviour
         {
             gameObject.transform.Find("Main Camera").gameObject.SetActive(false);
             gameObject.transform.Find("CM player").gameObject.SetActive(false);
+            gameObject.GetComponent<AudioSource>().enabled = false;
         }
 
         if (focused && localPlayer())

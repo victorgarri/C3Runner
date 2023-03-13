@@ -9,15 +9,14 @@ public class PlayerSpot : MonoBehaviour
 
     void Start()
     {
-
         StartCoroutine("CountPlayers");
-
     }
 
     IEnumerator CountPlayers()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(4);
         players = FindObjectsOfType<Player3D>().ToList();
+        InvokeRepeating("UpdatePlayerSpot", 0, 1);
     }
 
 
@@ -37,5 +36,6 @@ public class PlayerSpot : MonoBehaviour
         {
             players[0].spot = i + 1;
         }
+        print(players);
     }
 }
