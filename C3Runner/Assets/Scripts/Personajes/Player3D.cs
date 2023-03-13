@@ -43,9 +43,11 @@ public class Player3D : NetworkBehaviour
     public bool _isLocalPlayer; //para que otros scripts lo puedan referenciar
 
 
-    public AudioClip jumpSound;
     private AudioSource audioSource;
-    
+    public AudioClip jumpSound;
+    public AudioClip runSound;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -54,13 +56,13 @@ public class Player3D : NetworkBehaviour
         jumpForce *= GameManager.gravityScale;
 
         audioSource = GetComponent<AudioSource>();
-        
+
 
         model = transform.Find("Character").gameObject;
         anim = model.GetComponent<Animator>();
         cam = gameObject.transform.Find("CM player").GetComponent<CinemachineVirtualCamera>();
         fram = cam.GetCinemachineComponent<CinemachineComposer>();
-        
+
         _isLocalPlayer = localPlayer();
 
         if (!localPlayer())
@@ -74,12 +76,11 @@ public class Player3D : NetworkBehaviour
             pi = GetComponent<PlayerInput>();
 
             GetComponent<Renderer>().material.color = new Color(0, 1, 1, 0.3f);
-
         }
-
     }
 
     bool focused = true;
+
     private void OnApplicationFocus(bool focus)
     {
         focused = focus;
@@ -125,9 +126,8 @@ public class Player3D : NetworkBehaviour
 
             if (!grounded)
             {
-                UpdateVel(vel / 4);//midair velocity
+                UpdateVel(vel / 4); //midair velocity
             }
-
         }
 
         Animation();
@@ -179,9 +179,9 @@ public class Player3D : NetworkBehaviour
 
 
     Vector3 lookVel = new Vector3();
+
     void RotateCharacter()
     {
-
         lookVel.x = vel.x;
         lookVel.y = 0;
         lookVel.z = vel.y;
@@ -202,10 +202,10 @@ public class Player3D : NetworkBehaviour
         anim.SetBool(GROUNDED, grounded);
 
         RotateCharacter();
-
     }
 
     public float isGroundedDist = .3f;
+
     bool isGrounded()
     {
         Debug.DrawRay(transform.position, Vector3.down * (col.bounds.extents.y + isGroundedDist), Color.red, 1 / 60);
@@ -234,6 +234,7 @@ public class Player3D : NetworkBehaviour
     }
 
 
+    private Vector3 hor = new Vector3(1, 0, 1);
 
     void Move()
     {
@@ -247,6 +248,17 @@ public class Player3D : NetworkBehaviour
         rb.AddForce(forward * vel.y + right * vel.x);
 
 
+        hor = rb.velocity;
+        hor.y = 0;
+        if (isGrounded() && hor.magnitude > 0.5f && !audioSource.isPlaying )
+        {
+            
+            audioSource.PlayOneShot(runSound);
+        }
+        else
+        {
+            audioSource.Stop();
+        }
 
     }
 
@@ -266,6 +278,7 @@ public class Player3D : NetworkBehaviour
     float deadzone = 0.6f;
     public float vOffset = 0.7f, vUpThreshold = 1f, vDownThreshold = 0f;
     public float damping = .3f;
+
     void Rotate()
     {
         if (Mathf.Abs(inputArrows.x) > deadzone) //deadzone
@@ -284,16 +297,15 @@ public class Player3D : NetworkBehaviour
         {
             fram.m_ScreenY = Mathf.Lerp(fram.m_ScreenY, vOffset, Mathf.SmoothStep(0, 1, damping));
         }
-
-
-
     }
 
     /////INPUT/////////
     ///
     Vector2 inputHandlerWASD = new Vector2();
+
     Vector2 inputHandlerArrows = new Vector2();
     bool inputHandlerButtonSouth;
+
     public Vector2 GetInputMovement()
     {
         //reset input
@@ -320,5 +332,4 @@ public class Player3D : NetworkBehaviour
 
         return inputHandlerButtonSouth;
     }
-
 }
