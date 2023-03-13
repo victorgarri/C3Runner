@@ -52,9 +52,6 @@ public class Player3D : NetworkBehaviour
     public int spot = 1;
 
 
-    
-
-
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -265,14 +262,15 @@ public class Player3D : NetworkBehaviour
 
         hor = rb.velocity;
         hor.y = 0;
-        if (isGrounded() && hor.magnitude > 0.5f && !audioSource.isPlaying )
+        if (isGrounded() && inputWASD.magnitude > 0.5f && !audioSource.isPlaying)
         {
-            
-            audioSource.PlayOneShot(runSound);
+            audioSource.clip = runSound;
+            audioSource.loop = true;
+            audioSource.Play();
         }
         else
         {
-            audioSource.Stop();
+            audioSource.loop = false;
         }
 
     }

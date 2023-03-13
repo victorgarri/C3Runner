@@ -387,6 +387,9 @@ MonoBehaviour:
   pi: {fileID: 0}
   _isLocalPlayer: 0
   jumpSound: {fileID: 8300000, guid: a0798479e0f498f489a7111dabb48265, type: 3}
+  runSound: {fileID: 8300000, guid: 1108108a7d30bc549ba6de4fc91cf055, type: 3}
+  distanceFromZero: 0
+  spot: 1
   DEBUG_adjustToSlope: 0
   isGroundedDist: 0.55
   vOffset: 0.7
