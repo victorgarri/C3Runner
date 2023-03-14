@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7193893049460640769}
   - component: {fileID: 7193893049461739201}
   - component: {fileID: 7193893049471230913}
-  - component: {fileID: 6260750264465141562}
   m_Layer: 0
   m_Name: road_intersection_T
   m_TagString: Ground
@@ -27,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7193893049463934977}
-  m_LocalRotation: {x: -0, y: 0.70710707, z: -0, w: 0.70710653}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 359.4553, y: -1.0000033, z: 19.910173}
   m_LocalScale: {x: 37.41333, y: 37.41333, z: 37.41333}
   m_ConstrainProportionsScale: 0
@@ -108,16 +107,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!65 &6260750264465141562
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7193893049463934977}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.9987794, y: 0.3659239, z: 2.0020661}
-  m_Center: {x: -0.0014579593, y: 0.18296196, z: -0.0010341405}
