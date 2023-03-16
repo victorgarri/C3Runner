@@ -3,7 +3,27 @@ guid: 5399ebb9a96545e4fa1d04d76c7692d9
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BaseRoja
+    second: {fileID: 2100000, guid: 3429815e1f654814e81fbf59b0e93065, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Oxido
+    second: {fileID: 2100000, guid: 9a5fef04fbe4082458a3ca6177ee35f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OxidoJamones
+    second: {fileID: 2100000, guid: 85d7c4adc48f5ca44beb9a244f4a4abe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OxidoJamonesDark
+    second: {fileID: 2100000, guid: 6adeac271660f024e91a64388f393484, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
