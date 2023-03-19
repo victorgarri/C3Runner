@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 069b44da93a93fe4ab827263594348a5
+guid: ca83b4c241e33e749b2484ea8d9af5fc
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,23 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: CatedralBody
-    second: {fileID: 2100000, guid: b1e75b7215b010642bc50860cb537d85, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: CatedralTopsBlueBrownTiles
-    second: {fileID: 2100000, guid: 8e7f46a0621a1234babfa8453e1ce89b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: CatedralTopsBrown
-    second: {fileID: 2100000, guid: aefd2a1911106424e80ea125360990a4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: CatedralTopsWhite
-    second: {fileID: 2100000, guid: 577b1477db3f2bd408cbc4cad06bbc04, type: 2}
+      name: Material
+    second: {fileID: 2100000, guid: 5761fd1aa85da18408e858b06695186a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
