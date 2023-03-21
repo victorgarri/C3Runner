@@ -11,19 +11,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RoomScene.unity
     guid: 311e43927b7594349be0136c320a31b5
-  - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+  - enabled: 0
+    path: Assets/Scenes/Old/MainScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Daniel/Assets/Scenes/OLD DANIEL/Multiplayer/OfflineScene.unity
+    path: Assets/Scenes/MainSceneFix.unity
+    guid: 670f346df9c5ba248a339226b731eb79
+  - enabled: 1
+    path: Assets/Prefabs/Multiplayer/OfflineScene.unity
     guid: 0fd574a87a890a548a90deccb6f42428
   - enabled: 1
-    path: Assets/Daniel/Assets/Scenes/OLD DANIEL/Multiplayer/RoomScene.unity
+    path: Assets/Prefabs/Multiplayer/RoomScene.unity
     guid: d4a576786d9632548a866b8e35c7fc64
   - enabled: 1
-    path: Assets/Daniel/Assets/Scenes/OLD DANIEL/Multiplayer/OnlineScene.unity
+    path: Assets/Prefabs/Multiplayer/OnlineScene.unity
     guid: b41e38b046aab2b4abd1fed112810da0
   - enabled: 1
-    path: Assets/Level2D/Assets/Scenes/Level 1.unity
+    path: Assets/2D/Level2D/Assets/Scenes/Level 1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
