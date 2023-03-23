@@ -32,6 +32,6 @@ public class PlayerSpot : MonoBehaviour
             players[i].spot = i + 1;
             players[i].updateSpotUI();
         }
-        print(players);
+        //print(players);
     }
 }

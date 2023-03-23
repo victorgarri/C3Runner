@@ -24,6 +24,6 @@ EditorBuildSettings:
     path: Assets/Prefabs/Multiplayer/OnlineScene.unity
     guid: b41e38b046aab2b4abd1fed112810da0
   - enabled: 1
-    path: Assets/2D/Level2D/Assets/Scenes/Level 1.unity
+    path: Assets/2D/Level2D/Assets/Scenes/2DCarlosIII.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

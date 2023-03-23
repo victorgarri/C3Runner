@@ -86,14 +86,15 @@ public class Player3D : NetworkBehaviour
 
             gameObject.transform.Find("Main Camera").gameObject.SetActive(false);
             gameObject.transform.Find("CM player").gameObject.SetActive(false);
-            //gameObject.transform.Find("PlayerSpot").gameObject.SetActive(false);
-            gameObject.transform.Find("CambioEscena").GetComponent<CambioEscena>().destroyFunc();
+            gameObject.transform.Find("Canvas").gameObject.SetActive(false);
+            gameObject.transform.Find("PlayerSpot").gameObject.SetActive(false);
+            //gameObject.transform.Find("CambioEscena").GetComponent<CambioEscena>().destroyFunc();
         }
 
         if (focused && localPlayer())
         {
             pi = GetComponent<PlayerInput>();
-
+            //gameObject.transform.Find("Canvas").GetComponent<Animator>().Play("FadeIn");
             GetComponent<Renderer>().material.color = new Color(0, 1, 1, 0.3f);
         }
     }

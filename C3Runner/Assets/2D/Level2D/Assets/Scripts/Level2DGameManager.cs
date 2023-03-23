@@ -61,13 +61,13 @@ public class Level2DGameManager : MonoBehaviour
             p.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             //Destroy(p.GetComponent<Rigidbody2D>());
 
-            StartCoroutine("Restart");
+            //StartCoroutine("Restart");
         }
     }
 
     IEnumerator Restart()
     {
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("Level 1"); //this current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); //this current scene
     }
 }
