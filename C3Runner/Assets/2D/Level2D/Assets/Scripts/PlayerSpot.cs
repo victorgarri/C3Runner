@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,21 +21,16 @@ public class PlayerSpot : MonoBehaviour
     }
 
 
-
-
-    void Update()
-    {
-
-    }
-
-
     void UpdatePlayerSpot()
     {
+        //if (!isServer) return;
         players.Sort((p, q) => p.distanceFromZero.CompareTo(q.distanceFromZero));
+        players.Reverse(); 
 
         for (int i = 0; i < players.Count; i++)
         {
-            players[0].spot = i + 1;
+            players[i].spot = i + 1;
+            players[i].updateSpotUI();
         }
         print(players);
     }

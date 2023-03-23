@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player3D : NetworkBehaviour
 {
@@ -51,6 +52,14 @@ public class Player3D : NetworkBehaviour
     public float distanceFromZero;
     public int spot = 1;
 
+    //Canvas UI
+    public Text spotText;
+
+    public void updateSpotUI()
+    {
+        if (localPlayer())
+            spotText.text = spot + "º";
+    }
 
     void Start()
     {
@@ -64,16 +73,21 @@ public class Player3D : NetworkBehaviour
 
         model = transform.Find("Character").gameObject;
         anim = model.GetComponent<Animator>();
+
         cam = gameObject.transform.Find("CM player").GetComponent<CinemachineVirtualCamera>();
+
         fram = cam.GetCinemachineComponent<CinemachineComposer>();
 
         _isLocalPlayer = localPlayer();
 
         if (!localPlayer())
         {
+            gameObject.GetComponent<AudioSource>().enabled = false;
+
             gameObject.transform.Find("Main Camera").gameObject.SetActive(false);
             gameObject.transform.Find("CM player").gameObject.SetActive(false);
-            gameObject.GetComponent<AudioSource>().enabled = false;
+            //gameObject.transform.Find("PlayerSpot").gameObject.SetActive(false);
+            gameObject.transform.Find("CambioEscena").GetComponent<CambioEscena>().destroyFunc();
         }
 
         if (focused && localPlayer())

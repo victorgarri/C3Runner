@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.blendernodesgraph.core": {
+      "version": "file:E:/Documents/SCHOOL SHIT/SCHOOL SHIT GAME DEV/UNITY/3-Resources/blender-nodes-subgraph-main",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.burst": {
       "version": "1.8.2",
       "depth": 1,

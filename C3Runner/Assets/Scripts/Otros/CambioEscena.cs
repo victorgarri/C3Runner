@@ -1,10 +1,5 @@
-using Mirror;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -40,6 +35,11 @@ public class CambioEscena : MonoBehaviour
         //{
         //    SwitchSceneFade();
         //}
+    }
+
+    public void destroyFunc()
+    {
+        Destroy(gameObject);
     }
 
     void SwitchSceneFade()
