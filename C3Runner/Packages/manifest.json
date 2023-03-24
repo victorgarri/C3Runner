@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.blendernodesgraph.core": "file:E:/Documents/SCHOOL SHIT/SCHOOL SHIT GAME DEV/UNITY/3-Resources/blender-nodes-subgraph-main",
+    "com.blendernodesgraph.core": "file:../BlenderAddon/blender-nodes-subgraph-main",
     "com.unity.cinemachine": "2.8.9",
     "com.unity.collab-proxy": "1.17.7",
     "com.unity.feature.development": "1.0.1",
