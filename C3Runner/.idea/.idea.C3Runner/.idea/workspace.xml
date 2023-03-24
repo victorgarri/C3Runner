@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26f37f37-ed16-4ebe-9dc3-ec5203530fc6" name="Changes" comment="" />
+    <list default="true" id="26f37f37-ed16-4ebe-9dc3-ec5203530fc6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.C3Runner/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.C3Runner/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Obstaculos/Ball/Ball.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Obstaculos/Ball/Ball.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Obstaculos/Bumper/Bumper.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Obstaculos/Bumper/Bumper.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Obstaculos/Spring/spring.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Obstaculos/Spring/spring.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,6 +124,7 @@
       <workItem from="1678709199997" duration="8000" />
       <workItem from="1678709448836" duration="594000" />
       <workItem from="1678963787224" duration="2171000" />
+      <workItem from="1679657832390" duration="613000" />
     </task>
     <servers />
   </component>
