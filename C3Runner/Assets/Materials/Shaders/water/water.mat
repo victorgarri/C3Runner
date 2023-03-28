@@ -78,10 +78,10 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _FoamAmount: 0.8
-    - _FoamCutout: -0.38
+    - _FoamCutout: 0.1
     - _FoamDepth: 16.53
-    - _FoamFallOff: 0.26
-    - _FoamShoreWidth: 1
+    - _FoamFallOff: 4.46
+    - _FoamShoreWidth: -0.56
     - _FoamTiling: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 0.5
