@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/2D/Level2D/Assets/Scenes/2DCarlosIII.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Yecla.unity
+    guid: ce5a9b920cc109b47a42dc79966d194d
   m_configObjects: {}
