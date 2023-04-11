@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 392337067916396161}
   - component: {fileID: 4381254709564542804}
   - component: {fileID: 5348090867151737076}
+  - component: {fileID: 454869213717519403}
   m_Layer: 0
   m_Name: Mayo
   m_TagString: Untagged
@@ -80,6 +81,19 @@ MonoBehaviour:
   force: 50
   cooldownTime: 0.3
   timer: 0.3
+--- !u!114 &454869213717519403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7689550687186372561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfb368bec2c378642985013b44e6dda8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clothes: {fileID: 2100000, guid: e6d054871b4078349b8ee3f1f2f30eac, type: 2}
 --- !u!1001 &3335844277857972083
 PrefabInstance:
   m_ObjectHideFlags: 0
