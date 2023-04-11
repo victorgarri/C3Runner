@@ -856,14 +856,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shooter
       objectReference: {fileID: 0}
-    - target: {fileID: 4060122373849007910, guid: 328512bc9c55e004394293c2efe72763, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4060122374801933456, guid: 328512bc9c55e004394293c2efe72763, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.886
-      objectReference: {fileID: 0}
     - target: {fileID: 4060122375393811206, guid: 328512bc9c55e004394293c2efe72763, type: 3}
       propertyPath: _material
       value: 

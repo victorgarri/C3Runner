@@ -74,9 +74,11 @@ public class ShooterCanion : MonoBehaviour
         }
         else
         {
-            body.transform.rotation = Quaternion.identity;
+            body.transform.rotation = transform.rotation;
             body.transform.Rotate(new Vector3(0, 180, 0));
-            barrel.transform.rotation = Quaternion.Euler(0, 180, 0);
+            //barrel.transform.rotation = Quaternion.Euler(0, 180, 0);
+            //barrel.transform.rotation = transform.rotation;
+            barrel.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
 
 
