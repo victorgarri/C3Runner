@@ -30,7 +30,7 @@ public class ShooterCanion : MonoBehaviour
 
     void FixedUpdate()
     {
-        Aim();
+        //Aim();
     }
 
 
@@ -53,7 +53,7 @@ public class ShooterCanion : MonoBehaviour
     {
         if (targets.Count > 0)
         {
-            randomIndex = Random.Range(0, targets.Count - 1);
+            randomIndex = Random.Range(0, targets.Count);
 
             Quaternion dummy;
             body.transform.LookAt(targets[randomIndex]);
