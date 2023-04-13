@@ -8,6 +8,7 @@ public class ShooterCanion : MonoBehaviour
     public GameObject bullet;
     public Transform pivot;
     public float force = 100;
+    public float delay = 0;
     public float interval = 4;
     public float bulletDestroyTime = 12;
     public bool ableToShoot = true;
@@ -23,7 +24,7 @@ public class ShooterCanion : MonoBehaviour
         body = transform.Find("Parts").Find("Body").gameObject;
         barrel = body.transform.Find("Barrel").gameObject;
 
-        InvokeRepeating("Shoot", 0, interval);
+        InvokeRepeating("Shoot", delay, interval);
     }
 
     int randomIndex = 0;
