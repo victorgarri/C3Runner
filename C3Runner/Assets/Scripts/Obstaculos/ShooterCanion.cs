@@ -14,7 +14,7 @@ public class ShooterCanion : MonoBehaviour
     public bool ableToShoot = true;
     public bool trackPlayer = true;
 
-    List<Transform> targets = new List<Transform>();
+    public List<Transform> targets = new List<Transform>();
 
     GameObject body, barrel;
 
@@ -24,7 +24,7 @@ public class ShooterCanion : MonoBehaviour
         body = transform.Find("Parts").Find("Body").gameObject;
         barrel = body.transform.Find("Barrel").gameObject;
 
-        InvokeRepeating("Shoot", delay, interval);
+        //InvokeRepeating("Shoot", delay, interval);
     }
 
     int randomIndex = 0;
@@ -105,5 +105,15 @@ public class ShooterCanion : MonoBehaviour
 
 
         }
+    }
+
+    void OnEnable()
+    {
+        InvokeRepeating("Shoot", delay, interval);
+    }
+
+    void OnDisable()
+    {
+        CancelInvoke("Shoot");
     }
 }

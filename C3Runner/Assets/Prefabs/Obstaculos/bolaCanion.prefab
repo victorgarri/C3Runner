@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3874169594451785894}
   - component: {fileID: -5934932236777349010}
   - component: {fileID: -7558277687342589257}
+  - component: {fileID: -5253677725388963156}
   m_Layer: 0
   m_Name: bolaCanion
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3369586185759709555}
   m_LocalRotation: {x: -6.123234e-17, y: 1, z: 6.123234e-17, w: -3.7493994e-33}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 2.25, y: 2.25, z: 2.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -114,3 +115,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0.000000059604645, y: 0, z: 0}
+--- !u!114 &-5253677725388963156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3369586185759709555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26ea457bbe6ad914d8b4bd053047545c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedThreshold: 50

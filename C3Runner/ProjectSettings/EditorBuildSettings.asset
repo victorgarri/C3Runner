@@ -14,19 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainSceneFix.unity
     guid: 670f346df9c5ba248a339226b731eb79
-  - enabled: 0
-    path: Assets/Prefabs/Multiplayer/OfflineScene.unity
-    guid: 0fd574a87a890a548a90deccb6f42428
-  - enabled: 0
-    path: Assets/Prefabs/Multiplayer/RoomScene.unity
-    guid: d4a576786d9632548a866b8e35c7fc64
-  - enabled: 0
-    path: Assets/Prefabs/Multiplayer/OnlineScene.unity
-    guid: b41e38b046aab2b4abd1fed112810da0
   - enabled: 1
     path: Assets/2D/Level2D/Assets/Scenes/2DCarlosIII.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Old/Yecla.unity
-    guid: ce5a9b920cc109b47a42dc79966d194d
+    path: Assets/Scenes/NewObstacles.unity
+    guid: 0dcd6c57618873f4a8ef55e4f9f6e5f5
   m_configObjects: {}

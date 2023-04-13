@@ -9,7 +9,8 @@ using UnityEngine.UI;
 
 public class Player3D : NetworkBehaviour
 {
-    public bool LOCAL_DEBUG;
+    //public bool LOCAL_DEBUG;
+    bool inControl = true;
 
     //anim vars
     string VEL = "vel", VELY = "vely", GROUNDED = "grounded", JUMP = "jump";
@@ -49,11 +50,15 @@ public class Player3D : NetworkBehaviour
     public AudioClip runSound;
 
     //Others
+    public Vector3 lastGroundPosition;
     public float distanceFromZero;
     public int spot = 1;
 
     //Canvas UI
     public Text spotText;
+
+    //FX
+    public GameObject stunStars;
 
     public void updateSpotUI()
     {
@@ -117,24 +122,31 @@ public class Player3D : NetworkBehaviour
 
     bool localPlayer()
     {
-        return isLocalPlayer || LOCAL_DEBUG;
+        return isLocalPlayer /*|| LOCAL_DEBUG*/;
     }
 
     void Update()
     {
-        //if (isLocalPlayer)
-        if (focused && localPlayer())
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            isGrounded();
+            GetStunned();
+        }
 
-            inputWASD = GetInputMovement();
-            inputArrows = GetInputCamera();
-            space = GetInputButtonSouth();
+        if (inControl)
+        {
+            if (focused && localPlayer())
+            {
+                isGrounded();
 
-            SpaceBuffer();
+                inputWASD = GetInputMovement();
+                inputArrows = GetInputCamera();
+                space = GetInputButtonSouth();
 
-            inputWASD.Normalize();
-            inputArrows.Normalize();
+                SpaceBuffer();
+
+                inputWASD.Normalize();
+                inputArrows.Normalize();
+            }
         }
     }
 
@@ -142,25 +154,47 @@ public class Player3D : NetworkBehaviour
     {
         UpdateDistanceFromZero();
 
-
-        if (focused && localPlayer())
+        if (inControl)
         {
-            UpdateVel(inputWASD * speed);
-
-            if (!grounded)
+            if (focused && localPlayer())
             {
-                UpdateVel(vel / 4); //midair velocity
+                UpdateVel(inputWASD * speed);
+
+                if (!grounded)
+                {
+                    UpdateVel(vel / 4); //midair velocity
+                }
             }
         }
 
         Animation();
 
-        if (focused && localPlayer())
+        if (inControl)
         {
-            Move();
-            Rotate();
-            Jump();
+            if (focused && localPlayer())
+            {
+                Move();
+                Rotate();
+                Jump();
+            }
         }
+    }
+
+
+
+    public void GetStunned()
+    {
+        StartCoroutine("Stunned");
+    }
+
+    IEnumerator Stunned()
+    {
+        inControl = false;
+        stunStars.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        inControl = true;
+        stunStars.SetActive(false);
+
     }
 
     void UpdateDistanceFromZero()
@@ -169,7 +203,7 @@ public class Player3D : NetworkBehaviour
     }
 
 
-    public bool DEBUG_adjustToSlope;
+    //public bool DEBUG_adjustToSlope;
 
     [Command]
     void UpdateVel(Vector2 newVel)
@@ -178,7 +212,7 @@ public class Player3D : NetworkBehaviour
         {
             //adjust to terrain
 
-            if (DEBUG_adjustToSlope) newVel = AdjustVelocityToSlope(newVel);
+            //if (DEBUG_adjustToSlope) newVel = AdjustVelocityToSlope(newVel);
 
 
             vel = newVel;
@@ -187,23 +221,23 @@ public class Player3D : NetworkBehaviour
 
 
     //Not sure if it works
-    private Vector3 AdjustVelocityToSlope(Vector3 velocity)
-    {
-        var ray = new Ray(transform.position, Vector3.down);
+    //private Vector3 AdjustVelocityToSlope(Vector3 velocity)
+    //{
+    //    var ray = new Ray(transform.position, Vector3.down);
 
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f))
-        {
-            var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
-            var adjustedVelocity = slopeRotation * velocity;
+    //    if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f))
+    //    {
+    //        var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+    //        var adjustedVelocity = slopeRotation * velocity;
 
-            if (adjustedVelocity.y < 0)
-            {
-                return adjustedVelocity;
-            }
-        }
+    //        if (adjustedVelocity.y < 0)
+    //        {
+    //            return adjustedVelocity;
+    //        }
+    //    }
 
-        return velocity;
-    }
+    //    return velocity;
+    //}
 
 
     Vector3 lookVel = new Vector3();
@@ -237,7 +271,16 @@ public class Player3D : NetworkBehaviour
     bool isGrounded()
     {
         Debug.DrawRay(transform.position, Vector3.down * (col.bounds.extents.y + isGroundedDist), Color.red, 1 / 60);
-        grounded = Physics.Raycast(transform.position, Vector3.down, col.bounds.extents.y + isGroundedDist);
+
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, Vector3.down);
+        Physics.Raycast(ray, out hit, col.bounds.extents.y + isGroundedDist);
+
+
+        if (hit.point != Vector3.zero && hit.transform.CompareTag("Ground")) lastGroundPosition = hit.point;
+
+        grounded = (hit.collider != null);
+
         return grounded;
     }
 
