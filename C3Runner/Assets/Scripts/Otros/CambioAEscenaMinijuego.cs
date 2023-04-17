@@ -12,7 +12,7 @@ public class CambioAEscenaMinijuego : MonoBehaviour
 
     public GameObject Scene3D;
     public GameObject Scene2D;
-    Player3D localplayer;
+    Player3D localplayer; 
 
     void SwitchScene()
     {
