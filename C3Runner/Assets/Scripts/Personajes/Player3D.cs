@@ -87,13 +87,7 @@ public class Player3D : NetworkBehaviour
 
         if (!localPlayer())
         {
-            gameObject.GetComponent<AudioSource>().enabled = false;
-
-            gameObject.transform.Find("Main Camera").gameObject.SetActive(false);
-            gameObject.transform.Find("CM player").gameObject.SetActive(false);
-            gameObject.transform.Find("Canvas").gameObject.SetActive(false);
-            gameObject.transform.Find("PlayerSpot").gameObject.SetActive(false);
-            //gameObject.transform.Find("CambioEscena").GetComponent<CambioEscena>().destroyFunc();
+            DisableFeatures();
         }
 
         if (focused && localPlayer())
@@ -105,6 +99,40 @@ public class Player3D : NetworkBehaviour
     }
 
     bool focused = true;
+
+
+    public void DisableFeatures()
+    {
+        gameObject.GetComponent<AudioSource>().enabled = false;
+
+        gameObject.transform.Find("Main Camera").gameObject.SetActive(false);
+        gameObject.transform.Find("CM player").gameObject.SetActive(false);
+        gameObject.transform.Find("Canvas").gameObject.SetActive(false);
+        gameObject.transform.Find("PlayerSpot").gameObject.SetActive(false);
+        //gameObject.transform.Find("CambioEscena").GetComponent<CambioEscena>().destroyFunc();
+    }
+    
+    public void EnableFeatures()
+    {
+        gameObject.GetComponent<AudioSource>().enabled = true;
+
+        gameObject.transform.Find("Main Camera").gameObject.SetActive(true);
+        gameObject.transform.Find("CM player").gameObject.SetActive(true);
+        gameObject.transform.Find("Canvas").gameObject.SetActive(true);
+        gameObject.transform.Find("PlayerSpot").gameObject.SetActive(true);
+        //gameObject.transform.Find("CambioEscena").GetComponent<CambioEscena>().destroyFunc();
+    }
+
+    public void DisableRB()
+    {
+        rb.useGravity = false;
+    }
+
+    public void EnableRB()
+    {
+        rb.useGravity = true;
+    }
+
 
     private void OnApplicationFocus(bool focus)
     {

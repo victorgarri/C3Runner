@@ -10,9 +10,22 @@ public class CambioAEscenaPrincipal : MonoBehaviour
     private bool inprogress = false;
     Animator anim;
 
+    public GameObject Scene3D;
+    public GameObject Scene2D;
+
+    Player3D localplayer;
+
     void SwitchScene()
     {
-        SceneManager.LoadScene(nameOfNextScene);
+        //SceneManager.LoadScene(nameOfNextScene);
+
+        localplayer = Scene2D.GetComponent<PlayerHolder>().localplayer;
+
+        localplayer.EnableFeatures();
+        localplayer.EnableRB();
+
+        Scene3D.SetActive(true);
+        Scene2D.SetActive(false);
 
     }
 
@@ -34,6 +47,7 @@ public class CambioAEscenaPrincipal : MonoBehaviour
 
     IEnumerator Fade()
     {
+        yield return new WaitForSeconds(3);
         if (anim != null)
         {
             anim.Play("FadeOut");
