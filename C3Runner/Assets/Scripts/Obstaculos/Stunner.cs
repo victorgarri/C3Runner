@@ -14,7 +14,7 @@ public class Stunner : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.CompareTag("Player") && rb.velocity.magnitude > speedThreshold)
+        if (col.gameObject.CompareTag("Player") && rb.velocity.magnitude >= speedThreshold)
         {
             col.gameObject.GetComponent<Player3D>().GetStunned();
         }
