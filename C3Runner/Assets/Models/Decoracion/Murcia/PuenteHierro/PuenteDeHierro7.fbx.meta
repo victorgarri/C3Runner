@@ -3,7 +3,12 @@ guid: 26a56dc08c78afa42b4d6625d2985c8a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hierro
+    second: {fileID: 2100000, guid: 28ab9811a6ef4d3428f8e6f916dae900, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
