@@ -104,7 +104,7 @@ public class Player3D : NetworkBehaviour
     public void DisableFeatures()
     {
         gameObject.GetComponent<AudioSource>().enabled = false;
-
+        inControl = false;
         gameObject.transform.Find("Main Camera").gameObject.SetActive(false);
         gameObject.transform.Find("CM player").gameObject.SetActive(false);
         gameObject.transform.Find("Canvas").gameObject.SetActive(false);
@@ -115,7 +115,7 @@ public class Player3D : NetworkBehaviour
     public void EnableFeatures()
     {
         gameObject.GetComponent<AudioSource>().enabled = true;
-
+        inControl = true;
         gameObject.transform.Find("Main Camera").gameObject.SetActive(true);
         gameObject.transform.Find("CM player").gameObject.SetActive(true);
         gameObject.transform.Find("Canvas").gameObject.SetActive(true);
@@ -155,10 +155,10 @@ public class Player3D : NetworkBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            GetStunned();
-        }
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    GetStunned();
+        //}
 
         if (inControl)
         {

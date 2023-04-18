@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - ground
+  - PositiveArrow
+  - NegativeArrow
+  - Pickup
+  - Vallas
+  - Obstacle
+  - 2DCarlosIIIGame
   layers:
   - Default
   - TransparentFX

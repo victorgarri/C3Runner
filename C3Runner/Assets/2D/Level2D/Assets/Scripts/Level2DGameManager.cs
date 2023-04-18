@@ -18,10 +18,12 @@ public class Level2DGameManager : MonoBehaviour
     public int currentScore;
 
 
+    public GameObject CarlosIIIGame2D;
+
     private void Awake()
     {
-        QualitySettings.vSyncCount = 0;  // VSync must be disabled
-        Application.targetFrameRate = 60;
+        //QualitySettings.vSyncCount = 0;  // VSync must be disabled
+        //Application.targetFrameRate = 60;
     }
 
     private void Start()
@@ -53,7 +55,8 @@ public class Level2DGameManager : MonoBehaviour
         {
             winText.gameObject.SetActive(true);
 
-            Player p = GameObject.FindWithTag("Player").GetComponent<Player>();
+            //Player p = GameObject.Find("Player").transform.gameObject.FindWithTag("Player").GetComponent<Player>();
+            Player p = GameObject.FindGameObjectWithTag("2DCarlosIIIGame").transform.Find("Player").GetComponent<Player>();
 
             p.isInControl = false;
             p.GetComponent<Animator>().enabled = false;
@@ -68,6 +71,35 @@ public class Level2DGameManager : MonoBehaviour
     IEnumerator Restart()
     {
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); //this current scene
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name); //this current scene. No longer possible as it's not its own scene.
+
+        var oldGame = GameObject.FindGameObjectWithTag("2DCarlosIIIGame");
+
+        var oldScene3D = oldGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().Scene3D;
+        var oldScene2D = oldGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().Scene2D;
+        var oldnextSpawnPosition = oldGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().nextSpawnPosition;
+
+        oldGame.GetComponent<DestroyCall>().DestroyThisGameObject(0);
+
+        //
+        var newGame = Instantiate(CarlosIIIGame2D, transform.parent);
+
+        gameOverText = newGame.transform.Find("CanvasUI").Find("gameOverText").GetComponent<TextMeshProUGUI>();
+        winText = newGame.transform.Find("CanvasUI").Find("winText").GetComponent<TextMeshProUGUI>();
+        scoreText = newGame.transform.Find("CanvasUI").Find("scoreText").GetComponent<TextMeshProUGUI>();
+
+        newGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().Scene3D = oldScene3D;
+        newGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().Scene2D = oldScene2D;
+        newGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().nextSpawnPosition = oldnextSpawnPosition;
+
+
+
+        init();
+    }
+
+    void init()
+    {
+        gameOverText.gameObject.SetActive(false);
+        winText.gameObject.SetActive(false);
     }
 }

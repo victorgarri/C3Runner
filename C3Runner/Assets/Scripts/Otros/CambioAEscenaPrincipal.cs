@@ -42,7 +42,8 @@ public class CambioAEscenaPrincipal : MonoBehaviour
             //    inprogress = true; //prevent executing twice
             //    StartCoroutine("Fade");
             //}
-            SwitchScene();
+            StartCoroutine("Fade");
+            //SwitchScene();
         }
     }
 
@@ -56,6 +57,7 @@ public class CambioAEscenaPrincipal : MonoBehaviour
         yield return new WaitForSeconds(1);
         SwitchScene();
     }
+
 
 
 
