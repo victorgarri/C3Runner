@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class CambioAEscenaPrincipal : MonoBehaviour
 {
-    public string nameOfNextScene = "OfflineScene"; //por defecto
+    //public string nameOfNextScene = "OfflineScene"; //por defecto
 
-    private bool inprogress = false;
     Animator anim;
 
     public GameObject Scene3D;

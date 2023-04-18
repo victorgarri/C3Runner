@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CambioAEscenaMinijuego : MonoBehaviour
 {
-    public string nameOfNextScene = "Offline Scene"; //por defecto
+    //public string nameOfNextScene = "Offline Scene"; //por defecto
     private bool inprogress = false;
     Animator anim;
 
