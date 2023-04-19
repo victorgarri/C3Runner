@@ -1,9 +1,69 @@
 fileFormatVersion: 2
-guid: 55ae2163321c8594fbd202a86cfbc152
+guid: b71762b561415a9449e571633abef4d3
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arco
+    second: {fileID: 2100000, guid: afc30b224a2142f4f98a66560f283b34, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columnas
+    second: {fileID: 2100000, guid: 2adfc1e6a34bd5c4ca0d3942af6fdce7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columnas.001
+    second: {fileID: 2100000, guid: dd3c8a85b7c738342b01a8a13fe7fbc3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columnas.002
+    second: {fileID: 2100000, guid: 2609afb18bc7d6942882f2bb7f6cc924, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cruz
+    second: {fileID: 2100000, guid: 791cf59bd0f77304b98ccd72b967ee0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Entrada
+    second: {fileID: 2100000, guid: ef2887558dacd75459b24d75632d5d18, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pared
+    second: {fileID: 2100000, guid: 5cc670b87678c8e489363070b6c4b668, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tejado
+    second: {fileID: 2100000, guid: 09070359153c45c45a720617e25896c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tejado2
+    second: {fileID: 2100000, guid: 5d2c07a314a06eb418b1f67c97db6bc5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TorreBase
+    second: {fileID: 2100000, guid: 91129dc003ca7ee46bd90722a18e60a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TorreInterior
+    second: {fileID: 2100000, guid: 72337948e31ff6e40a88a1c5e6849650, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ventana
+    second: {fileID: 2100000, guid: 0beb9d631df49a74d9b9ab0e4c865949, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
