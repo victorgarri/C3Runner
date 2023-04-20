@@ -1,19 +1,29 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CambioAEscenaMinijuego : MonoBehaviour
 {
-    public string nameOfNextScene = "Offline Scene"; //por defecto
-
+    //public string nameOfNextScene = "Offline Scene"; //por defecto
     private bool inprogress = false;
     Animator anim;
 
+    public GameObject Scene3D;
+    public GameObject Scene2D;
+    Player3D localplayer; 
+
     void SwitchScene()
     {
-        SceneManager.LoadScene(nameOfNextScene);
+        //SceneManager.LoadScene(nameOfNextScene);
 
+        localplayer.DisableFeatures();
+        localplayer.DisableRB();
+
+        Scene2D.SetActive(true);
+        Scene2D.GetComponent<PlayerHolder>().localplayer = localplayer;
+        Scene3D.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider col)
@@ -23,6 +33,7 @@ public class CambioAEscenaMinijuego : MonoBehaviour
             Player3D player = col.gameObject.GetComponent<Player3D>();
             if (player.isLocalPlayer)
             {
+                localplayer = player;
                 anim = player.transform.Find("Canvas").GetComponent<Animator>();
 
                 inprogress = true; //prevent executing twice
