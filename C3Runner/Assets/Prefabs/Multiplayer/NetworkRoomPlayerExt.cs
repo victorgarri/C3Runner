@@ -7,13 +7,13 @@ namespace C3Runner.Multiplayer
     [AddComponentMenu("")]
     public class NetworkRoomPlayerExt : NetworkRoomPlayer
     {
-        [SyncVar] public bool wantsToExpectate;
+        [SyncVar] public bool wantsToSpectate;
 
         public void Update()
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                wantsToExpectate = !wantsToExpectate;
+                wantsToSpectate = !wantsToSpectate;
             }
         }
 
@@ -58,11 +58,11 @@ namespace C3Runner.Multiplayer
                 //GUI.Label(new Rect(0, 0, 40, 20), "Expectar: ");
                 /*playerName = GUI.TextField(new Rect(30 + 20, 0, 100, 20), playerName == string.Empty ? "PlayerName" + netId : playerName); */
 
-                GUI.Toggle(new Rect(0, 0, 800, 20), wantsToExpectate, "(E) Expectar desde host ");
+                GUI.Toggle(new Rect(0, 0, 800, 20), wantsToSpectate, "(E) Espectar desde host ");
 
 
 
-                updateSyncVars(wantsToExpectate);
+                updateSyncVars(wantsToSpectate);
 
                 //
                 GUILayout.EndArea();
@@ -74,7 +74,7 @@ namespace C3Runner.Multiplayer
         [Command]
         void updateSyncVars(bool w)
         {
-            wantsToExpectate = w;
+            wantsToSpectate = w;
         }
     }
 }

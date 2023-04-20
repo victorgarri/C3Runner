@@ -5,22 +5,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class Expectator : NetworkBehaviour
+public class Spectator : NetworkBehaviour
 {
 
     PlayerSpot playerSpotter;
     GameObject currentplayer;
-    [SyncVar] public bool isExpectator;
+    [SyncVar] public bool isSpectator;
     bool ready;
-    public bool wantsToExpectate;
+    public bool wantsToSpectate;
 
     void Start()
     {
         if (isServer && isLocalPlayer)
         {
-            if (wantsToExpectate)
+            if (wantsToSpectate)
             {
-                isExpectator = true;
+                isSpectator = true;
                 StartCoroutine("DelayExecution");
             }
         }
@@ -65,7 +65,7 @@ public class Expectator : NetworkBehaviour
             Player3D playerEx = null;
             foreach (Player3D p in players)
             {
-                if (p.GetComponent<Expectator>() != null && p.GetComponent<Expectator>().isExpectator)
+                if (p.GetComponent<Spectator>() != null && p.GetComponent<Spectator>().isSpectator)
                 {
                     playerEx = p;
                 }

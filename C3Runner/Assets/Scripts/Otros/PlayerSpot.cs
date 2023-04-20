@@ -21,7 +21,7 @@ public class PlayerSpot : MonoBehaviour
         Player3D playerEx = null;
         foreach (Player3D p in players)
         {
-            if (p.GetComponent<Expectator>() != null && p.GetComponent<Expectator>().isExpectator)
+            if (p.GetComponent<Spectator>() != null && p.GetComponent<Spectator>().isSpectator)
             {
                 playerEx = p;
             }
