@@ -5,27 +5,14 @@ using UnityEngine.UI;
 
 public class CambioAEscenaPrincipal : MonoBehaviour
 {
-    //public string nameOfNextScene = "OfflineScene"; //por defecto
+    public string nameOfNextScene = "OfflineScene"; //por defecto
 
+    private bool inprogress = false;
     Animator anim;
-
-    public GameObject Scene3D;
-    public GameObject Scene2D;
-    public Transform nextSpawnPosition;
-
-    Player3D localplayer;
 
     void SwitchScene()
     {
-        //SceneManager.LoadScene(nameOfNextScene);
-
-        localplayer = Scene2D.GetComponent<PlayerHolder>().localplayer;
-        localplayer.transform.position = nextSpawnPosition.position;
-        localplayer.EnableFeatures();
-        localplayer.EnableRB();
-
-        Scene3D.SetActive(true);
-        Scene2D.SetActive(false);
+        SceneManager.LoadScene(nameOfNextScene);
 
     }
 
@@ -41,14 +28,12 @@ public class CambioAEscenaPrincipal : MonoBehaviour
             //    inprogress = true; //prevent executing twice
             //    StartCoroutine("Fade");
             //}
-            StartCoroutine("Fade");
-            //SwitchScene();
+            SwitchScene();
         }
     }
 
     IEnumerator Fade()
     {
-        yield return new WaitForSeconds(3);
         if (anim != null)
         {
             anim.Play("FadeOut");
@@ -56,7 +41,6 @@ public class CambioAEscenaPrincipal : MonoBehaviour
         yield return new WaitForSeconds(1);
         SwitchScene();
     }
-
 
 
 
