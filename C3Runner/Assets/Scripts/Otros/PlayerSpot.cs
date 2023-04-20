@@ -17,15 +17,17 @@ public class PlayerSpot : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         players = FindObjectsOfType<Player3D>().ToList();
-        print(players);
+        print(players.Count);
+        Player3D playerEx = null;
         foreach (Player3D p in players)
         {
             if (p.GetComponent<Expectator>() != null && p.GetComponent<Expectator>().isExpectator)
             {
-                players.Remove(p);
+                playerEx = p;
             }
         }
-        print(players);
+        players.Remove(playerEx);
+        print(players.Count);
         InvokeRepeating("UpdatePlayerSpot", 0, 1);
     }
 
