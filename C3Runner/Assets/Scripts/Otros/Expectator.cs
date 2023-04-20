@@ -12,14 +12,17 @@ public class Expectator : NetworkBehaviour
     GameObject currentplayer;
     [SyncVar] public bool isExpectator;
     bool ready;
+    public bool wantsToExpectate;
 
     void Start()
     {
-
         if (isServer && isLocalPlayer)
         {
-            isExpectator = true;
-            StartCoroutine("DelayExecution");
+            if (wantsToExpectate)
+            {
+                isExpectator = true;
+                StartCoroutine("DelayExecution");
+            }
         }
         else
         {
