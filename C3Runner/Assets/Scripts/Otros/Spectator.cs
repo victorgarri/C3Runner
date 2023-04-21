@@ -86,9 +86,6 @@ public class Spectator : NetworkBehaviour
 
 
 
-
-
-
     public Vector2 min;
     public Vector2 max;
     public float smooth;
@@ -103,24 +100,28 @@ public class Spectator : NetworkBehaviour
             if (playerSpotter.players.Count > 0)
             {
                 //currentplayer = playerSpotter.players[playerSpotter.players.Count - 1].gameObject;
-                currentplayer = playerSpotter.players[0].gameObject;
+                if (playerSpotter.players[0] != null)
+                {
+                    currentplayer = playerSpotter.players[0].gameObject;
 
-                float posX, posZ;
+                    float posX, posZ;
 
-                posX = Mathf.SmoothDamp(transform.position.x, currentplayer.transform.position.x, ref velocity.x, smooth);
-                posZ = Mathf.SmoothDamp(transform.position.z, currentplayer.transform.position.z, ref velocity.y, smooth);
+                    posX = Mathf.SmoothDamp(transform.position.x, currentplayer.transform.position.x, ref velocity.x, smooth);
+                    posZ = Mathf.SmoothDamp(transform.position.z, currentplayer.transform.position.z, ref velocity.y, smooth);
 
-                //if (!lockY)
-                //{
-                //    transform.position = new Vector3(Mathf.Clamp(posX, min.x, max.x), Mathf.Clamp(posY, min.y, max.y), transform.position.z);
-                //}
-                //else
-                //{
-                //    transform.position = new Vector3(Mathf.Clamp(posX, min.x, max.x), transform.position.y, transform.position.z);
-                //}
+                    //if (!lockY)
+                    //{
+                    //    transform.position = new Vector3(Mathf.Clamp(posX, min.x, max.x), Mathf.Clamp(posY, min.y, max.y), transform.position.z);
+                    //}
+                    //else
+                    //{
+                    //    transform.position = new Vector3(Mathf.Clamp(posX, min.x, max.x), transform.position.y, transform.position.z);
+                    //}
 
-                //transform.position = new Vector3(Mathf.Clamp(posX, min.x, max.x), transform.position.y, Mathf.Clamp(posZ, min.y, max.y));
-                transform.position = new Vector3(posX, transform.position.y, posZ);
+                    //transform.position = new Vector3(Mathf.Clamp(posX, min.x, max.x), transform.position.y, Mathf.Clamp(posZ, min.y, max.y));
+
+                    transform.position = new Vector3(posX, transform.position.y, posZ);
+                }
             }
         }
     }
