@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Letras
+    second: {fileID: 2100000, guid: f87797d881580214bb035c17343fc282, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: StripeYellow
     second: {fileID: 2100000, guid: cf1fba3da1304f6478818e2f8fff34fd, type: 2}
   materials:

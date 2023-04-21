@@ -12,7 +12,7 @@ public class RockSpawner : MonoBehaviour
 
     void RockSpawning()
     {
-        print("pepe");
+        //print("pepe");
         Instantiate(rockList[Random.Range(0, rockList.Length)],transform.position,transform.rotation);
     }
 
