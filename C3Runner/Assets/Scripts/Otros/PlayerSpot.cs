@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerSpot : MonoBehaviour
 {
-    List<Player3D> players = new List<Player3D>();
+    public List<Player3D> players = new List<Player3D>();
 
     void Start()
     {
@@ -17,6 +17,17 @@ public class PlayerSpot : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         players = FindObjectsOfType<Player3D>().ToList();
+        print(players.Count);
+        Player3D playerEx = null;
+        foreach (Player3D p in players)
+        {
+            if (p.GetComponent<Spectator>() != null && p.GetComponent<Spectator>().isSpectator)
+            {
+                playerEx = p;
+            }
+        }
+        players.Remove(playerEx);
+        print(players.Count);
         InvokeRepeating("UpdatePlayerSpot", 0, 1);
     }
 
@@ -25,7 +36,7 @@ public class PlayerSpot : MonoBehaviour
     {
         //if (!isServer) return;
         players.Sort((p, q) => p.distanceFromZero.CompareTo(q.distanceFromZero));
-        players.Reverse(); 
+        players.Reverse();
 
         for (int i = 0; i < players.Count; i++)
         {

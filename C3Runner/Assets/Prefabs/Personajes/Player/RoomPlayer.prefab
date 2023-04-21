@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4817109203880908}
   - component: {fileID: 114387717104821018}
-  - component: {fileID: 114033720796874720}
+  - component: {fileID: 6523587658113047732}
   m_Layer: 0
   m_Name: RoomPlayer
   m_TagString: Untagged
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -46,8 +47,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 0
   serverOnly: 0
-  m_AssetId: 
---- !u!114 &114033720796874720
+  visible: 0
+  m_AssetId: f9042dc121879e84db666a3d03ea97d3
+  hasSpawned: 0
+--- !u!114 &6523587658113047732
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,7 +59,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1588750985201798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41fc608223969754e817c29908fdb1d3, type: 3}
+  m_Script: {fileID: 11500000, guid: d01eae44674850645b0c0c6e92fe2501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
@@ -64,3 +67,4 @@ MonoBehaviour:
   showRoomGUI: 1
   readyToBegin: 0
   index: 0
+  wantsToExpectate: 0

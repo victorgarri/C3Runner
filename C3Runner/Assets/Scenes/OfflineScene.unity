@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -312,7 +312,7 @@ MonoBehaviour:
   spawnPrefabs: []
   showRoomGUI: 1
   minPlayers: 1
-  roomPlayerPrefab: {fileID: 114033720796874720, guid: f9042dc121879e84db666a3d03ea97d3, type: 3}
+  roomPlayerPrefab: {fileID: 6523587658113047732, guid: f9042dc121879e84db666a3d03ea97d3, type: 3}
   RoomScene: Assets/Scenes/RoomScene.unity
   GameplayScene: Assets/Scenes/MainSceneFix.unity
   _allPlayersReady: 0
