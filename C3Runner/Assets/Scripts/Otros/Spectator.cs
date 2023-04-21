@@ -14,6 +14,10 @@ public class Spectator : NetworkBehaviour
     bool ready;
     public bool wantsToSpectate;
 
+    float height = 56; //56
+    public float horizontalOffset = 67.25f; //67.25
+    //aim tracked object offset, y = -12.56
+
     void Start()
     {
         if (isServer && isLocalPlayer)
@@ -51,6 +55,11 @@ public class Spectator : NetworkBehaviour
             transform.Find("Character").gameObject.SetActive(false);
             transform.Find("Main Camera").gameObject.SetActive(true);
             transform.Find("CM player").gameObject.SetActive(true);
+
+
+            //transform.Rotate(Vector3.right, 90);
+            transform.position = new Vector3(transform.position.x, transform.position.y + height, transform.position.z);
+
             ready = true;
         }
     }
@@ -100,9 +109,15 @@ public class Spectator : NetworkBehaviour
             if (playerSpotter.players.Count > 0)
             {
                 //currentplayer = playerSpotter.players[playerSpotter.players.Count - 1].gameObject;
-                if (playerSpotter.players[0] != null)
+
+                for (int i = 0; i < playerSpotter.players.Count; i++)
                 {
-                    currentplayer = playerSpotter.players[0].gameObject;
+                    currentplayer = playerSpotter.players[i].gameObject;
+
+                    //if (currentplayer.isin2d)
+                    //{
+                    //    continue;
+                    //}
 
                     float posX, posZ;
 
@@ -120,7 +135,12 @@ public class Spectator : NetworkBehaviour
 
                     //transform.position = new Vector3(Mathf.Clamp(posX, min.x, max.x), transform.position.y, Mathf.Clamp(posZ, min.y, max.y));
 
-                    transform.position = new Vector3(posX, transform.position.y, posZ);
+                    transform.position = new Vector3(posX - horizontalOffset, transform.position.y, posZ);
+                }
+
+                if (playerSpotter.players[0] != null)
+                {
+                    
                 }
             }
         }
