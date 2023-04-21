@@ -11,6 +11,7 @@ public class Player3D : NetworkBehaviour
 {
     //public bool LOCAL_DEBUG;
     bool inControl = true;
+    
 
     //anim vars
     string VEL = "vel", VELY = "vely", GROUNDED = "grounded", JUMP = "jump";
@@ -53,12 +54,14 @@ public class Player3D : NetworkBehaviour
     public Vector3 lastGroundPosition;
     public float distanceFromZero;
     public int spot = 1;
+    public bool in2DGame;
 
     //Canvas UI
     public Text spotText;
 
     //FX
     public GameObject stunStars;
+
 
     public void updateSpotUI()
     {

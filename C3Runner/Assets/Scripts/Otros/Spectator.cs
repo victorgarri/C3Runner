@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Cinemachine;
 
 public class Spectator : NetworkBehaviour
 {
@@ -16,7 +17,10 @@ public class Spectator : NetworkBehaviour
 
     float height = 56; //56
     public float horizontalOffset = 67.25f; //67.25
-    //aim tracked object offset, y = -12.56
+    public float aimTrackedObjectOffsetY = -12.56f;//aim tracked object offset, y = -12.56
+
+    CinemachineVirtualCamera cam;
+    CinemachineComposer fram;
 
     void Start()
     {
@@ -56,6 +60,9 @@ public class Spectator : NetworkBehaviour
             transform.Find("Main Camera").gameObject.SetActive(true);
             transform.Find("CM player").gameObject.SetActive(true);
 
+            cam = gameObject.transform.Find("CM player").GetComponent<CinemachineVirtualCamera>();
+            fram = cam.GetCinemachineComponent<CinemachineComposer>();
+            fram.m_TrackedObjectOffset.y = aimTrackedObjectOffsetY;
 
             //transform.Rotate(Vector3.right, 90);
             transform.position = new Vector3(transform.position.x, transform.position.y + height, transform.position.z);
@@ -102,6 +109,8 @@ public class Spectator : NetworkBehaviour
 
     public bool lockY = false;
 
+
+
     private void FixedUpdate()
     {
         if (ready)
@@ -114,10 +123,10 @@ public class Spectator : NetworkBehaviour
                 {
                     currentplayer = playerSpotter.players[i].gameObject;
 
-                    //if (currentplayer.isin2d)
-                    //{
-                    //    continue;
-                    //}
+                    if (currentplayer.GetComponent<Player3D>().in2DGame)
+                    {
+                        continue;
+                    }
 
                     float posX, posZ;
 
@@ -140,9 +149,10 @@ public class Spectator : NetworkBehaviour
 
                 if (playerSpotter.players[0] != null)
                 {
-                    
+
                 }
             }
         }
     }
+
 }

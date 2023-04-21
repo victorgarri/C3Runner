@@ -17,7 +17,7 @@ public class PlayerSpot : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         players = FindObjectsOfType<Player3D>().ToList();
-        print(players.Count);
+        //print(players.Count);
         Player3D playerEx = null;
         foreach (Player3D p in players)
         {
@@ -27,7 +27,7 @@ public class PlayerSpot : MonoBehaviour
             }
         }
         players.Remove(playerEx);
-        print(players.Count);
+        //print(players.Count);
         InvokeRepeating("UpdatePlayerSpot", 0, 1);
     }
 

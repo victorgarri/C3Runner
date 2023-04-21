@@ -14,7 +14,7 @@ public class WayPointController : MonoBehaviour
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        print(gameObject.name);
+        //print(gameObject.name);
         _navMeshAgent.SetDestination(waypoints[currentWpIndex].position);
     }
 
