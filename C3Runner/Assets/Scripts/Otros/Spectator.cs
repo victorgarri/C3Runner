@@ -29,6 +29,7 @@ public class Spectator : NetworkBehaviour
             if (wantsToSpectate)
             {
                 isSpectator = true;
+                transform.Find("Character").gameObject.SetActive(false);
                 StartCoroutine("DelayExecution");
             }
         }
@@ -56,7 +57,7 @@ public class Spectator : NetworkBehaviour
 
             var playerEx = GetComponent<Player3D>();
             playerEx.DisableFeatures();
-            transform.Find("Character").gameObject.SetActive(false);
+            //transform.Find("Character").gameObject.SetActive(false);
             transform.Find("Main Camera").gameObject.SetActive(true);
             transform.Find("CM player").gameObject.SetActive(true);
 
@@ -119,37 +120,24 @@ public class Spectator : NetworkBehaviour
             {
                 //currentplayer = playerSpotter.players[playerSpotter.players.Count - 1].gameObject;
 
-                for (int i = 0; i < playerSpotter.players.Count; i++)
+                for (int i = playerSpotter.players.Count - 1; i >= 0; i--)
                 {
-                    currentplayer = playerSpotter.players[i].gameObject;
-
-                    if (currentplayer.GetComponent<Player3D>().in2DGame)
+                    if (playerSpotter.players[i] != null)
                     {
-                        continue;
+                        currentplayer = playerSpotter.players[i].gameObject;
+
+                        if (currentplayer.GetComponent<Player3D>().in2DGame)
+                        {
+                            continue;
+                        }
+
+                        float posX, posZ;
+
+                        posX = Mathf.SmoothDamp(transform.position.x, currentplayer.transform.position.x, ref velocity.x, smooth);
+                        posZ = Mathf.SmoothDamp(transform.position.z, currentplayer.transform.position.z, ref velocity.y, smooth);
+
+                        transform.position = new Vector3(posX - horizontalOffset, transform.position.y, posZ);
                     }
-
-                    float posX, posZ;
-
-                    posX = Mathf.SmoothDamp(transform.position.x, currentplayer.transform.position.x, ref velocity.x, smooth);
-                    posZ = Mathf.SmoothDamp(transform.position.z, currentplayer.transform.position.z, ref velocity.y, smooth);
-
-                    //if (!lockY)
-                    //{
-                    //    transform.position = new Vector3(Mathf.Clamp(posX, min.x, max.x), Mathf.Clamp(posY, min.y, max.y), transform.position.z);
-                    //}
-                    //else
-                    //{
-                    //    transform.position = new Vector3(Mathf.Clamp(posX, min.x, max.x), transform.position.y, transform.position.z);
-                    //}
-
-                    //transform.position = new Vector3(Mathf.Clamp(posX, min.x, max.x), transform.position.y, Mathf.Clamp(posZ, min.y, max.y));
-
-                    transform.position = new Vector3(posX - horizontalOffset, transform.position.y, posZ);
-                }
-
-                if (playerSpotter.players[0] != null)
-                {
-
                 }
             }
         }

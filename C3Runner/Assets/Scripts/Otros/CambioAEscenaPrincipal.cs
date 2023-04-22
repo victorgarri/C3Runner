@@ -11,7 +11,7 @@ public class CambioAEscenaPrincipal : MonoBehaviour
 
     public GameObject Scene3D;
     public GameObject Scene2D;
-    public Transform nextSpawnPosition;
+    //public Transform nextSpawnPosition;
 
     Player3D localplayer;
 
@@ -20,9 +20,10 @@ public class CambioAEscenaPrincipal : MonoBehaviour
         //SceneManager.LoadScene(nameOfNextScene);
 
         localplayer = Scene2D.GetComponent<PlayerHolder>().localplayer;
-        localplayer.transform.position = nextSpawnPosition.position;
+        //localplayer.transform.position = nextSpawnPosition.position;
         localplayer.EnableFeatures();
         localplayer.EnableRB();
+        localplayer.Update2DStatus(false);
 
         Scene3D.SetActive(true);
         Scene2D.SetActive(false);

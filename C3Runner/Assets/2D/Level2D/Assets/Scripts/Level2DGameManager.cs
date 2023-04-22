@@ -77,7 +77,7 @@ public class Level2DGameManager : MonoBehaviour
 
         var oldScene3D = oldGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().Scene3D;
         var oldScene2D = oldGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().Scene2D;
-        var oldnextSpawnPosition = oldGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().nextSpawnPosition;
+        //var oldnextSpawnPosition = oldGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().nextSpawnPosition;
 
         oldGame.GetComponent<DestroyCall>().DestroyThisGameObject(0);
 
@@ -90,7 +90,7 @@ public class Level2DGameManager : MonoBehaviour
 
         newGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().Scene3D = oldScene3D;
         newGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().Scene2D = oldScene2D;
-        newGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().nextSpawnPosition = oldnextSpawnPosition;
+        //newGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().nextSpawnPosition = oldnextSpawnPosition;
 
 
 

@@ -53,8 +53,9 @@ public class Player3D : NetworkBehaviour
     //Others
     public Vector3 lastGroundPosition;
     public float distanceFromZero;
+    Vector3 zero;
     public int spot = 1;
-    public bool in2DGame;
+    [SyncVar] public bool in2DGame;
 
     //Canvas UI
     public Text spotText;
@@ -71,6 +72,7 @@ public class Player3D : NetworkBehaviour
 
     void Start()
     {
+        zero = GameObject.Find("Zero").transform.position;
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
         speed *= GameManager.gravityScale;
@@ -230,7 +232,7 @@ public class Player3D : NetworkBehaviour
 
     void UpdateDistanceFromZero()
     {
-        distanceFromZero = Vector3.Distance(transform.position, Vector3.zero);
+        distanceFromZero = Vector3.Distance(transform.position, zero);
     }
 
 
@@ -250,6 +252,20 @@ public class Player3D : NetworkBehaviour
         }
     }
 
+
+    [Command]
+    public void Update2DStatus(bool in2D)
+    {
+        if (in2DGame != in2D)
+        {
+            //adjust to terrain
+
+            //if (DEBUG_adjustToSlope) newVel = AdjustVelocityToSlope(newVel);
+
+
+            in2DGame = in2D;
+        }
+    }
 
     //Not sure if it works
     //private Vector3 AdjustVelocityToSlope(Vector3 velocity)

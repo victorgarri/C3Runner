@@ -12,7 +12,9 @@ public class CambioAEscenaMinijuego : MonoBehaviour
 
     public GameObject Scene3D;
     public GameObject Scene2D;
-    Player3D localplayer; 
+    Player3D localplayer;
+
+    public Transform nextSpawnPosition;
 
     void SwitchScene()
     {
@@ -20,7 +22,7 @@ public class CambioAEscenaMinijuego : MonoBehaviour
 
         localplayer.DisableFeatures();
         localplayer.DisableRB();
-
+        localplayer.transform.position = nextSpawnPosition.position;
         Scene2D.SetActive(true);
         Scene2D.GetComponent<PlayerHolder>().localplayer = localplayer;
         Scene3D.SetActive(false);
@@ -34,6 +36,7 @@ public class CambioAEscenaMinijuego : MonoBehaviour
             if (player.isLocalPlayer)
             {
                 localplayer = player;
+                localplayer.Update2DStatus(true);
                 anim = player.transform.Find("Canvas").GetComponent<Animator>();
 
                 inprogress = true; //prevent executing twice
