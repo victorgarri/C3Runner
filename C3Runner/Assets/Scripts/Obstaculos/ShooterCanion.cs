@@ -6,6 +6,7 @@ public class ShooterCanion : MonoBehaviour
 {
 
     public GameObject bullet;
+    public GameObject explosionFX;
     public Transform pivot;
     public float force = 100;
     public float delay = 0;
@@ -13,6 +14,8 @@ public class ShooterCanion : MonoBehaviour
     public float bulletDestroyTime = 12;
     public bool ableToShoot = true;
     public bool trackPlayer = true;
+
+    public AudioSource aud;
 
     public List<Transform> targets = new List<Transform>();
 
@@ -40,11 +43,14 @@ public class ShooterCanion : MonoBehaviour
         if (ableToShoot)
         {
             GameObject go = Instantiate(bullet, pivot.position, transform.rotation);
+            Instantiate(explosionFX, pivot.position, transform.rotation);
             go.transform.parent = null;
             Aim();
             //Shoot forward
             go.GetComponent<Rigidbody>().AddForce(force * -barrel.transform.forward, ForceMode.Impulse);
-
+            
+            aud.Stop();
+            aud.Play();
             Destroy(go, bulletDestroyTime);
         }
 

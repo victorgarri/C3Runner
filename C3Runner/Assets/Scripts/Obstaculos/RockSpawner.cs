@@ -8,6 +8,7 @@ public class RockSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] rockList;
     //[SerializeField] private GameObject player;
+    public float spawnFrequency = 3;
 
 
     void RockSpawning()
@@ -22,7 +23,7 @@ public class RockSpawner : MonoBehaviour
 
         if (obj.tag == "Player")
         {
-            InvokeRepeating("RockSpawning", 0f, 3f);
+            InvokeRepeating("RockSpawning", 0f, spawnFrequency);
             //if (obj.transform.position.x > 812 && (obj.transform.position.z > 140 || obj.transform.position.z < 70) && !spawning)
             //{
             //    InvokeRepeating("RockSpawning", 0f, 3f);
