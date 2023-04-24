@@ -124,9 +124,9 @@ public class CarLapCounter : MonoBehaviour
                     {
                         CarGameManager.instance.OnRaceCompleted();
 
-                        GetComponent<CarInputHandler>().enabled = false;
-                        GetComponent<CarAIHandler>().enabled = true;
-                        GetComponent<AStarLite>().enabled = true;
+                        //GetComponent<CarInputHandler>().enabled = false;
+                        //GetComponent<CarAIHandler>().enabled = true;
+                        //GetComponent<AStarLite>().enabled = true;
                     }
                 }
                 else if (checkPoint.isFinishLine) StartCoroutine(ShowPositionCO(1.5f));

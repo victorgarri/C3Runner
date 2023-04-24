@@ -12,26 +12,9 @@ public class EndGame : MonoBehaviour
     
     public void End()
     {
-        if (gameObject.activeSelf)
-        {
-            if (GetInputButtonSouth())
-            {
-                StartCoroutine("Fade");
-            }
-            
-        }
+        StartCoroutine("Fade");
     }
-
-    public void buttonEnd()
-    {
-        if (gameObject.activeSelf)
-        {
-
-                StartCoroutine("Fade");
-            
-            
-        }
-    }
+    
     
     //public string nameOfNextScene = "OfflineScene"; //por defecto
 
@@ -56,23 +39,6 @@ public class EndGame : MonoBehaviour
         Scene3D.SetActive(true);
         Scene2D.SetActive(false);
 
-    }
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (/*!inprogress && */col.gameObject.tag == "Player")
-        {
-            Player player = col.gameObject.GetComponent<Player>();
-            //if (player.isLocalPlayer)
-            //{
-            //    anim = player.transform.Find("Canvas").GetComponent<Animator>();
-
-            //    inprogress = true; //prevent executing twice
-            //    StartCoroutine("Fade");
-            //}
-            StartCoroutine("Fade");
-            //SwitchScene();
-        }
     }
 
     IEnumerator Fade()
