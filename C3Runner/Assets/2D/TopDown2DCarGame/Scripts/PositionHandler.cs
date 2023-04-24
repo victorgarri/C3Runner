@@ -49,12 +49,12 @@ public class PositionHandler : MonoBehaviour
         if (carLapCounter.IsRaceCompleted())
         {
             //Set players last position
-            int playerNumber = carLapCounter.GetComponent<CarInputHandler>().playerNumber;
-            CarGameManager.instance.SetDriversLastRacePosition(playerNumber, carPosition);
+            //int playerNumber = carLapCounter.GetComponent<CarInputHandler>().playerNumber;
+            //CarGameManager.instance.SetDriversLastRacePosition(playerNumber, carPosition);
 
             //Add points to championship
-            int championshipPointAwarded = FindObjectOfType<SpawnCars>().GetNumberOfCarsSpawned() - carPosition;
-            CarGameManager.instance.AddPointsToChampionship(playerNumber, championshipPointAwarded);
+            //int championshipPointAwarded = FindObjectOfType<SpawnCars>().GetNumberOfCarsSpawned() - carPosition;
+            //CarGameManager.instance.AddPointsToChampionship(playerNumber, championshipPointAwarded);
         }
 
         //Ask the leaderboard handler to update the list
