@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 1265278265}
   - component: {fileID: 1265278269}
   - component: {fileID: 1265278268}
+  - component: {fileID: 1265278270}
   m_Layer: 0
   m_Name: NRM
   m_TagString: Untagged
@@ -353,6 +354,19 @@ MonoBehaviour:
   roomSlots: []
   clientIndex: 0
   rewardPrefab: {fileID: 0}
+--- !u!114 &1265278270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265278263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378676752c9a47548bd2023ea946e0cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 235
 --- !u!1 &1376483009
 GameObject:
   m_ObjectHideFlags: 0
