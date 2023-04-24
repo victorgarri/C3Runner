@@ -14,6 +14,7 @@ TagManager:
   - 2DCarlosIIIGame
   - CambioEscena
   - Enemy
+  - Pullable
   layers:
   - Default
   - TransparentFX
@@ -21,10 +22,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Level
+  - Player
+  - Anchor
+  - Pullable
   - 
   - 
   - 
@@ -48,6 +49,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG
+    uniqueID: 2887447483
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Level
+    uniqueID: 2541138213
+    locked: 0
+  - name: Player
+    uniqueID: 2474622831
+    locked: 0
+  - name: LevelFG
+    uniqueID: 2095357141
+    locked: 0
+  - name: AbsoluteOnTop
+    uniqueID: 257075989
     locked: 0
