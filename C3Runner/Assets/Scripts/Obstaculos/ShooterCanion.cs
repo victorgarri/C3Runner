@@ -14,6 +14,7 @@ public class ShooterCanion : MonoBehaviour
     public float bulletDestroyTime = 12;
     public bool ableToShoot = true;
     public bool trackPlayer = true;
+    public Vector3 offset;
 
     public AudioSource aud;
 
@@ -63,7 +64,10 @@ public class ShooterCanion : MonoBehaviour
             randomIndex = Random.Range(0, targets.Count);
 
             Quaternion dummy;
-            body.transform.LookAt(targets[randomIndex]);
+            Vector3 tdummy = targets[randomIndex].position;
+            tdummy += offset;
+
+            body.transform.LookAt(tdummy);
             dummy = body.transform.rotation;
             dummy.x = 0;
             //dummy.y = dummy.y + Mathf.PI; //pi is 180º, but doesn't work somehow
