@@ -15,6 +15,16 @@ TagManager:
   - CambioEscena
   - Enemy
   - Pullable
+  - DontChangeLayer
+  - Car
+  - Jump
+  - OverpassTrigger
+  - UnderpassTrigger
+  - OverpassCollider
+  - UnderpassCollider
+  - CheckPoint
+  - SpawnPoint
+  - AI
   layers:
   - Default
   - TransparentFX
@@ -27,10 +37,10 @@ TagManager:
   - Anchor
   - Pullable
   - 
-  - 
-  - 
-  - 
-  - 
+  - ObjectOnUnderpass
+  - ObjectOnOverpass
+  - ObjectFlying
+  - Checkpoint
   - 
   - 
   - 
@@ -49,6 +59,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3431774893
+    locked: 0
+  - name: RaceTrack
+    uniqueID: 1037072933
+    locked: 0
+  - name: Skidmarks
+    uniqueID: 109791867
+    locked: 0
   - name: BG
     uniqueID: 2887447483
     locked: 0
@@ -66,4 +85,16 @@ TagManager:
     locked: 0
   - name: AbsoluteOnTop
     uniqueID: 257075989
+    locked: 0
+  - name: RaceTrackOverpass
+    uniqueID: 371889277
+    locked: 0
+  - name: SkidmarksOverpass
+    uniqueID: 4113734193
+    locked: 0
+  - name: Flying
+    uniqueID: 1720073189
+    locked: 0
+  - name: Particles
+    uniqueID: 1762550891
     locked: 0
