@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -14,7 +15,7 @@ public class CambioAEscenaMinijuego : MonoBehaviour
     public GameObject Scene2D;
     Player3D localplayer;
 
-    public Transform nextSpawnPosition;
+    public List<Transform> nextSpawnPosition;
 
     void SwitchScene()
     {
@@ -22,8 +23,10 @@ public class CambioAEscenaMinijuego : MonoBehaviour
 
         localplayer.DisableFeatures();
         localplayer.DisableRB();
-        localplayer.DisableMeshRenderer();
-        localplayer.transform.position = nextSpawnPosition.position;
+        //localplayer.DisableMeshRenderer();
+        localplayer.transform.position = nextSpawnPosition[0].position;
+        //nextSpawnPosition[0].GetComponent<DestroyCall>().DestroyThisGameObject(0);
+        nextSpawnPosition.RemoveAt(0);
         Scene2D.SetActive(true);
         Scene2D.GetComponent<PlayerHolder>().localplayer = localplayer;
         Scene3D.SetActive(false);

@@ -130,11 +130,13 @@ public class Player3D : NetworkBehaviour
 
     public void DisableRB()
     {
+        col.enabled=false;
         rb.useGravity = false;
     }
 
     public void EnableRB()
     {
+        col.enabled = true;
         rb.useGravity = true;
     }
 

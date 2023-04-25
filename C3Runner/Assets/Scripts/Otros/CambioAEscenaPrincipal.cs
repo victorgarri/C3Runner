@@ -22,8 +22,8 @@ public class CambioAEscenaPrincipal : MonoBehaviour
         localplayer = Scene2D.GetComponent<PlayerHolder>().localplayer;
         //localplayer.transform.position = nextSpawnPosition.position;
         localplayer.EnableFeatures();
-        localplayer.EnableMeshRenderer();
-        localplayer.GetComponent<Renderer>().enabled = false;
+        localplayer.EnableRB();
+        //localplayer.EnableMeshRenderer();
         localplayer.Update2DStatus(false);
 
         Scene3D.SetActive(true);
