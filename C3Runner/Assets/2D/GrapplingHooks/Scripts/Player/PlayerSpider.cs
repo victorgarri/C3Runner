@@ -14,6 +14,7 @@ public class PlayerSpider : MonoBehaviour
     public float ropeLegnth = 20;
     public float speedMidairModifier = 3;
     Rigidbody2D rb;
+    BoxCollider2D col; Vector3 offsetL, offsetR;
     SpringJoint2D sj;
     Vector2 hor = new Vector2(1, 0);
     Vector2 ver = new Vector2(0, 1);
@@ -53,6 +54,10 @@ public class PlayerSpider : MonoBehaviour
     {
         pi = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<BoxCollider2D>();
+        offsetL = new Vector3(-col.bounds.extents.x, 0, 0);
+        offsetR = new Vector3(col.bounds.extents.x, 0, 0);
+
         aud = GetComponent<AudioSource>();
 
         sj = GetComponent<SpringJoint2D>();
@@ -360,13 +365,33 @@ public class PlayerSpider : MonoBehaviour
         nextToLeftWall = Physics2D.Raycast(transform.position, Vector2.left, groundedRayLength, levelMask);
     }
 
+
     private void isGrounded()
+    {
+        Debug.DrawRay(transform.position, Vector2.down * groundedRayLength, Color.red, 0.2f);
+        Debug.DrawRay(transform.position + offsetL, Vector2.down * groundedRayLength, Color.red, 0.2f);
+        Debug.DrawRay(transform.position + offsetR, Vector2.down * groundedRayLength, Color.red, 0.2f);
+        RaycastHit2D hitC = Physics2D.Raycast(transform.position, Vector2.down, groundedRayLength, levelMask);
+        RaycastHit2D hitL = Physics2D.Raycast(transform.position + offsetL, Vector2.down, groundedRayLength, levelMask);
+        RaycastHit2D hitR = Physics2D.Raycast(transform.position + offsetR, Vector2.down, groundedRayLength, levelMask);
+
+        bool hit = hitC || hitL || hitR;
+
+        if (hitC.point != Vector2.zero && hitC.transform.CompareTag("Level"))
+        {
+            lastGroundPosition = hitC.point;
+        }
+
+        grounded = hit;
+    }
+
+    /*private void isGrounded()
     {
         Debug.DrawRay(transform.position, Vector2.down * groundedRayLength, Color.red, 0.2f);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundedRayLength, levelMask);
         if (hit.point != Vector2.zero && hit.transform.CompareTag("Level")) lastGroundPosition = hit.point;
         grounded = hit;
-    }
+    }*/
 
 
     private Vector2 DecideBetweenMoveAndAimBasedAiming()
