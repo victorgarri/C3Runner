@@ -22,6 +22,7 @@ public class CambioAEscenaMinijuego : MonoBehaviour
 
         localplayer.DisableFeatures();
         localplayer.DisableRB();
+        localplayer.DisableMeshRenderer();
         localplayer.transform.position = nextSpawnPosition.position;
         Scene2D.SetActive(true);
         Scene2D.GetComponent<PlayerHolder>().localplayer = localplayer;

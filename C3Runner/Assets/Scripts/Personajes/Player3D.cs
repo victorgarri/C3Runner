@@ -138,6 +138,16 @@ public class Player3D : NetworkBehaviour
         rb.useGravity = true;
     }
 
+    public void DisableMeshRenderer()
+    {
+        transform.Find("Character").gameObject.SetActive(false);
+    }
+
+    public void EnableMeshRenderer()
+    {
+        transform.Find("Character").gameObject.SetActive(true);
+    }
+
 
     private void OnApplicationFocus(bool focus)
     {

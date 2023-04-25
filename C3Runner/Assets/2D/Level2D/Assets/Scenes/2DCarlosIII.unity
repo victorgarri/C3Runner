@@ -1800,7 +1800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &646200898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4403,7 +4403,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1440251266
@@ -4948,6 +4948,7 @@ MonoBehaviour:
   gameOver: 0
   win: 0
   currentScore: 0
+  CarlosIIIGame2D: {fileID: 0}
 --- !u!4 &1711074661
 Transform:
   m_ObjectHideFlags: 0
