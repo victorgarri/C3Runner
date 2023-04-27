@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Meta3D : MonoBehaviour
 {
+    public CountdownTimer countdownTimer;
+    public GameObject confetti, location;
 
     private void OnTriggerEnter(Collider col)
     {
@@ -12,9 +14,12 @@ public class Meta3D : MonoBehaviour
             Player3D player = col.gameObject.GetComponent<Player3D>();
             if (player.isLocalPlayer)
             {
+                Instantiate(confetti, location.transform);
                 player.Update2DStatus(true);
+                
 
             }
+            countdownTimer.startCountdown();
         }
     }
 }
