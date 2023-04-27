@@ -19262,19 +19262,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.19963929, y: 0.16958663}
   m_EdgeRadius: 0
---- !u!114 &4895414531579655519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6610693505903854276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 219e382b15255704a84c667eb4872482, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasAnim: {fileID: 4895414530455873438}
 --- !u!114 &1513765410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19289,6 +19276,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Scene3D: {fileID: 0}
   Scene2D: {fileID: 4895414532175648272}
+--- !u!114 &4895414531579655519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6610693505903854276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 219e382b15255704a84c667eb4872482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasAnim: {fileID: 4895414530455873438}
 --- !u!1001 &4895414531593216513
 PrefabInstance:
   m_ObjectHideFlags: 0

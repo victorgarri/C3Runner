@@ -50,6 +50,8 @@ public class PlayerSpider : MonoBehaviour
     [Header("Info")]
     public Vector2 lastGroundPosition;
 
+
+
     void Start()
     {
         pi = GetComponent<PlayerInput>();
@@ -74,6 +76,7 @@ public class PlayerSpider : MonoBehaviour
         isFacingLeftWall();
         isFacingRightWall();
         jumpBuffer();
+        coyoteTiming();
         shootBuffer();
 
     }
@@ -198,15 +201,23 @@ public class PlayerSpider : MonoBehaviour
 
     private void Jump()
     {
-        if (!jumpConsumed && isGroundedOrFacingWall())
+        if (!jumpConsumed && coyoteTimeActive && !jumping/* && isGroundedOrFacingWall()*/)
         {
+            print("jumping");
+            coyoteTimeActive = false;
             jumpConsumed = true;
-            jumping = true;
             rb.velocity = new Vector3(rb.velocity.x, 0);
             rb.AddForce((Vector2.up * jumpforce) / (isFacingWall() ? speedMidairModifier : 1), ForceMode2D.Impulse);
             anim.Play("Jump", -1, 0.0f);
             aud.PlayOneShot(audclipJump);
             StartCoroutine("JumpingBool");
+        }
+
+        if (GetInputJumpRelease() && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+
+            coyoteTimeCounter = 0f;
         }
 
     }
@@ -408,6 +419,7 @@ public class PlayerSpider : MonoBehaviour
         GetInputMovement();
         GetInputAim();
         GetInputJump();
+        GetInputJumpRelease();
         GetInputShoot();
     }
 
@@ -440,6 +452,24 @@ public class PlayerSpider : MonoBehaviour
                 jumpConsumeTimer = 0;
             }
         }
+    }
+
+    //coyote time
+    bool coyoteTimeActive = true;
+    public float coyoteTime = 0.2f;
+    float coyoteTimeCounter;
+
+    private void coyoteTiming()
+    {
+        if (grounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+        coyoteTimeActive = coyoteTimeCounter > 0f;
     }
 
 
@@ -493,6 +523,10 @@ public class PlayerSpider : MonoBehaviour
         inputHandlerButtonSouth = pi.actions["Jump"].WasPressedThisFrame();
 
         return inputHandlerButtonSouth;
+    }
+    public bool GetInputJumpRelease()
+    {
+        return pi.actions["Jump"].WasReleasedThisFrame();
     }
 
     public bool GetInputShoot()
