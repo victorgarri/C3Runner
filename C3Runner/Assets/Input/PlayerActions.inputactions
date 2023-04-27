@@ -40,6 +40,60 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "HelpUp",
+                    "type": "Button",
+                    "id": "5dfff3af-1918-443a-9222-213a584342e3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HelpLeft",
+                    "type": "Button",
+                    "id": "dbcd7bd4-4bf2-4bf8-bcce-5b6f2f9c369e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HelpRight",
+                    "type": "Button",
+                    "id": "1ca5e569-0514-4d7b-b670-3c895f13a84e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HelpForward",
+                    "type": "Button",
+                    "id": "93dde0df-179b-4495-aaaa-a0d83383fc2a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HelpBackwards",
+                    "type": "Button",
+                    "id": "63b0e5a2-db41-40a2-b8af-4fb0918abec4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HelpRespawn",
+                    "type": "Button",
+                    "id": "b37cb352-2985-473a-9861-d0b7831cb3d5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -271,6 +325,72 @@
                     "processors": "",
                     "groups": "",
                     "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "07510a53-6e90-4892-afce-9cdda79fa49c",
+                    "path": "<Keyboard>/numpad5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HelpUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5cb485fb-a8e8-4a65-b91c-fc8b92f6bcf9",
+                    "path": "<Keyboard>/numpad4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HelpLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "96b5f406-19d2-4d11-873b-382b1c2ac942",
+                    "path": "<Keyboard>/numpad6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HelpRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fa8e534d-d5b6-43c8-a51a-10f1d450c70c",
+                    "path": "<Keyboard>/numpad8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HelpForward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1a067832-cdca-4905-a97c-c2c53ffaae8c",
+                    "path": "<Keyboard>/numpad2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HelpBackwards",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "850ed7a8-d693-4424-a5c6-e048c63e064a",
+                    "path": "<Keyboard>/numpad0",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HelpRespawn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
