@@ -1,8 +1,9 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShooterCanion : MonoBehaviour
+public class ShooterCanion : NetworkBehaviour
 {
 
     public GameObject bullet;
@@ -39,23 +40,54 @@ public class ShooterCanion : MonoBehaviour
     }
 
 
+    //NetworkServer.Destroy(gameObject);
+
+    // this is called on the server
+    [ClientRpc]
+    void CmdFire()
+    {
+        GameObject go = Instantiate(bullet, pivot.position, transform.rotation);
+        go.transform.parent = transform;
+        NetworkServer.Spawn(go);
+        //go.transform.parent = null;
+
+        Instantiate(explosionFX, pivot.position, transform.rotation);
+    }
+
     void Shoot()
     {
         if (ableToShoot)
         {
-            GameObject go = Instantiate(bullet, pivot.position, transform.rotation);
-            Instantiate(explosionFX, pivot.position, transform.rotation);
-            go.transform.parent = null;
             Aim();
-            //Shoot forward
-            go.GetComponent<Rigidbody>().AddForce(force * -barrel.transform.forward, ForceMode.Impulse);
+            CmdFire();
             
+            //Shoot forward
+            //go.GetComponent<Rigidbody>().AddForce(force * -barrel.transform.forward, ForceMode.Impulse);
+
             aud.Stop();
             aud.Play();
-            Destroy(go, bulletDestroyTime);
+            //Destroy(go, bulletDestroyTime);
         }
 
     }
+
+    //void Shoot()
+    //{
+    //    if (ableToShoot)
+    //    {
+    //        GameObject go = Instantiate(bullet, pivot.position, transform.rotation);
+    //        Instantiate(explosionFX, pivot.position, transform.rotation);
+    //        go.transform.parent = null;
+    //        Aim();
+    //        //Shoot forward
+    //        go.GetComponent<Rigidbody>().AddForce(force * -barrel.transform.forward, ForceMode.Impulse);
+
+    //        aud.Stop();
+    //        aud.Play();
+    //        Destroy(go, bulletDestroyTime);
+    //    }
+
+    //}
 
     void Aim()
     {
