@@ -207,7 +207,7 @@ public class Player3D : NetworkBehaviour
 
                 if (!grounded)
                 {
-                    UpdateVel(vel / 4); //midair velocity
+                    UpdateVel(vel / 2); //midair velocity
                 }
             }
         }
