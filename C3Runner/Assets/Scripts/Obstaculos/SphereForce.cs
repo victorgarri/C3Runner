@@ -9,7 +9,7 @@ public class SphereForce : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        force *= GameManager.gravityScale;
+        //force *= GameManager.gravityScale;
         rb.AddForce(Vector3.right * force, ForceMode.Impulse);
 
     }

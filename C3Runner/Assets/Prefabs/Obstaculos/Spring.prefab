@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63ae27dcf220b35488a449c8eeba2cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 5
+  force: 15
   baseModelAnim: {fileID: 5407046306632695662}
 --- !u!95 &1355758609
 Animator:

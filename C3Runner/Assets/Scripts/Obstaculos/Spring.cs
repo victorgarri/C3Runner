@@ -14,7 +14,7 @@ public class Spring : MonoBehaviour
     {
         mainAnim = GetComponent<Animator>();
         direction = transform.Find("Direction");
-        force *= GameManager.gravityScale;
+        //force *= GameManager.gravityScale;
 
 
         //ASIGNACIÓN DINÁMICA DE LA LONGITUD DE LA ANIMACIÓN

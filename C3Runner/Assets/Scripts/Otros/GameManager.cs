@@ -14,29 +14,17 @@ public class GameManager : NetworkBehaviour
 
     private void Start()
     {
-        if (initGravityScale == Vector3.zero)
-        {
-            initGravityScale = Physics.gravity; //save it
-        }
+        //if (initGravityScale == Vector3.zero)
+        //{
+        //    initGravityScale = Physics.gravity; //save it
+        //}
 
-        Physics.gravity = initGravityScale;
+        //Physics.gravity = initGravityScale;
 
-        if (isClient)
-        {
-            Physics.gravity = Physics.gravity * gravityScale;
-        }
+        //if (isClient)
+        //{
+        //    Physics.gravity = Physics.gravity * gravityScale;
+        //}
     }
-    private void Update()
-    {
-        if (DEBUG)
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-
-            }
-        }
-    }
-
-
 
 }

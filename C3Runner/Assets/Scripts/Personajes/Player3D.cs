@@ -95,8 +95,8 @@ public class Player3D : NetworkBehaviour
         zero = GameObject.Find("Zero").transform.position;
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
-        speed *= GameManager.gravityScale;
-        jumpForce *= GameManager.gravityScale;
+        //speed *= GameManager.gravityScale;
+        //jumpForce *= GameManager.gravityScale;
 
         audioSource = GetComponent<AudioSource>();
 
