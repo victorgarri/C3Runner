@@ -18,11 +18,4 @@ public class RandomHue : MonoBehaviour
         }
 
     }
-
-
-
-    void Update()
-    {
-
-    }
 }

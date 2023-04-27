@@ -11,7 +11,25 @@ public class Player3D : NetworkBehaviour
 {
     //public bool LOCAL_DEBUG;
     bool inControl = true;
-    
+
+    [SyncVar] public string playerName;
+    [SyncVar(hook = nameof(SetColor))] public Color playerColor;
+
+    void SetColor(Color _, Color newColor)
+    {
+
+        var charr = transform.Find("Character").Find("CharType1");
+
+        foreach (Material material in charr.GetComponent<Renderer>().materials)
+        {
+            if (material.name.Contains("Shirt"))
+            {
+                material.SetColor("_Color", newColor);
+            }
+        }
+    }
+
+
 
     //anim vars
     string VEL = "vel", VELY = "vely", GROUNDED = "grounded", JUMP = "jump";
@@ -62,6 +80,8 @@ public class Player3D : NetworkBehaviour
 
     //FX
     public GameObject stunStars;
+
+
 
 
     public void updateSpotUI()
@@ -116,7 +136,7 @@ public class Player3D : NetworkBehaviour
         gameObject.transform.Find("PlayerSpot").gameObject.SetActive(false);
         //gameObject.transform.Find("CambioEscena").GetComponent<CambioEscena>().destroyFunc();
     }
-    
+
     public void EnableFeatures()
     {
         gameObject.GetComponent<AudioSource>().enabled = true;
@@ -130,7 +150,7 @@ public class Player3D : NetworkBehaviour
 
     public void DisableRB()
     {
-        col.enabled=false;
+        col.enabled = false;
         rb.useGravity = false;
     }
 

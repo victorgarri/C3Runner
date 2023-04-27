@@ -8,10 +8,15 @@ namespace C3Runner.Multiplayer
     public class NetworkRoomPlayerExt : NetworkRoomPlayer
     {
         [SyncVar] public bool wantsToSpectate;
+        [SyncVar] public string playerName;
+
+        [SyncVar] public Color playerColor = Color.clear;
+        float hue = .5F;
+        float lastHue;
 
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (isServer && Input.GetKeyDown(KeyCode.E))
             {
                 wantsToSpectate = !wantsToSpectate;
             }
@@ -48,33 +53,72 @@ namespace C3Runner.Multiplayer
             DrawNameInputField();
         }
 
+
         void DrawNameInputField()
         {
-            if (NetworkClient.active && isLocalPlayer)
+            if (NetworkClient.active && isLocalPlayer && isServer)
             {
-                GUILayout.BeginArea(new Rect(20f, 400f, 800f, 200f));
-
-                //PLAYER NAME INPUT FIELD
-                //GUI.Label(new Rect(0, 0, 40, 20), "Expectar: ");
-                /*playerName = GUI.TextField(new Rect(30 + 20, 0, 100, 20), playerName == string.Empty ? "PlayerName" + netId : playerName); */
+                GUILayout.BeginArea(new Rect(20f, 600f, 800f, 200f));
 
                 GUI.Toggle(new Rect(0, 0, 800, 20), wantsToSpectate, "(E) Espectar desde host ");
+                ////PLAYER NAME INPUT FIELD
+                //GUI.Label(new Rect(0, 0, 40, 20), "Name: ");
+                //playerName = GUI.TextField(new Rect(30 + 20, 0, 100, 20), playerName == string.Empty ? "PlayerName" + netId : playerName);
 
-
-
-                updateSyncVars(wantsToSpectate);
+                updateSyncVars(wantsToSpectate, playerName, playerColor);
 
                 //
                 GUILayout.EndArea();
             }
+
+            if (NetworkClient.active && isLocalPlayer)
+            {
+                GUILayout.BeginArea(new Rect(20f, 400f, 150f, 200f));
+
+                //PLAYER NAME INPUT FIELD
+                GUI.color = playerColor;
+
+                GUI.Label(new Rect(0, 0, 40, 20), "Name: ");
+                playerName = GUI.TextField(new Rect(30 + 20, 0, 100, 20), playerName == string.Empty ? "Player" + netId : playerName, 8);
+
+                //if (playerColor.Equals(Color.clear))
+                //{
+
+                    Color c = Color.white;
+                    var id = index + 1;
+                    switch ((id % 5) + 1)
+                    {
+                        case 1: c = Color.blue; break;
+                        case 2: c = Color.white; break;
+                        case 3: c = Color.green; break;
+                        case 4: c = Color.cyan; break;
+                        case 5: c = Color.yellow; break;
+                    }
+
+
+                    //playerColor = Color.HSVToRGB((netId % 5) / 5f, 1, 1);
+                    playerColor = c;
+
+                //}
+
+                GUI.color = Color.white;
+
+                updateSyncVars(wantsToSpectate, playerName, playerColor);
+
+                //
+                GUILayout.EndArea();
+            }
+
         }
 
 
         //MUY IMPORTANTE, PORQUE SI LA SYNCVAR NO ES ACTUALIZADA DESDE EL SERVIDOR NO LA TOMA EN CUENTA.
         [Command]
-        void updateSyncVars(bool w)
+        void updateSyncVars(bool wantsToSpectate, string playerName, Color playerColor)
         {
-            wantsToSpectate = w;
+            this.wantsToSpectate = wantsToSpectate;
+            this.playerName = playerName;
+            this.playerColor = playerColor;
         }
     }
 }

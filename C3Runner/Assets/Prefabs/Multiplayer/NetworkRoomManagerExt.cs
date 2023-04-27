@@ -39,8 +39,14 @@ namespace C3Runner.Multiplayer
         /// <returns>true unless some code in here decides it needs to abort the replacement</returns>
         public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnectionToClient conn, GameObject roomPlayer, GameObject gamePlayer)
         {
-            Spectator playerScore = gamePlayer.GetComponent<Spectator>();
-            playerScore.wantsToSpectate = roomPlayer.GetComponent<NetworkRoomPlayerExt>().wantsToSpectate;
+            Spectator spectator = gamePlayer.GetComponent<Spectator>();
+            spectator.wantsToSpectate = roomPlayer.GetComponent<NetworkRoomPlayerExt>().wantsToSpectate;
+            //return true;
+
+            Player3D player = gamePlayer.GetComponent<Player3D>();
+            player.playerColor = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerColor;
+            player.playerName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerName;
+            //Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA-" + player.playerName);
             return true;
         }
 
