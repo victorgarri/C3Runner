@@ -106,7 +106,7 @@ namespace C3Runner.Multiplayer
                 var id = index + 1;
                 switch ((id % 5) + 1)
                 {
-                    case 1: c = Color.blue; break;
+                    case 1: c =player1Color; break;
                     case 2: c = player1Color; break;
                     case 3: c = player2Color; break;
                     case 4: c = player3Color; break;
