@@ -14,6 +14,24 @@ namespace C3Runner.Multiplayer
         float hue = .5F;
         float lastHue;
 
+        Color player1Color, player2Color, player3Color, player4Color;
+
+        private void Awake()
+        {
+            Color newCol;
+            if (ColorUtility.TryParseHtmlString("#A9E065", out newCol))
+                player1Color = newCol;
+
+            if (ColorUtility.TryParseHtmlString("#E0974F", out newCol))
+                player2Color = newCol;
+
+            if (ColorUtility.TryParseHtmlString("#38B9E0", out newCol))
+                player3Color = newCol;
+
+            if (ColorUtility.TryParseHtmlString("#C948E0", out newCol))
+                player4Color = newCol;
+        }
+
         public void Update()
         {
             if (isServer && Input.GetKeyDown(KeyCode.E))
@@ -84,20 +102,20 @@ namespace C3Runner.Multiplayer
                 //if (playerColor.Equals(Color.clear))
                 //{
 
-                    Color c = Color.white;
-                    var id = index + 1;
-                    switch ((id % 5) + 1)
-                    {
-                        case 1: c = Color.blue; break;
-                        case 2: c = Color.white; break;
-                        case 3: c = Color.green; break;
-                        case 4: c = Color.cyan; break;
-                        case 5: c = Color.yellow; break;
-                    }
+                Color c = Color.white;
+                var id = index + 1;
+                switch ((id % 5) + 1)
+                {
+                    case 1: c = Color.blue; break;
+                    case 2: c = player1Color; break;
+                    case 3: c = player2Color; break;
+                    case 4: c = player3Color; break;
+                    case 5: c = player4Color; break;
+                }
 
 
-                    //playerColor = Color.HSVToRGB((netId % 5) / 5f, 1, 1);
-                    playerColor = c;
+                //playerColor = Color.HSVToRGB((netId % 5) / 5f, 1, 1);
+                playerColor = c;
 
                 //}
 
