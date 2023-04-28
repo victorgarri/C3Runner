@@ -39,14 +39,19 @@ public class CarInputHandler : MonoBehaviour
                     //Get input from Unity's input system.
                     print(pi.actions["move"].ReadValue<Vector2>().normalized.x);
                     print(pi.actions["move"].ReadValue<Vector2>().normalized.y);
-                    if (pi.actions["move"].ReadValue<Vector2>().normalized.x is > 0.4f or < -0.4f)
+                    /*if (pi.actions["move"].ReadValue<Vector2>().normalized.x is > 0.4f or < -0.4f)
                     {
                         inputVector.x = pi.actions["move"].ReadValue<Vector2>().normalized.x;
-                    }
+                    }*/
 
                     if (pi.actions["move"].ReadValue<Vector2>().normalized.y is > 0.4f or < -0.4f)
                     {
                         inputVector.y = pi.actions["move"].ReadValue<Vector2>().normalized.y;
+                    }
+
+                    if (pi.actions["ControlerDirection"].ReadValue<Vector2>().normalized.x is > 0.4f or < -0.4f)
+                    {
+                        inputVector.x = pi.actions["ControlerDirection"].ReadValue<Vector2>().normalized.x;
                     }
         }
 

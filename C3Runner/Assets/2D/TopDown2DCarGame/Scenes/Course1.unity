@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2DCarGame
       objectReference: {fileID: 0}
+    - target: {fileID: 1599997174600916512, guid: 6db7d1b9205bc3d44938aa53337c2c9b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1599997174600916513, guid: 6db7d1b9205bc3d44938aa53337c2c9b, type: 3}
       propertyPath: m_RootOrder
       value: 0
