@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 5859079986364802339}
   - component: {fileID: 5859079986364802338}
   - component: {fileID: 5859079986364802337}
-  - component: {fileID: 5859079986364802336}
-  - component: {fileID: 5859079986364802399}
   m_Layer: 0
   m_Name: Bouncer material
   m_TagString: Ground
@@ -86,36 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5859079986364802336
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5859079986364802397}
-  m_Material: {fileID: 13400000, guid: eda090869ade4ea4a9ee9b31d084d610, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2.1497686
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0.074884206, z: -0.00000011920929}
---- !u!54 &5859079986364802399
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5859079986364802397}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &3326645240567899296
 PrefabInstance:
   m_ObjectHideFlags: 0
