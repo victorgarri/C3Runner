@@ -129,6 +129,7 @@ public class ShooterCanion : NetworkBehaviour
 
     }
 
+    [ServerCallback]
     void OnTriggerEnter(Collider c)
     {
         if (c.tag == "Player")
@@ -139,6 +140,7 @@ public class ShooterCanion : NetworkBehaviour
         }
     }
 
+    [ServerCallback]
     void OnTriggerExit(Collider c)
     {
         if (c.tag == "Player")
@@ -149,11 +151,13 @@ public class ShooterCanion : NetworkBehaviour
         }
     }
 
+    [ServerCallback]
     void OnEnable()
     {
         InvokeRepeating("Shoot", delay, interval);
     }
 
+    [ServerCallback]
     void OnDisable()
     {
         CancelInvoke("Shoot");
