@@ -22,57 +22,63 @@ namespace Mirror.Examples.Tanks
         [Header("Stats")]
         [SyncVar] public int health = 4;
 
-
         public List<Transform> targets = new List<Transform>();
+
+
+        [ServerCallback]
         void Start()
         {
             if (isServer)
                 InvokeRepeating("CmdFire", 1, 1);
         }
 
-        //void Update()
-        //{
-        //    // always update health bar.
-        //    // (SyncVar hook would only update on clients, not on server)
-        //    healthBar.text = new string('-', health);
+        [ServerCallback]
+        void OnEnable()
+        {
+            if (isServer)
+                InvokeRepeating("CmdFire", 1, 1);
+        }
 
-        //    // movement for local player
-        //    if (isLocalPlayer)
-        //    {
-        //        // rotate
-        //        float horizontal = Input.GetAxis("Horizontal");
-        //        transform.Rotate(0, horizontal * rotationSpeed * Time.deltaTime, 0);
-
-        //        // move
-        //        float vertical = Input.GetAxis("Vertical");
-        //        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        //        agent.velocity = forward * Mathf.Max(vertical, 0) * agent.speed;
-        //        animator.SetBool("Moving", agent.velocity != Vector3.zero);
-        //        RotateTurret();
-        //        // shoot
-        //        if (Input.GetKeyDown(shootKey))
-        //        {
-        //            CmdFire();
-        //        }
-        //    }
-        //}
+        [ServerCallback]
+        void OnDisable()
+        {
+            if (isServer)
+                CancelInvoke("CmdFire");
+        }
 
         // this is called on the server
-        //[Command]
-        [ClientRpc]
         void CmdFire()
         {
-            if (targets.Count > 0)
+            try
             {
-                RotateTurret();
-                GameObject projectile = Instantiate(projectilePrefab, projectileMount.position, projectileMount.rotation);
-                NetworkServer.Spawn(projectile);
-                RpcOnFire();
+                GetTargets();
+                if (targets.Count > 0)
+                {
+                    PickTarget();
+                    RotateTurret();
+                    GameObject projectile = Instantiate(projectilePrefab, projectileMount.position, projectileMount.rotation);
+                    NetworkServer.Spawn(projectile);
+                    RpcOnFire();
+                    //}
+                }
+
+            }
+            catch (System.Exception e) { }
+        }
+
+        void GetTargets()
+        {
+            targets.Clear();
+            var tanks = GameObject.FindObjectsOfType<Tank>();
+            foreach (var item in tanks)
+            {
+                targets.Add(item.transform);
             }
         }
 
+
         // this is called on the tank that fired for all observers
-        [ClientRpc]
+        [ClientCallback]
         void RpcOnFire()
         {
             animator.SetTrigger("Shoot");
@@ -104,16 +110,24 @@ namespace Mirror.Examples.Tanks
             }
         }
 
-        int randomIndex;
+        [SyncVar] public int randomIndex;
+
+        void PickTarget()
+        {
+            randomIndex = Random.Range(0, targets.Count);
+        }
+
+
+        [ClientCallback]
         void RotateTurret()
         {
-
-            randomIndex = Random.Range(0, targets.Count);
+            //if (targets.Count > 0)
+            //{
 
             Vector3 tdummy = targets[randomIndex].position;
 
             turret.transform.LookAt(tdummy);
-
+            //}
         }
     }
 }

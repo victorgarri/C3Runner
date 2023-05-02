@@ -764,7 +764,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1407963903532131372, guid: 9cb94db79e8016a42b27400cd6c26bd0, type: 3}
       propertyPath: m_Name
-      value: Tank
+      value: TankAI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118077324417287218, guid: 9cb94db79e8016a42b27400cd6c26bd0, type: 3}
+      propertyPath: clientAuthority
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cb94db79e8016a42b27400cd6c26bd0, type: 3}
