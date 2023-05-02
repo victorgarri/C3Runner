@@ -11,7 +11,7 @@ namespace C3Runner.Multiplayer
         [SyncVar] public string playerName;
 
         [SyncVar] public Color playerColor = Color.clear;
-        float hue = .5F;
+        //float hue = .5F;
         float lastHue;
 
         public void Update()
