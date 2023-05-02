@@ -28,7 +28,7 @@ public class BolaCanion : NetworkBehaviour
     }
 
     // destroy for everyone on the server
-    //[ClientRpc]
+    [ClientRpc]
     public void DestroySelf()
     {
         NetworkServer.Destroy(gameObject);
