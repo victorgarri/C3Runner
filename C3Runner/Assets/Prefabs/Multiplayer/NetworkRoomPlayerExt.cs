@@ -14,7 +14,7 @@ namespace C3Runner.Multiplayer
         float hue = .5F;
         float lastHue;
 
-        Color player1Color, player2Color, player3Color, player4Color;
+        Color player1Color, player2Color, player3Color, player4Color, player5Color, player6Color, player7Color, player8Color;
 
         private void Awake()
         {
@@ -30,6 +30,19 @@ namespace C3Runner.Multiplayer
 
             if (ColorUtility.TryParseHtmlString("#C948E0", out newCol))
                 player4Color = newCol;
+
+            if (ColorUtility.TryParseHtmlString("#DB463B", out newCol))
+                player5Color = newCol;
+
+            if (ColorUtility.TryParseHtmlString("#2B25DB", out newCol))
+                player6Color = newCol;
+
+            if (ColorUtility.TryParseHtmlString("#DBB90F", out newCol))
+                player7Color = newCol;
+
+            if (ColorUtility.TryParseHtmlString("#008F47", out newCol))
+                player8Color = newCol;
+
         }
 
         public void Update()
@@ -104,13 +117,17 @@ namespace C3Runner.Multiplayer
 
                 Color c = Color.white;
                 var id = index + 1;
-                switch ((id % 5) + 1)
+                switch ((id % 9) + 1)
                 {
                     case 1: c =player1Color; break;
                     case 2: c = player1Color; break;
                     case 3: c = player2Color; break;
                     case 4: c = player3Color; break;
                     case 5: c = player4Color; break;
+                    case 6: c = player5Color; break;
+                    case 7: c = player6Color; break;
+                    case 8: c = player7Color; break;
+                    case 9: c = player8Color; break;
                 }
 
 
