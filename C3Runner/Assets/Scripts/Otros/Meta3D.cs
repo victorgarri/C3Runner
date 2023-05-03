@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Meta3D : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class Meta3D : MonoBehaviour
             {
                 Instantiate(confetti, location.transform);
                 player.Update2DStatus(true);
-                
+                player.GetComponent<PlayerInput>().enabled = false;
+
 
             }
             countdownTimer.startCountdown();
