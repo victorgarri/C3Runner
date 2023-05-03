@@ -250,8 +250,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1265278267}
-  - component: {fileID: 1265278265}
   - component: {fileID: 1265278269}
+  - component: {fileID: 1265278265}
   - component: {fileID: 1265278268}
   - component: {fileID: 1265278270}
   m_Layer: 0
@@ -344,7 +344,11 @@ MonoBehaviour:
   playerPrefab: {fileID: 6722503194288142808, guid: 2bf8756c43d66c94680c343281ebd439, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 3369586185759709555, guid: 11d114281c4189046a566d8771d24e59, type: 3}
+  - {fileID: 4623631404198839976, guid: d10de9e531a8d6d4f99a190d48b795f2, type: 3}
+  - {fileID: 5886838888803769661, guid: 8ddb8a8db79db2045be689eba80f3adf, type: 3}
+  - {fileID: 4925448625066510444, guid: 58ac5be5b6aeadc419960c8db7bd5a81, type: 3}
   showRoomGUI: 1
   minPlayers: 1
   roomPlayerPrefab: {fileID: 6523587658113047732, guid: f9042dc121879e84db666a3d03ea97d3, type: 3}
