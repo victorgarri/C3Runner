@@ -63,7 +63,7 @@ namespace Mirror.Examples.Tanks
                 }
 
             }
-            catch (System.Exception e) { }
+            catch (System.Exception e) { print(e); }
         }
 
         void GetTargets()
