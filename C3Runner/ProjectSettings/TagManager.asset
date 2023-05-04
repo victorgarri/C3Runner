@@ -25,6 +25,13 @@ TagManager:
   - CheckPoint
   - SpawnPoint
   - AI
+  - Clase
+  - Puerta
+  - Profesor
+  - Bola
+  - Spawn
+  - Aciertos
+  - ProfesorEnfadado
   layers:
   - Default
   - TransparentFX

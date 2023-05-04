@@ -48,6 +48,11 @@ public class CambioAEscenaPrincipal : MonoBehaviour
         }
     }
 
+    public void Cambiar()
+    {
+        StartCoroutine("Fade");
+    }
+
     IEnumerator Fade()
     {
         yield return new WaitForSeconds(3);
