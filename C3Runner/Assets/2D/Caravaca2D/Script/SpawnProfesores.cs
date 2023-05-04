@@ -31,7 +31,8 @@ public class SpawnProfesores : MonoBehaviour
         {
             randomSpawn = Random.Range(0, profesores.Length);
 
-            Instantiate(profesores[randomSpawn], new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), profesores[randomSpawn].transform.rotation);
+            var obj = Instantiate(profesores[randomSpawn], new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), profesores[randomSpawn].transform.rotation);
+            obj.transform.parent = this.transform.parent;
             aumentarProfesor();
         }
 
