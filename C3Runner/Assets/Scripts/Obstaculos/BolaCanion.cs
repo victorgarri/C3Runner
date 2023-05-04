@@ -36,7 +36,7 @@ public class BolaCanion : NetworkBehaviour
 
     IEnumerator delay()
     {
-        yield return new WaitForSeconds(12);
+        yield return new WaitForSeconds(5);
         DestroySelf();
     }
 
