@@ -73,4 +73,9 @@ public class CountdownTimer : NetworkBehaviour
         focused = focus;
     }
 
+    void OnDestroy()
+    {
+        CancelInvoke("countDown");
+    }
+
 }
