@@ -24,7 +24,7 @@ public class CountdownTimer : NetworkBehaviour
     [ClientRpc]
     void Start()
     {
-        if (!startCountingOnStart && !timerStarted)
+        if (startCountingOnStart && !timerStarted)
         {
             timerStarted = true;
             timeLeft = maxTime;
