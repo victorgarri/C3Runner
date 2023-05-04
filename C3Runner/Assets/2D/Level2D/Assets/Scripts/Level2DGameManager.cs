@@ -73,9 +73,11 @@ public class Level2DGameManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name); //this current scene. No longer possible as it's not its own scene.
 
+        gameOver = false;
+
         var oldGame = GameObject.FindGameObjectWithTag("2DCarlosIIIGame");
 
-        var oldScene3D = oldGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().Scene3D;
+        var scene3D = oldGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().Scene3D;
         var oldScene2D = oldGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().Scene2D;
         //var oldnextSpawnPosition = oldGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().nextSpawnPosition;
 
@@ -88,7 +90,7 @@ public class Level2DGameManager : MonoBehaviour
         winText = newGame.transform.Find("CanvasUI").Find("winText").GetComponent<TextMeshProUGUI>();
         scoreText = newGame.transform.Find("CanvasUI").Find("scoreText").GetComponent<TextMeshProUGUI>();
 
-        newGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().Scene3D = oldScene3D;
+        newGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().Scene3D = scene3D;
         newGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().Scene2D = oldScene2D;
         //newGame.transform.Find("Meta").GetComponent<CambioAEscenaPrincipal>().nextSpawnPosition = oldnextSpawnPosition;
 

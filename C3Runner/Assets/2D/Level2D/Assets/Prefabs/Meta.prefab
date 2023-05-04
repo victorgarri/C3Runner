@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1246821336372231885}
   - component: {fileID: 1246821336372231886}
   - component: {fileID: 1246821336372231884}
+  - component: {fileID: 78301106998346683}
   - component: {fileID: 1246821336372231875}
   - component: {fileID: 6441962258561355642}
-  - component: {fileID: 78301106998346683}
   m_Layer: 0
   m_Name: Meta
   m_TagString: Untagged
@@ -114,6 +114,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.2601702, y: 4.5635924}
   m_EdgeRadius: 0
+--- !u!61 &78301106998346683
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246821336372231887}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 4.9, y: 1.7817905}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.2601702, y: 4.5635924}
+  m_EdgeRadius: 0
 --- !u!114 &1246821336372231875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,29 +166,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Scene3D: {fileID: 0}
   Scene2D: {fileID: 0}
---- !u!61 &78301106998346683
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246821336372231887}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 4.9, y: 1.7817905}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.2601702, y: 4.5635924}
-  m_EdgeRadius: 0

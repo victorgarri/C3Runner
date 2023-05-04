@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Meta3D : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Meta3D : MonoBehaviour
                 Instantiate(confetti, location.transform);
                 player.Update2DStatus(true);
                 player.GetComponent<PlayerInput>().enabled = false;
+                player.transform.Find("WinnerScreen").Find("youwintext").GetComponent<Text>().text = "YOU WIN";
 
 
             }
