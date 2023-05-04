@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class CountdownTimer : NetworkBehaviour
 {
+    public bool startCountingOnStart = false;
     public Text textCountdown;
     public float maxTime = 120;
     [SyncVar] public float timeLeft;
@@ -18,6 +19,18 @@ public class CountdownTimer : NetworkBehaviour
         //{
         //    startCountdown();
         //}
+    }
+
+    [ClientRpc]
+    void Start()
+    {
+        if (!startCountingOnStart && !timerStarted)
+        {
+            timerStarted = true;
+            timeLeft = maxTime;
+            updateText();
+            InvokeRepeating("countDown", 1, 1);
+        }
     }
 
 
@@ -50,8 +63,8 @@ public class CountdownTimer : NetworkBehaviour
     {
         secs = timeLeft % 60;
         mins = (timeLeft - secs) / 60;
-
-        textCountdown.text = string.Format("{0:0}:{1:00}", mins, secs);
+        if (textCountdown != null)
+            textCountdown.text = string.Format("{0:0}:{1:00}", mins, secs);
     }
     //quitar luego
     bool focused;
