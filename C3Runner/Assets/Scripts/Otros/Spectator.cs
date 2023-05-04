@@ -57,7 +57,7 @@ public class Spectator : NetworkBehaviour
 
             var playerEx = GetComponent<Player3D>();
             playerEx.DisableFeatures();
-            //transform.Find("Character").gameObject.SetActive(false);
+            transform.Find("PlayerName").gameObject.SetActive(false);
             transform.Find("Main Camera").gameObject.SetActive(true);
             transform.Find("CM player").gameObject.SetActive(true);
 

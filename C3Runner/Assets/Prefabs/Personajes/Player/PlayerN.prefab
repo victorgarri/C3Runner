@@ -254,7 +254,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355983426812037065}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.4949404e-18, y: 0.804, z: 1.664211e-33}
+  m_LocalPosition: {x: 7.4949404e-18, y: 0.97, z: 1.664211e-33}
   m_LocalScale: {x: 0.5555556, y: 0.5555556, z: 0.5555556}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -313,7 +313,7 @@ TextMesh:
   m_GameObject: {fileID: 1355983426812037065}
   m_Text: Player
   m_OffsetZ: 0
-  m_CharacterSize: 0.08
+  m_CharacterSize: 0.24
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 1
@@ -1620,7 +1620,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4890156526735450227}
-  m_LocalRotation: {x: -0.0027519083, y: -1.14839506e-10, z: -3.160296e-13, w: 0.99999624}
+  m_LocalRotation: {x: -0.0027519087, y: 3.6477169e-10, z: 1.0038222e-12, w: 0.99999624}
   m_LocalPosition: {x: 0, y: 3.8888893, z: -16.666668}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4132,15 +4132,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1457833823174269138, guid: a0ee9d2391d49aa40980590ed131c65c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0027519083
+      value: -0.0027519087
       objectReference: {fileID: 0}
     - target: {fileID: 1457833823174269138, guid: a0ee9d2391d49aa40980590ed131c65c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1.14839506e-10
+      value: 3.6477169e-10
       objectReference: {fileID: 0}
     - target: {fileID: 1457833823174269138, guid: a0ee9d2391d49aa40980590ed131c65c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -3.160296e-13
+      value: 1.0038222e-12
       objectReference: {fileID: 0}
     - target: {fileID: 1457833823174269138, guid: a0ee9d2391d49aa40980590ed131c65c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -24,7 +24,11 @@ public class CambioAEscenaMinijuego : MonoBehaviour
         localplayer.DisableFeatures();
         localplayer.DisableRB();
         //localplayer.DisableMeshRenderer();
-        localplayer.transform.position = nextSpawnPosition[0].position;
+
+        int posIndex = nextSpawnPosition.Count - ((int)localplayer.netId % nextSpawnPosition.Count) - 1;
+        print(posIndex);
+        localplayer.transform.position = nextSpawnPosition[posIndex].position;
+
         //nextSpawnPosition[0].GetComponent<DestroyCall>().DestroyThisGameObject(0);
         nextSpawnPosition.RemoveAt(0);
         Scene2D.SetActive(true);
