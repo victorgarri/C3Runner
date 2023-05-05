@@ -11,6 +11,7 @@ public class Puntuacion : MonoBehaviour
     public float aciertosProfesor;
 
     public CambioAEscenaPrincipal cap;
+    public GameObject final;
     
     // Update is called once per frame
     void Update()
@@ -30,6 +31,7 @@ public class Puntuacion : MonoBehaviour
         if (aciertosProfesor >= 5)
         {
             cap.Cambiar();
+            final.SetActive(true);
         }
     }
     
