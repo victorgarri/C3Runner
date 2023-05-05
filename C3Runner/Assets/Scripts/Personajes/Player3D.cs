@@ -56,7 +56,7 @@ public class Player3D : NetworkBehaviour
 
     //Model
     Animator anim;
-    GameObject model;
+    public GameObject model;
     CinemachineVirtualCamera cam;
     CinemachineComposer fram;
 

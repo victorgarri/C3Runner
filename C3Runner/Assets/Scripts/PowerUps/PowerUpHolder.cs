@@ -24,10 +24,9 @@ public class PowerUpHolder : MonoBehaviour
     {
         GetInputButtonTrigger();
 
-        if (powerUp != null)
+        if (powerUp != null && inputHandlerButtonTrigger)
         {
-
-
+            ActivatePowerUp();
         }
     }
 
@@ -35,6 +34,8 @@ public class PowerUpHolder : MonoBehaviour
     public void GetPowerUp(GameObject pu)
     {
         powerUp = pu;
+
+        //activate UI
     }
 
 
@@ -45,14 +46,16 @@ public class PowerUpHolder : MonoBehaviour
             ///...
             if (powerUp.GetComponent<Shell>() != null)
             {
-
+                var dir = localplayer.model.transform.forward;
+                Instantiate(powerUp, transform.position + localplayer.model.transform.forward * 2, transform.rotation, null); //REPLACE WITH NETCODE
             }
 
         }
-        catch (System.Exception){}
+        catch (System.Exception) { }
         finally
         {
             powerUp = null;
+            //deactivate UI
         }
 
 

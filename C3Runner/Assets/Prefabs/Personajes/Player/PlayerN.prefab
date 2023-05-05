@@ -2586,6 +2586,7 @@ GameObject:
   - component: {fileID: -5061257709744891617}
   - component: {fileID: 2881382134490671580}
   - component: {fileID: 5100348301238679339}
+  - component: {fileID: -435737215688017278}
   - component: {fileID: 7409639170178129774}
   - component: {fileID: 6054500456290279888}
   m_Layer: 0
@@ -2839,6 +2840,7 @@ MonoBehaviour:
   speed: 60
   jumpForce: 17.000002
   pi: {fileID: 0}
+  model: {fileID: 0}
   _isLocalPlayer: 0
   jumpSound: {fileID: 8300000, guid: a0798479e0f498f489a7111dabb48265, type: 3}
   runSound: {fileID: 8300000, guid: 1108108a7d30bc549ba6de4fc91cf055, type: 3}
@@ -2888,6 +2890,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: {fileID: 7931969087692805824}
+--- !u!114 &-435737215688017278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6722503194288142808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 740baa02338627443bef0059fc7b0b62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUp: {fileID: 0}
+  localplayer: {fileID: 0}
 --- !u!114 &7409639170178129774
 MonoBehaviour:
   m_ObjectHideFlags: 0
