@@ -15,9 +15,11 @@ public class BounceOtherPlayers : MonoBehaviour
 
     IEnumerator PowerUp()
     {
-        localplayer.bounceOtherPlayers = true;
+        //localplayer.bounceOtherPlayers = true;
+        localplayer.BounceOtherPlayersToggle();
         yield return new WaitForSeconds(time);
-        localplayer.bounceOtherPlayers = false;
+        //localplayer.bounceOtherPlayers = false;
+        localplayer.BounceOtherPlayersToggle();
         Destroy(gameObject);
     }
 }

@@ -83,6 +83,18 @@ public class Player3D : NetworkBehaviour
     [SyncVar] public bool invulnerable = false;
     [SyncVar] public bool bounceOtherPlayers = false;
 
+    [Command]
+    public void InvulnerabilityToggle()
+    {
+        invulnerable = !invulnerable;
+    }
+
+    [Command]
+    public void BounceOtherPlayersToggle()
+    {
+        bounceOtherPlayers = !bounceOtherPlayers;
+    }
+
     public void updateSpotUI()
     {
         if (localPlayer())
