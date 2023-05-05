@@ -136,6 +136,7 @@ MonoBehaviour:
   force: 50
   collisionNumber: 0
   collisionNumberMax: 10
+  explosionFX: {fileID: 6349414426708167255, guid: 04f7354dc3939e84e8a745ee1558bea5, type: 3}
 --- !u!114 &-4852298354131042456
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ public class Shell : NetworkBehaviour
     public float force = 10;
     public int collisionNumber = 0;
     public int collisionNumberMax = 20;
+    public GameObject explosionFX;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -38,6 +40,11 @@ public class Shell : NetworkBehaviour
     public void DestroySelf()
     {
         NetworkServer.Destroy(gameObject);
+    }
+
+    void OnDestroy()
+    {
+        Instantiate(explosionFX, transform.position, transform.rotation, null);
     }
 
 }
