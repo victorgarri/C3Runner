@@ -93,7 +93,7 @@ public class PowerUpHolder : NetworkBehaviour
     void ShellThrow()
     {
         var a = NetworkManager.singleton.spawnPrefabs[4]; //balon
-        GameObject shell = Instantiate(a, transform.position + localplayer.model.transform.forward * 2, transform.rotation, null);
+        GameObject shell = Instantiate(a, transform.position + localplayer.model.transform.forward * 7, transform.rotation, null);
         NetworkServer.Spawn(shell);
 
     }
