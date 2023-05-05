@@ -35,7 +35,7 @@ public class Bouncer : MonoBehaviour
         }
     }
 
-    
+
     void ApplyForce(GameObject obj, Vector3 force)
     {
         obj.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);

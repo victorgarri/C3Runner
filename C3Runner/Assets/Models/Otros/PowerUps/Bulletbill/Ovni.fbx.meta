@@ -3,7 +3,32 @@ guid: bb88dabf71cb3654b9921e379db7cad2
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "CupulasPeque\xF1as"
+    second: {fileID: 2100000, guid: f475666aff3ce4b41bdc97c655ea1d30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: af239bbc1ef02c6479cd32b8a1563855, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: f7c948b21184fe542a6c7e15e048f461, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: b25a359cebd15354889a4dbf47b14e8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.005
+    second: {fileID: 2100000, guid: a3a3281a5cd54ae48854036fa7cc9e38, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

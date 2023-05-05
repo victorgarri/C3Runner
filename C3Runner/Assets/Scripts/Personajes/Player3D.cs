@@ -82,7 +82,9 @@ public class Player3D : NetworkBehaviour
     public GameObject stunStars;
 
 
-
+    //PowerUps
+    [SyncVar] public bool invulnerable = false;
+    [SyncVar] public bool bounceOtherPlayers = false;
 
     public void updateSpotUI()
     {
@@ -249,7 +251,8 @@ public class Player3D : NetworkBehaviour
 
     public void GetStunned()
     {
-        StartCoroutine("Stunned");
+        if (!invulnerable)
+            StartCoroutine("Stunned");
     }
 
     IEnumerator Stunned()
@@ -298,26 +301,6 @@ public class Player3D : NetworkBehaviour
             in2DGame = in2D;
         }
     }
-
-    //Not sure if it works
-    //private Vector3 AdjustVelocityToSlope(Vector3 velocity)
-    //{
-    //    var ray = new Ray(transform.position, Vector3.down);
-
-    //    if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f))
-    //    {
-    //        var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
-    //        var adjustedVelocity = slopeRotation * velocity;
-
-    //        if (adjustedVelocity.y < 0)
-    //        {
-    //            return adjustedVelocity;
-    //        }
-    //    }
-
-    //    return velocity;
-    //}
-
 
     Vector3 lookVel = new Vector3();
 
@@ -447,6 +430,18 @@ public class Player3D : NetworkBehaviour
         else
         {
             fram.m_ScreenY = Mathf.Lerp(fram.m_ScreenY, vOffset, Mathf.SmoothStep(0, 1, damping));
+        }
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        //if another player with powerup active touches localplayer, bounce this player back
+        var obj = col.gameObject;
+        if (obj.CompareTag("Player") && obj.GetComponent<Player3D>().bounceOtherPlayers)
+        {
+            Vector3 dir = col.contacts[0].normal;
+            dir.y = .4f;
+            rb.AddForce(dir * 40, ForceMode.Impulse);
         }
     }
 
