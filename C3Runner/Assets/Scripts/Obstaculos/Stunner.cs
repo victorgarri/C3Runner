@@ -14,9 +14,20 @@ public class Stunner : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.CompareTag("Player") && rb.velocity.magnitude >= speedThreshold)
+        if (col.gameObject.CompareTag("Player"))
         {
-            col.gameObject.GetComponent<Player3D>().GetStunned();
+            if (rb != null)
+            {
+                if (rb.velocity.magnitude >= speedThreshold)
+                    col.gameObject.GetComponent<Player3D>().GetStunned();
+            }
+            else
+            {
+                //por algún motivo el Start() del balón no se ejecuta, por lo que rb es null
+                if (GetComponent<Rigidbody>().velocity.magnitude >= speedThreshold)
+                    col.gameObject.GetComponent<Player3D>().GetStunned();
+            }
         }
     }
 }
+

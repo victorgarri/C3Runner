@@ -60,9 +60,6 @@ public class Player3D : NetworkBehaviour
     CinemachineVirtualCamera cam;
     CinemachineComposer fram;
 
-    //Networking
-    public bool _isLocalPlayer; //para que otros scripts lo puedan referenciar
-
     //Audio
     private AudioSource audioSource;
     public AudioClip jumpSound;
@@ -110,8 +107,6 @@ public class Player3D : NetworkBehaviour
 
         fram = cam.GetCinemachineComponent<CinemachineComposer>();
 
-        _isLocalPlayer = localPlayer();
-
         if (!localPlayer())
         {
             DisableFeatures();
@@ -125,7 +120,7 @@ public class Player3D : NetworkBehaviour
         }
     }
 
-    bool focused = true;
+    public bool focused = true;
 
 
     public void DisableFeatures()

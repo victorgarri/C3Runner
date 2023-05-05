@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -349,6 +349,7 @@ MonoBehaviour:
   - {fileID: 4623631404198839976, guid: d10de9e531a8d6d4f99a190d48b795f2, type: 3}
   - {fileID: 5886838888803769661, guid: 8ddb8a8db79db2045be689eba80f3adf, type: 3}
   - {fileID: 4925448625066510444, guid: 58ac5be5b6aeadc419960c8db7bd5a81, type: 3}
+  - {fileID: 1201219147080449378, guid: 87891801790a45f458f7cf7def6ad9c4, type: 3}
   showRoomGUI: 1
   minPlayers: 1
   roomPlayerPrefab: {fileID: 6523587658113047732, guid: f9042dc121879e84db666a3d03ea97d3, type: 3}

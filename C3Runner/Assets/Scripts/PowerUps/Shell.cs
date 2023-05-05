@@ -1,8 +1,9 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shell : MonoBehaviour
+public class Shell : NetworkBehaviour
 {
     Rigidbody rb;
     public float force = 10;
@@ -15,21 +16,28 @@ public class Shell : MonoBehaviour
     }
 
 
+    [ServerCallback]
     void OnCollisionEnter(Collision col)
     {
         //if (col.gameObject.tag == "Ground")
         //{
-            collisionNumber++;
+        collisionNumber++;
 
-            if (collisionNumber >= collisionNumberMax)
-            {
-                Destroy(gameObject);
-            }
-            //foreach (var item in col.contacts)
-            //{
-            //    Debug.DrawRay(item.point, item.normal * 100, Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f), .2f);
-            //}
+        if (collisionNumber >= collisionNumberMax)
+        {
+            DestroySelf();
+        }
+        //foreach (var item in col.contacts)
+        //{
+        //    Debug.DrawRay(item.point, item.normal * 100, Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f), .2f);
         //}
+        //}
+    }
+
+    [Server]
+    public void DestroySelf()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 
 }

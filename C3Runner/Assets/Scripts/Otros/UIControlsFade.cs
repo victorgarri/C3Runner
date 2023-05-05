@@ -31,7 +31,7 @@ public class UIControlsFade : MonoBehaviour
                     var players = GameObject.FindObjectsOfType(p.GetType());
                     foreach (var item in players)
                     {
-                        if (item.GetComponent<Player3D>()._isLocalPlayer)
+                        if (item.GetComponent<Player3D>().isLocalPlayer)
                         {
                             pi = item.GetComponent<Player3D>().pi;
                         }

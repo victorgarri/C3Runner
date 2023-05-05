@@ -66,12 +66,6 @@ public class CountdownTimer : NetworkBehaviour
         if (textCountdown != null)
             textCountdown.text = string.Format("{0:0}:{1:00}", mins, secs);
     }
-    //quitar luego
-    bool focused;
-    private void OnApplicationFocus(bool focus)
-    {
-        focused = focus;
-    }
 
     void OnDestroy()
     {

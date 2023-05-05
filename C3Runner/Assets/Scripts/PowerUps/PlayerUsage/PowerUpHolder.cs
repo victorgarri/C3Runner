@@ -1,9 +1,10 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PowerUpHolder : MonoBehaviour
+public class PowerUpHolder : NetworkBehaviour
 {
     public GameObject powerUp;
     public Player3D localplayer;
@@ -22,11 +23,14 @@ public class PowerUpHolder : MonoBehaviour
 
     void Update()
     {
-        GetInputButtonTrigger();
-
-        if (powerUp != null && inputHandlerButtonTrigger)
+        if (isLocalPlayer && localplayer.focused)
         {
-            ActivatePowerUp();
+            GetInputButtonTrigger();
+
+            if (powerUp != null && inputHandlerButtonTrigger)
+            {
+                ActivatePowerUp();
+            }
         }
     }
 
@@ -46,8 +50,8 @@ public class PowerUpHolder : MonoBehaviour
             ///...
             if (powerUp.GetComponent<Shell>() != null)
             {
-                var dir = localplayer.model.transform.forward;
-                Instantiate(powerUp, transform.position + localplayer.model.transform.forward * 2, transform.rotation, null); //REPLACE WITH NETCODE
+                //Instantiate(powerUp, transform.position + localplayer.model.transform.forward * 2, transform.rotation, null); //REPLACE WITH NETCODE
+                ShellThrow();
             }
 
             if (powerUp.GetComponent<SpeedUp>() != null)
@@ -72,13 +76,25 @@ public class PowerUpHolder : MonoBehaviour
             }
 
         }
-        catch (System.Exception) { }
+        catch (System.Exception e)
+        {
+            print(e);
+        }
         finally
         {
             powerUp = null;
             //deactivate UI
         }
 
+
+    }
+
+    [Command]
+    void ShellThrow()
+    {
+        var a = NetworkManager.singleton.spawnPrefabs[4]; //balon
+        GameObject shell = Instantiate(a, transform.position + localplayer.model.transform.forward * 2, transform.rotation, null);
+        NetworkServer.Spawn(shell);
 
     }
 
