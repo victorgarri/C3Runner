@@ -255,7 +255,7 @@ public class Player3D : NetworkBehaviour
     }
 
 
-
+    [ClientRpc]
     public void GetStunned()
     {
         if (!invulnerable)
