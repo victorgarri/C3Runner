@@ -17,9 +17,11 @@ public class BounceOtherPlayers : MonoBehaviour
     {
         //localplayer.bounceOtherPlayers = true;
         localplayer.BounceOtherPlayersToggle();
+        //localplayer.BounceOtherPlayersToggleClient();
         yield return new WaitForSeconds(time);
         //localplayer.bounceOtherPlayers = false;
         localplayer.BounceOtherPlayersToggle();
+        //localplayer.BounceOtherPlayersToggleClient();
         Destroy(gameObject);
     }
 }

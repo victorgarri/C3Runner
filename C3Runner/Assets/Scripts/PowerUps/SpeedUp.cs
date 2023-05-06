@@ -17,8 +17,12 @@ public class SpeedUp : MonoBehaviour
     IEnumerator PowerUp()
     {
         localplayer.speed *= speedMultiplier;
+        localplayer.SpeedUpToggle();
+        //localplayer.SpeedUpToggleClient();
         yield return new WaitForSeconds(time);
         localplayer.speed /= speedMultiplier;
+        localplayer.SpeedUpToggle();
+        //localplayer.SpeedUpToggleClient();
         Destroy(gameObject);
     }
 }

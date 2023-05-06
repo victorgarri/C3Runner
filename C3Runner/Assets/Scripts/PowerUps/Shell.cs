@@ -15,6 +15,7 @@ public class Shell : NetworkBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * force, ForceMode.Impulse);
+        Instantiate(explosionFX, transform.position, transform.rotation, null);
     }
 
 

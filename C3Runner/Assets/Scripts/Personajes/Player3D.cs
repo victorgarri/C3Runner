@@ -77,22 +77,77 @@ public class Player3D : NetworkBehaviour
 
     //FX
     public GameObject stunStars;
+    public GameObject powerUpRebote;
+    public GameObject powerUpInvulnerabilidad;
+    public GameObject powerUpSpeedUp;
 
 
     //PowerUps
     [SyncVar] public bool invulnerable = false;
     [SyncVar] public bool bounceOtherPlayers = false;
+    [SyncVar] public bool speedUp = false;
+
+
+    [Command]
+    public void SpeedUpToggle()
+    {
+        
+        //powerUpSpeedUp.SetActive(speedUp);
+        SpeedUpToggleClient();
+    }
+
+    [ClientRpc]
+    public void SpeedUpToggleClient()
+    {
+        speedUp = !speedUp;
+        powerUpSpeedUp.SetActive(speedUp);
+    }
 
     [Command]
     public void InvulnerabilityToggle()
     {
-        invulnerable = !invulnerable;
+        //powerUpInvulnerabilidad.SetActive(invulnerable);
+        InvulnerabilityToggleClient();
     }
+
+    [ClientRpc]
+    public void InvulnerabilityToggleClient()
+    {
+        invulnerable = !invulnerable;
+        powerUpInvulnerabilidad.SetActive(invulnerable);
+    }
+
 
     [Command]
     public void BounceOtherPlayersToggle()
     {
+        //powerUpRebote.SetActive(bounceOtherPlayers);
+        BounceOtherPlayersToggleClient();
+    }
+
+    [ClientRpc]
+    public void BounceOtherPlayersToggleClient()
+    {
         bounceOtherPlayers = !bounceOtherPlayers;
+        powerUpRebote.SetActive(bounceOtherPlayers);
+    }
+    //
+
+    [ClientRpc]
+    public void GetStunned()
+    {
+        if (!invulnerable)
+            StartCoroutine("Stunned");
+    }
+
+    IEnumerator Stunned()
+    {
+        inControl = false;
+        stunStars.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        inControl = true;
+        stunStars.SetActive(false);
+
     }
 
     public void updateSpotUI()
@@ -255,22 +310,9 @@ public class Player3D : NetworkBehaviour
     }
 
 
-    [ClientRpc]
-    public void GetStunned()
-    {
-        if (!invulnerable)
-            StartCoroutine("Stunned");
-    }
 
-    IEnumerator Stunned()
-    {
-        inControl = false;
-        stunStars.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
-        inControl = true;
-        stunStars.SetActive(false);
 
-    }
+
 
     void UpdateDistanceFromZero()
     {
