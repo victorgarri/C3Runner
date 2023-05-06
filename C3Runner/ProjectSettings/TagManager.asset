@@ -32,6 +32,7 @@ TagManager:
   - Spawn
   - Aciertos
   - ProfesorEnfadado
+  - Level
   layers:
   - Default
   - TransparentFX
@@ -104,4 +105,7 @@ TagManager:
     locked: 0
   - name: Particles
     uniqueID: 1762550891
+    locked: 0
+  - name: 3DPowerUpLayer
+    uniqueID: 3868565585
     locked: 0
