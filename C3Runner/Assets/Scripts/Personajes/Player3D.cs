@@ -91,7 +91,6 @@ public class Player3D : NetworkBehaviour
     [Command]
     public void SpeedUpToggle()
     {
-        
         //powerUpSpeedUp.SetActive(speedUp);
         SpeedUpToggleClient();
     }
@@ -138,6 +137,14 @@ public class Player3D : NetworkBehaviour
     {
         if (!invulnerable)
             StartCoroutine("Stunned");
+    }
+
+    [ClientRpc]
+    public void DisableControls()
+    {
+        //DisableControlsClient();
+        if (pi != null && pi.enabled)
+            pi.enabled = false;
     }
 
     IEnumerator Stunned()

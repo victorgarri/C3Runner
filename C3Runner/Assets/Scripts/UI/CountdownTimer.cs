@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -50,11 +51,22 @@ public class CountdownTimer : NetworkBehaviour
     {
         timeLeft -= 1;
         updateText();
-        if (timeLeft == 0)
+        if (timeLeft <= 0)
         {
             CancelInvoke("countDown");
             //do something else
-            NetworkRoomManager.singleton.ServerChangeScene("OfflineScene");
+            //NetworkRoomManager.singleton.ServerChangeScene("OfflineScene");
+
+            List<Player3D> players = FindObjectsOfType<Player3D>().ToList();
+            //print(players.Count);
+            foreach (Player3D p in players)
+            {
+                if (p.GetComponent<Spectator>() == null || !p.GetComponent<Spectator>().isSpectator)
+                {
+                    p.DisableControls();
+                }
+
+            }
         }
     }
 

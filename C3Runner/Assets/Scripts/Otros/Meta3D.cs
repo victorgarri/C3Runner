@@ -8,6 +8,7 @@ public class Meta3D : MonoBehaviour
 {
     public CountdownTimer countdownTimer;
     public GameObject confetti, location;
+    public Text finishTimeTxt;
 
     private void OnTriggerEnter(Collider col)
     {
@@ -21,9 +22,33 @@ public class Meta3D : MonoBehaviour
                 player.GetComponent<PlayerInput>().enabled = false;
                 player.transform.Find("WinnerScreen").Find("youwintext").GetComponent<Text>().text = "YOU WIN";
 
+                CountdownTimer cdt = GameObject.FindObjectOfType<CountdownTimer>();
+                float timerFinish = cdt.timeLeft;
+                if (cdt.timerStarted)
+                {
+                    timerFinish = 120 - timerFinish; //reverse 
+                    if (finishTimeTxt != null)
+                        finishTimeTxt.text = "FinishTime: " + SecondsToFormattedTime(timerFinish); //show finish time.
+                }
+                else
+                {
+                    finishTimeTxt.text = "FinishTime: 0:00";
+                }
+
 
             }
             countdownTimer.startCountdown();
+
         }
     }
+
+    string SecondsToFormattedTime(float seconds)
+    {
+        float mins, secs;
+        secs = seconds % 60;
+        mins = (seconds - secs) / 60;
+        string formattedTime = string.Format("{0:0}:{1:00}", mins, secs);
+        return formattedTime;
+    }
+
 }
