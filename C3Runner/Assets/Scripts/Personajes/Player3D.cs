@@ -221,14 +221,19 @@ public class Player3D : NetworkBehaviour
 
     public void DisableRB()
     {
-        col.enabled = false;
-        rb.useGravity = false;
+        //col.enabled = false;
+        //rb.useGravity = false;
+        GetComponent<Collider>().enabled = false;
+        GetComponent<Rigidbody>().useGravity = false;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     public void EnableRB()
     {
-        col.enabled = true;
-        rb.useGravity = true;
+        //col.enabled = true;
+        //rb.useGravity = true;
+        GetComponent<Collider>().enabled = true;
+        GetComponent<Rigidbody>().useGravity = true;
     }
 
     public void DisableMeshRenderer()

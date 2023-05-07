@@ -34,7 +34,7 @@ public class PowerUpHolder : NetworkBehaviour
 
     void Update()
     {
-        if (isLocalPlayer && localplayer.focused)
+        if (isLocalPlayer && localplayer.focused && !localplayer.in2DGame)
         {
             GetInputButtonTrigger();
 
@@ -89,6 +89,11 @@ public class PowerUpHolder : NetworkBehaviour
             if (powerUp.GetComponent<BounceOtherPlayers>() != null)
             {
                 indicatorUIBackImage.sprite = powerUpImages[3];
+            }
+
+            if (powerUp.GetComponent<OVNI>() != null)
+            {
+                indicatorUIBackImage.sprite = powerUpImages[4];
             }
 
         }
@@ -151,6 +156,15 @@ public class PowerUpHolder : NetworkBehaviour
                 bop.Activate(localplayer);
                 currentMaxFactor = bop.time;
             }
+
+            if (powerUp.GetComponent<OVNI>() != null)
+            {
+                var p = Instantiate(powerUp, transform.position + Vector3.up * 7, transform.rotation, null); //REPLACE WITH NETCODE
+                var ovni = p.GetComponent<OVNI>();
+                ovni.Activate(localplayer);
+                currentMaxFactor = ovni.time;
+            }
+
 
         }
         catch (System.Exception e)
