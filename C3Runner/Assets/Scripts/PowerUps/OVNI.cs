@@ -54,6 +54,7 @@ public class OVNI : MonoBehaviour
         if (readyToGo)
         {
             MoveOvni();
+            MovePlayer();
         }
     }
 
@@ -89,14 +90,14 @@ public class OVNI : MonoBehaviour
 
     void ParentPlayerToOVNI()
     {
-        localplayer.transform.parent = this.transform;
+        //localplayer.transform.parent = this.transform;
         localplayer.pi.enabled = false;
         localplayer.DisableRB();
     }
 
     void UnarentPlayerToOVNI()
     {
-        localplayer.transform.parent = null;
+        //localplayer.transform.parent = null;
         localplayer.pi.enabled = true;
         localplayer.pi.enabled = true;
         localplayer.EnableRB();
@@ -112,6 +113,11 @@ public class OVNI : MonoBehaviour
         {
             pickNextWaypoint();
         }
+    }
+
+    void MovePlayer()
+    {
+        localplayer.transform.position = transform.position - Vector3.up * 7;
     }
 
     void pickNextWaypoint()
