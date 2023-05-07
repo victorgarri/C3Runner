@@ -6,10 +6,12 @@ using UnityEngine;
 public class OVNI : MonoBehaviour
 {
     public List<OVNIWaypoint> ovniWaypoints;
-    public float time = 1; //in this case it's number of waypoints that will be taken into account
-    public Player3D localplayer;
+    public float time = 2; //in this case it's number of waypoints that will be taken into account
     public float speed = 100;
-    public Player3D debugPlayer;
+    public Player3D localplayer;
+    public GameObject explosionFX;
+
+    //public Player3D debugPlayer;
     int indexOfWP = 0;
 
     Transform nextWaypoint;
@@ -18,6 +20,8 @@ public class OVNI : MonoBehaviour
     public void Activate(Player3D p)
     {
         localplayer = p;
+        var explosion = Instantiate(explosionFX, transform.position, transform.rotation, null);
+        explosion.transform.localScale *= 20;
         StartUp();
 
     }
@@ -29,10 +33,10 @@ public class OVNI : MonoBehaviour
     void StartUp()
     {
         //debug
-        if (localplayer == null)
-        {
-            localplayer = debugPlayer;
-        }
+        //if (localplayer == null)
+        //{
+        //    localplayer = debugPlayer;
+        //}
 
         GetAllWaypoints();
         RemovePreviousPoints();
@@ -121,5 +125,11 @@ public class OVNI : MonoBehaviour
             UnarentPlayerToOVNI();
             Destroy(gameObject);
         }
+    }
+
+    void OnDestroy()
+    {
+        var explosion = Instantiate(explosionFX, transform.position, transform.rotation, null);
+        explosion.transform.localScale *= 20;
     }
 }

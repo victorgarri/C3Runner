@@ -48,9 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ovniWaypoints: []
   time: 2
-  localplayer: {fileID: 0}
   speed: 100
-  debugPlayer: {fileID: 0}
+  localplayer: {fileID: 0}
+  explosionFX: {fileID: 6349414426708167255, guid: 04f7354dc3939e84e8a745ee1558bea5, type: 3}
 --- !u!1001 &6704585241015317781
 PrefabInstance:
   m_ObjectHideFlags: 0
