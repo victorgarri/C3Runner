@@ -11,6 +11,8 @@ public class Ball : MonoBehaviour
     private Puntuacion _puntuacion;
 
     public float force = 15;
+    private AudioSource audioSource;
+    //public AudioClip ballSound;
 
     private void Start()
     {
@@ -18,6 +20,9 @@ public class Ball : MonoBehaviour
         _puntuacion = GameObject.FindGameObjectWithTag("Aciertos").GetComponent<Puntuacion>();
         
         this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * force, ForceMode2D.Impulse);
+        
+        //audioSource.GetComponent<AudioSource>().PlayOneShot(ballSound, 1);
+        audioSource.Play();
     }
 
     // Update is called once per frame
