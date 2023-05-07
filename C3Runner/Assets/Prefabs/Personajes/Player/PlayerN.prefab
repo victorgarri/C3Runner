@@ -1292,7 +1292,7 @@ GameObject:
   - component: {fileID: 3791406175405588190}
   - component: {fileID: 6204317196267158951}
   - component: {fileID: 7431008379089379275}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: teclado_20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1755,7 +1755,7 @@ GameObject:
   - component: {fileID: 5010155586630893423}
   - component: {fileID: 2883175022454123909}
   - component: {fileID: 7404171099599819548}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: spotText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1866,7 +1866,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4890156526735450227}
-  m_LocalRotation: {x: -0.0027519101, y: -5.7558686e-10, z: -1.5839693e-12, w: 0.99999624}
+  m_LocalRotation: {x: -0.002751912, y: -0.0000000016992133, z: -4.6761033e-12, w: 0.99999624}
   m_LocalPosition: {x: 0, y: 3.8888893, z: -16.666668}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1905,7 +1905,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 31703
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3196,7 +3196,7 @@ GameObject:
   - component: {fileID: 3689092760509414315}
   - component: {fileID: 1471464996500742310}
   - component: {fileID: 2168630342344198149}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayerSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3604,7 +3604,7 @@ GameObject:
   - component: {fileID: 1276863891157334870}
   - component: {fileID: 1098490820919123072}
   - component: {fileID: 3613438931423240329}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Extra_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4692,6 +4692,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frame
       objectReference: {fileID: 0}
+    - target: {fileID: 3561382202118482139, guid: f89d4bac8f9cb8f43a8110b29ca649b1, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8624686421452957683, guid: f89d4bac8f9cb8f43a8110b29ca649b1, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4799,15 +4803,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1457833823174269138, guid: a0ee9d2391d49aa40980590ed131c65c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0027519101
+      value: -0.002751912
       objectReference: {fileID: 0}
     - target: {fileID: 1457833823174269138, guid: a0ee9d2391d49aa40980590ed131c65c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -5.7558686e-10
+      value: -0.0000000016992133
       objectReference: {fileID: 0}
     - target: {fileID: 1457833823174269138, guid: a0ee9d2391d49aa40980590ed131c65c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -1.5839693e-12
+      value: -4.6761033e-12
       objectReference: {fileID: 0}
     - target: {fileID: 1457833823174269138, guid: a0ee9d2391d49aa40980590ed131c65c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
