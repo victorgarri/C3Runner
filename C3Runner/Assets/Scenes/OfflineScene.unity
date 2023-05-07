@@ -350,6 +350,9 @@ MonoBehaviour:
   - {fileID: 5886838888803769661, guid: 8ddb8a8db79db2045be689eba80f3adf, type: 3}
   - {fileID: 4925448625066510444, guid: 58ac5be5b6aeadc419960c8db7bd5a81, type: 3}
   - {fileID: 1201219147080449378, guid: 87891801790a45f458f7cf7def6ad9c4, type: 3}
+  - {fileID: 8964638977294405571, guid: cefd18d442e65dd43a71d448d2b8d25b, type: 3}
+  - {fileID: 4246290670103317712, guid: 3d850fda99f8bb046b851822ba08e367, type: 3}
+  - {fileID: 351102589509110523, guid: 476f8acc59f68cf46b3ffdc3dba56fa7, type: 3}
   showRoomGUI: 1
   minPlayers: 1
   roomPlayerPrefab: {fileID: 6523587658113047732, guid: f9042dc121879e84db666a3d03ea97d3, type: 3}
