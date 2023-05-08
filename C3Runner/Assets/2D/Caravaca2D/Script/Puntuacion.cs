@@ -44,8 +44,12 @@ public class Puntuacion : MonoBehaviour
         {
             a[(int)aciertosProfesor-1].gameObject.SetActive(false);
         }
+
+        if (aciertosProfesor > 0)
+        {
+            aciertosProfesor--;
+        }
         
-        aciertosProfesor--;
     }
      
 
