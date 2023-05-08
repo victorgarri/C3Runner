@@ -238,6 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8058241585724510050}
   - component: {fileID: 8231922886528693951}
+  - component: {fileID: 3446125857592345495}
   - component: {fileID: 5997404029749692925}
   m_Layer: 5
   m_Name: PowerUpCanvas
@@ -288,6 +289,29 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 3
   m_TargetDisplay: 0
+--- !u!114 &3446125857592345495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251874919018306555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 0.6
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 0
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &5997404029749692925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1866,7 +1890,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4890156526735450227}
-  m_LocalRotation: {x: -0.002751912, y: -0.0000000016992133, z: -4.6761033e-12, w: 0.99999624}
+  m_LocalRotation: {x: -0.0027519125, y: 0.000000001976712, z: 5.439759e-12, w: 0.99999624}
   m_LocalPosition: {x: 0, y: 3.8888893, z: -16.666668}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2991,6 +3015,7 @@ MonoBehaviour:
   speed: 60
   jumpForce: 17.000002
   pi: {fileID: 0}
+  vel: {x: 0, y: 0}
   model: {fileID: 0}
   jumpSound: {fileID: 8300000, guid: a0798479e0f498f489a7111dabb48265, type: 3}
   runSound: {fileID: 8300000, guid: 1108108a7d30bc549ba6de4fc91cf055, type: 3}
@@ -4803,15 +4828,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1457833823174269138, guid: a0ee9d2391d49aa40980590ed131c65c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.002751912
+      value: -0.0027519125
       objectReference: {fileID: 0}
     - target: {fileID: 1457833823174269138, guid: a0ee9d2391d49aa40980590ed131c65c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000016992133
+      value: 0.000000001976712
       objectReference: {fileID: 0}
     - target: {fileID: 1457833823174269138, guid: a0ee9d2391d49aa40980590ed131c65c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -4.6761033e-12
+      value: 5.439759e-12
       objectReference: {fileID: 0}
     - target: {fileID: 1457833823174269138, guid: a0ee9d2391d49aa40980590ed131c65c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
