@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
     private void OnCollisionStay2D(Collision2D col)
     {
         var obj = col.gameObject;
-        if (obj.CompareTag("Player"))
+        if (obj.CompareTag("Player") && !GameObject.Find("Meta").GetComponent<Meta>().win)
         {
             //if above, crush me
             if (obj.GetComponent<Player>().bc.bounds.min.y >= bc.bounds.max.y)
