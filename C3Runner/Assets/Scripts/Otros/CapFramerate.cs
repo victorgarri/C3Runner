@@ -10,7 +10,7 @@ public class CapFramerate : MonoBehaviour
 
     void Awake()
     {
-        QualitySettings.vSyncCount = vsync;  // VSync must be disabled
+        //QualitySettings.vSyncCount = vsync;  // VSync must be disabled
         Application.targetFrameRate = fps;
     }
 
