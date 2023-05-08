@@ -66,50 +66,54 @@ public class PowerUpHolder : NetworkBehaviour
 
     public void GetPowerUp(GameObject pu)
     {
-        powerUp = pu;
-
-        try
+        //if it's currently using a powerup
+        if (!startCounter)
         {
+            powerUp = pu;
 
-            if (powerUp.GetComponent<Shell>() != null)
+            try
             {
-                indicatorUIBackImage.sprite = powerUpImages[0];
+
+                if (powerUp.GetComponent<Shell>() != null)
+                {
+                    indicatorUIBackImage.sprite = powerUpImages[0];
+                }
+
+                if (powerUp.GetComponent<SpeedUp>() != null)
+                {
+                    indicatorUIBackImage.sprite = powerUpImages[1];
+                }
+
+                if (powerUp.GetComponent<Invulnerability>() != null)
+                {
+                    indicatorUIBackImage.sprite = powerUpImages[2];
+                }
+
+                if (powerUp.GetComponent<BounceOtherPlayers>() != null)
+                {
+                    indicatorUIBackImage.sprite = powerUpImages[3];
+                }
+
+                if (powerUp.GetComponent<OVNI>() != null)
+                {
+                    indicatorUIBackImage.sprite = powerUpImages[4];
+                }
+
+            }
+            catch (System.Exception e)
+            {
+                print(e);
+            }
+            finally
+            {
+                //oldColor = powerUpImage.color;
+                //oldColor.a = 1;
+                //powerUpImage.color = oldColor;
             }
 
-            if (powerUp.GetComponent<SpeedUp>() != null)
-            {
-                indicatorUIBackImage.sprite = powerUpImages[1];
-            }
-
-            if (powerUp.GetComponent<Invulnerability>() != null)
-            {
-                indicatorUIBackImage.sprite = powerUpImages[2];
-            }
-
-            if (powerUp.GetComponent<BounceOtherPlayers>() != null)
-            {
-                indicatorUIBackImage.sprite = powerUpImages[3];
-            }
-
-            if (powerUp.GetComponent<OVNI>() != null)
-            {
-                indicatorUIBackImage.sprite = powerUpImages[4];
-            }
-
+            startCounter = false;
+            UpdateUI(1);
         }
-        catch (System.Exception e)
-        {
-            print(e);
-        }
-        finally
-        {
-            //oldColor = powerUpImage.color;
-            //oldColor.a = 1;
-            //powerUpImage.color = oldColor;
-        }
-
-        startCounter = false;
-        UpdateUI(1);
     }
 
 
