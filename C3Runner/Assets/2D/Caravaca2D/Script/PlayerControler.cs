@@ -15,11 +15,14 @@ public class PlayerControler : MonoBehaviour
     private float topeLeft = -5.3f;
     private float topeRight = 5.3f;
 
+    private AudioSource audioSource;
+
     bool canJump;
 
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -58,6 +61,7 @@ public class PlayerControler : MonoBehaviour
         {
             Instantiate(ball, new Vector3(this.transform.position.x, this.transform.position.y + 0.8f, this.transform.position.z), ball.transform.rotation);
             //Debug.Log("Mando");
+            audioSource.Play();
         }
 
     }

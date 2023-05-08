@@ -10,9 +10,10 @@ public class Ball : MonoBehaviour
 
     private Puntuacion _puntuacion;
 
+    public GameObject explosionFX;
+
     public float force = 15;
-    private AudioSource audioSource;
-    //public AudioClip ballSound;
+    
 
     private void Start()
     {
@@ -21,8 +22,7 @@ public class Ball : MonoBehaviour
         
         this.GetComponent<Rigidbody2D>().AddForce(Vector2.up * force, ForceMode2D.Impulse);
         
-        //audioSource.GetComponent<AudioSource>().PlayOneShot(ballSound, 1);
-        audioSource.Play();
+        
     }
 
     // Update is called once per frame
@@ -41,6 +41,7 @@ public class Ball : MonoBehaviour
             Destroy(col.gameObject);
             _spawnProfesores.disminuirProfesor();
             _puntuacion.acierto();
+            Instantiate(explosionFX, transform.position, transform.rotation, null);
         }
 
         if (col.gameObject.tag == "ProfesorEnfadado")
@@ -49,6 +50,7 @@ public class Ball : MonoBehaviour
             Destroy(col.gameObject);
             _spawnProfesores.disminuirProfesor();
             _puntuacion.fallo();
+            Instantiate(explosionFX, transform.position, transform.rotation, null);
         }
 
         Destroy(gameObject);
