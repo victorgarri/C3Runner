@@ -15,6 +15,8 @@ public class Meta3D : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             Player3D player = col.gameObject.GetComponent<Player3D>();
+            
+            
             if (player.isLocalPlayer)
             {
                 Instantiate(confetti, location.transform);
