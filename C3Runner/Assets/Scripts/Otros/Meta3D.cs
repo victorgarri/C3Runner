@@ -15,8 +15,8 @@ public class Meta3D : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             Player3D player = col.gameObject.GetComponent<Player3D>();
-            
-            
+
+
             if (player.isLocalPlayer)
             {
                 Instantiate(confetti, location.transform);
@@ -35,6 +35,8 @@ public class Meta3D : MonoBehaviour
                 else
                 {
                     finishTimeTxt.text = "FinishTime: 0:00";
+                    ///player.transform.position += player.transform.forward * 10;
+                    player.transform.position += Vector3.right * 60;
                 }
 
 
