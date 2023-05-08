@@ -44,7 +44,7 @@ public class Player3D : NetworkBehaviour
     public PlayerInput pi;
     Vector2 inputWASD = new Vector2();
     Vector2 inputArrows = new Vector2();
-    [SyncVar] Vector2 vel = new Vector2();
+    [SyncVar] public Vector2 vel = new Vector2();
 
     //space key buffer
     bool space, spaceConsumed = true;
@@ -301,12 +301,15 @@ public class Player3D : NetworkBehaviour
         {
             if (focused && localPlayer())
             {
-                UpdateVel(inputWASD * speed);
+                vel = inputWASD * speed;
+                //UpdateVel(inputWASD * speed);
 
                 if (!grounded)
                 {
-                    UpdateVel(vel / 2); //midair velocity
+                    vel = vel / 2;
+                    //UpdateVel(vel / 2); //midair velocity
                 }
+                UpdateVel(vel);
             }
         }
 
