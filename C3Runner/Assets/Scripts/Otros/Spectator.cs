@@ -88,16 +88,18 @@ public class Spectator : NetworkBehaviour
                 }
             }
 
+            if (playerEx != null)
+            {
+                playerEx.GetComponent<NetworkRigidbody>().enabled = false;
+                playerEx.GetComponent<NetworkAnimator>().enabled = false;
+                playerEx.GetComponent<AudioSource>().enabled = false;
+                playerEx.GetComponent<CapsuleCollider>().enabled = false;
+                playerEx.GetComponent<Rigidbody>().useGravity = false;
+                playerEx.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-            playerEx.GetComponent<NetworkRigidbody>().enabled = false;
-            playerEx.GetComponent<NetworkAnimator>().enabled = false;
-            playerEx.GetComponent<AudioSource>().enabled = false;
-            playerEx.GetComponent<CapsuleCollider>().enabled = false;
-            playerEx.GetComponent<Rigidbody>().useGravity = false;
-            playerEx.GetComponent<Rigidbody>().velocity = Vector3.zero;
-
-            playerEx.DisableFeatures();
-            playerEx.transform.Find("Character").gameObject.SetActive(false);
+                playerEx.DisableFeatures();
+                playerEx.transform.Find("Character").gameObject.SetActive(false);
+            }
         }
     }
 
