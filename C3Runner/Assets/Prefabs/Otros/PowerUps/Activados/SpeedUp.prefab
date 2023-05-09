@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMultiplier: 2
-  time: 6
+  time: 5
   localplayer: {fileID: 0}

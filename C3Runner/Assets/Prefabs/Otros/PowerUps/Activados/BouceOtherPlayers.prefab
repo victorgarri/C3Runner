@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84daa7df4b56e324896b80558fd5b615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 15
+  time: 8
   localplayer: {fileID: 0}
