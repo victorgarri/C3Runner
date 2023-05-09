@@ -139,7 +139,7 @@ public class PowerUpHolder : NetworkBehaviour
             if (powerUp.GetComponent<SpeedUp>() != null)
             {
 
-                var p = Instantiate(powerUp, transform.position, transform.rotation, null); //REPLACE WITH NETCODE
+                var p = Instantiate(powerUp, transform.position, transform.rotation, null);
                 var su = p.GetComponent<SpeedUp>();
                 su.Activate(localplayer);
                 currentMaxFactor = su.time;
@@ -147,7 +147,7 @@ public class PowerUpHolder : NetworkBehaviour
 
             if (powerUp.GetComponent<Invulnerability>() != null)
             {
-                var p = Instantiate(powerUp, transform.position, transform.rotation, null); //REPLACE WITH NETCODE
+                var p = Instantiate(powerUp, transform.position, transform.rotation, null);
                 var inv = p.GetComponent<Invulnerability>();
                 inv.Activate(localplayer);
                 currentMaxFactor = inv.time;
@@ -155,18 +155,26 @@ public class PowerUpHolder : NetworkBehaviour
 
             if (powerUp.GetComponent<BounceOtherPlayers>() != null)
             {
-                var p = Instantiate(powerUp, transform.position, transform.rotation, null); //REPLACE WITH NETCODE
+                var p = Instantiate(powerUp, transform.position, transform.rotation, null);
                 var bop = p.GetComponent<BounceOtherPlayers>();
                 bop.Activate(localplayer);
                 currentMaxFactor = bop.time;
             }
 
+            //if (powerUp.GetComponent<OVNI>() != null)
+            //{
+            //    var p = Instantiate(powerUp, transform.position + Vector3.up * 7, transform.rotation, null); 
+            //    var ovni = p.GetComponent<OVNI>();
+            //    ovni.Activate(localplayer);
+            //    currentMaxFactor = ovni.time;
+            //}
+
             if (powerUp.GetComponent<OVNI>() != null)
             {
-                var p = Instantiate(powerUp, transform.position + Vector3.up * 7, transform.rotation, null); //REPLACE WITH NETCODE
-                var ovni = p.GetComponent<OVNI>();
-                ovni.Activate(localplayer);
-                currentMaxFactor = ovni.time;
+                //var p = Instantiate(powerUp, transform.position + Vector3.up * 7, transform.rotation, null);
+                localplayer.GetComponent<Player3D>().OVNIToggle();//llamar para mostrar ovni child
+                localplayer.GetComponent<OVNIplayer>().enabled = true;
+                currentMaxFactor = 1;
             }
 
 

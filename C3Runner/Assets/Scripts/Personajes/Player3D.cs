@@ -80,12 +80,14 @@ public class Player3D : NetworkBehaviour
     public GameObject powerUpRebote;
     public GameObject powerUpInvulnerabilidad;
     public GameObject powerUpSpeedUp;
+    public GameObject powerUpOVNI;
 
 
     //PowerUps
     [SyncVar] public bool invulnerable = false;
     [SyncVar] public bool bounceOtherPlayers = false;
     [SyncVar] public bool speedUp = false;
+    [SyncVar] public bool ovni = false;
 
 
     [Command]
@@ -130,6 +132,22 @@ public class Player3D : NetworkBehaviour
         bounceOtherPlayers = !bounceOtherPlayers;
         powerUpRebote.SetActive(bounceOtherPlayers);
     }
+
+    [Command]
+    public void OVNIToggle()
+    {
+        //powerUpRebote.SetActive(bounceOtherPlayers);
+        OVNIToggleClient();
+    }
+
+    [ClientRpc]
+    public void OVNIToggleClient()
+    {
+        ovni = !ovni;
+        GetComponent<OVNIplayer>().enabled = ovni;
+        powerUpOVNI.SetActive(ovni);
+    }
+
     //
 
     [ClientRpc]
