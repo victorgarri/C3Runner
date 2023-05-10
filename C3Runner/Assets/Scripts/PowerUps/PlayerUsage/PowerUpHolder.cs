@@ -38,9 +38,14 @@ public class PowerUpHolder : NetworkBehaviour
         {
             GetInputButtonTrigger();
 
-            if (powerUp != null && inputHandlerButtonTrigger)
+            if (powerUp != null)
             {
-                ActivatePowerUp();
+                if (inputHandlerButtonTrigger || powerUp.GetComponent<OVNI>() != null)
+                {
+                    ActivatePowerUp();
+                }
+
+
             }
         }
 
