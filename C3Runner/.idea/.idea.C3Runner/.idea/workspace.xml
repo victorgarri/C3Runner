@@ -11,7 +11,6 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Otros/ActivateMobile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Actions/InputAction.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Plugins/Switch/SwitchSupportHID.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -140,7 +139,7 @@
       <workItem from="1683468852392" duration="1838000" />
       <workItem from="1683532948291" duration="1046000" />
       <workItem from="1683535582826" duration="2840000" />
-      <workItem from="1684138816011" duration="8906000" />
+      <workItem from="1684138816011" duration="10120000" />
     </task>
     <servers />
   </component>
@@ -163,5 +162,24 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/PowerUps/PlayerUsage/PowerUpHolder.cs</url>
+          <line>135</line>
+          <properties documentPath="C:\Users\Videojuegos\Documents\GitHub\C3Runner\C3Runner\Assets\Scripts\PowerUps\PlayerUsage\PowerUpHolder.cs" initialLine="135" containingFunctionPresentation="method 'ActivatePowerUp'">
+            <startOffsets>
+              <option value="3398" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3410" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -128,7 +128,7 @@ public class PowerUpHolder : NetworkBehaviour
         indicatorUIBackImage.fillAmount = factor;
     }
 
-    void ActivatePowerUp()
+    public void ActivatePowerUp()
     {
         try
         {
