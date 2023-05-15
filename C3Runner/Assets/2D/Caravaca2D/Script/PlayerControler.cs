@@ -11,7 +11,7 @@ public class PlayerControler : MonoBehaviour
     //private Rigidbody2D _rigidbody2D;
 
     public GameObject ball;
-
+    public VariableJoystick VariableJoystick;
     private float topeLeft = -5.3f;
     private float topeRight = 5.3f;
 
@@ -27,7 +27,12 @@ public class PlayerControler : MonoBehaviour
 
     void Update()
     {
-        Vector2 movimiento = _playerInput.actions["Move"].ReadValue<Vector2>();
+        #if !(USING_MOBILE||UNITY_EDITOR)
+            Vector2 movimiento = _playerInput.actions["Move"].ReadValue<Vector2>(); 
+        #else
+            Vector2 movimiento = VariableJoystick.Direction;
+        #endif
+        
         //Debug.Log(movimiento);
 
         
@@ -56,16 +61,22 @@ public class PlayerControler : MonoBehaviour
             }
             
         }
+        #if !(USING_MOBILE||UNITY_EDITOR)
+            if (_playerInput.actions["Fire"].WasPressedThisFrame())
+            {
+                Shoot();
+            }
+        #endif
         
-        if (_playerInput.actions["Fire"].WasPressedThisFrame())
-        {
-            Instantiate(ball, new Vector3(this.transform.position.x, this.transform.position.y + 0.8f, this.transform.position.z), ball.transform.rotation);
-            //Debug.Log("Mando");
-            audioSource.Play();
-        }
 
     }
 
+    public void Shoot()
+    {
+        Instantiate(ball, new Vector3(this.transform.position.x, this.transform.position.y + 0.8f, this.transform.position.z), ball.transform.rotation);
+        //Debug.Log("Mando");
+        audioSource.Play();
+    }
 /*
     IEnumerator TimeRainbow()
     {
