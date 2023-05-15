@@ -11,7 +11,9 @@ public class Player3D : NetworkBehaviour
 {
     //public bool LOCAL_DEBUG;
     bool inControl = true;
-    public FixedJoystick FixedJoystick;
+    public FixedJoystick FixedJoystickMovement;
+    public FixedJoystick FixedJoystickCameraMovement;
+    public Button JumpButton;
     [SyncVar] public string playerName;
     [SyncVar(hook = nameof(SetColor))] public Color playerColor;
 
@@ -307,6 +309,7 @@ public class Player3D : NetworkBehaviour
 
                 inputWASD.Normalize();
                 inputArrows.Normalize();
+                ResetInput();
             }
         }
     }
@@ -539,11 +542,11 @@ public class Player3D : NetworkBehaviour
     public Vector2 GetInputMovement()
     {
         //reset input
-        #if !USING_MOBILE
-                inputHandlerWASD = Vector2.zero;
-                inputHandlerWASD = pi.actions["Movement"].ReadValue<Vector2>().normalized;
+        //inputHandlerWASD = Vector2.zero;
+        #if !(USING_MOBILE||UNITY_EDITOR)
+            inputHandlerWASD = pi.actions["Movement"].ReadValue<Vector2>().normalized;
         #else
-            inputHandlerWASD = FixedJoystick.Direction.normalized;
+            inputHandlerWASD = FixedJoystickMovement.Direction.normalized;
         #endif
 
 
@@ -553,18 +556,38 @@ public class Player3D : NetworkBehaviour
     public Vector2 GetInputCamera()
     {
         //reset input
-        inputHandlerArrows = Vector2.zero;
-        inputHandlerArrows = pi.actions["Camera"].ReadValue<Vector2>().normalized;
+        //inputHandlerArrows = Vector2.zero;
+        #if !(USING_MOBILE||UNITY_EDITOR)
+            inputHandlerArrows = pi.actions["Camera"].ReadValue<Vector2>().normalized;
+        #else
+            inputHandlerArrows = FixedJoystickCameraMovement.Direction.normalized;
+        #endif
 
         return inputHandlerArrows;
     }
 
     public bool GetInputButtonSouth()
     {
-        //reset input
-        inputHandlerButtonSouth = false;
-        inputHandlerButtonSouth = pi.actions["Jump"].WasPressedThisFrame();
+        //reset inputç
+        //inputHandlerButtonSouth = false;
+        #if !(USING_MOBILE||UNITY_EDITOR)
+            inputHandlerButtonSouth = pi.actions["Jump"].WasPressedThisFrame();
+        #endif
+        
 
         return inputHandlerButtonSouth;
     }
+
+    public void JumpPressed()
+    {
+        inputHandlerButtonSouth = true;
+    }
+
+    void ResetInput()
+    {
+        inputHandlerArrows = Vector2.zero;
+        inputHandlerWASD = Vector2.zero;
+        inputHandlerButtonSouth = false;
+    }
+
 }
