@@ -11,7 +11,7 @@ public class Player3D : NetworkBehaviour
 {
     //public bool LOCAL_DEBUG;
     bool inControl = true;
-
+    public FixedJoystick FixedJoystick;
     [SyncVar] public string playerName;
     [SyncVar(hook = nameof(SetColor))] public Color playerColor;
 
@@ -178,7 +178,7 @@ public class Player3D : NetworkBehaviour
     public void updateSpotUI()
     {
         if (localPlayer())
-            spotText.text = spot + "บ";
+            spotText.text = spot + "ยบ";
     }
 
     void Start()
@@ -539,8 +539,13 @@ public class Player3D : NetworkBehaviour
     public Vector2 GetInputMovement()
     {
         //reset input
-        inputHandlerWASD = Vector2.zero;
-        inputHandlerWASD = pi.actions["Movement"].ReadValue<Vector2>().normalized;
+        #if !USING_MOBILE
+                inputHandlerWASD = Vector2.zero;
+                inputHandlerWASD = pi.actions["Movement"].ReadValue<Vector2>().normalized;
+        #else
+            inputHandlerWASD = FixedJoystick.Direction.normalized;
+        #endif
+
 
         return inputHandlerWASD;
     }
