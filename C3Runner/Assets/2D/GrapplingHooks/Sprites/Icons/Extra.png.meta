@@ -347,7 +347,7 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -355,6 +355,27 @@ TextureImporter:
       bones: []
       spriteID: 5815c2b4c781aac4ca4520b7d9596e2c
       internalID: 809216684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Extra_11
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 2
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b66f09ab09f56447974a206e7920b3a
+      internalID: -1673114017
       vertices: []
       indices: 
       edges: []
@@ -375,6 +396,7 @@ TextureImporter:
       Extra_5: 1797333084
       Extra_10: 809216684
       Extra_0: -1462482606
+      Extra_11: -1673114017
       Extra_1: 1945492831
       Extra_2: 1910668745
       Extra_9: -815566174
