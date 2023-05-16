@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Mirror/Examples/Tanks/Scenes/Scene.unity
     guid: 83f9d2fb76f5742448c6e51f258327a2
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/OfflineScene.unity
     guid: e8714501b0e15b84e85df1f5b2b12808
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/RoomScene.unity
     guid: 311e43927b7594349be0136c320a31b5
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainSceneFix.unity
     guid: 670f346df9c5ba248a339226b731eb79
-  - enabled: 1
+  - enabled: 0
     path: Assets/2D/GrapplingHooks/Scenes/GrapplingHooks2D.unity
     guid: 3cf942e002cd4334cba012a2197e8f6d
   m_configObjects: {}
