@@ -221,6 +221,10 @@ public class Player3D : NetworkBehaviour
     {
         gameObject.GetComponent<AudioSource>().enabled = false;
         inControl = false;
+
+#if (UNITY_ANDROID || UNITY_EDITOR)
+        gameObject.transform.Find("MobileControls").gameObject.SetActive(false);
+#endif
         gameObject.transform.Find("Main Camera").gameObject.SetActive(false);
         gameObject.transform.Find("CM player").gameObject.SetActive(false);
         gameObject.transform.Find("Canvas").gameObject.SetActive(false);
@@ -233,6 +237,9 @@ public class Player3D : NetworkBehaviour
     {
         gameObject.GetComponent<AudioSource>().enabled = true;
         inControl = true;
+
+        gameObject.transform.Find("MobileControls").gameObject.SetActive(true);
+
         gameObject.transform.Find("Main Camera").gameObject.SetActive(true);
         gameObject.transform.Find("CM player").gameObject.SetActive(true);
         gameObject.transform.Find("Canvas").gameObject.SetActive(true);
@@ -544,9 +551,9 @@ public class Player3D : NetworkBehaviour
         //reset input
         inputHandlerWASD = Vector2.zero;
         //#if !(USING_MOBILE||UNITY_EDITOR)
-            inputHandlerWASD = pi.actions["Movement"].ReadValue<Vector2>().normalized;
+        inputHandlerWASD = pi.actions["Movement"].ReadValue<Vector2>().normalized;
         //#else
-            //inputHandlerWASD = FixedJoystickMovement.Direction.normalized;
+        //inputHandlerWASD = FixedJoystickMovement.Direction.normalized;
         //#endif
 
 
@@ -558,22 +565,22 @@ public class Player3D : NetworkBehaviour
         //reset input
         inputHandlerArrows = Vector2.zero;
         //#if !(USING_MOBILE||UNITY_EDITOR)
-           // inputHandlerArrows = pi.actions["Camera"].ReadValue<Vector2>().normalized;
-       // #else
-            inputHandlerArrows = FixedJoystickCameraMovement.Direction.normalized;
-       // #endif
+        inputHandlerArrows = pi.actions["Camera"].ReadValue<Vector2>().normalized;
+        // #else
+        //inputHandlerArrows = FixedJoystickCameraMovement.Direction.normalized;
+        // #endif
 
         return inputHandlerArrows;
     }
 
     public bool GetInputButtonSouth()
     {
-        //reset inputç
+        //reset input
         inputHandlerButtonSouth = false;
         //#if !(USING_MOBILE||UNITY_EDITOR)
-            inputHandlerButtonSouth = pi.actions["Jump"].WasPressedThisFrame();
-       // #endif
-        
+        inputHandlerButtonSouth = pi.actions["Jump"].WasPressedThisFrame();
+        // #endif
+
 
         return inputHandlerButtonSouth;
     }

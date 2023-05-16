@@ -8,7 +8,7 @@ public class SwitchPlatformVisibility : MonoBehaviour
 
     void Start()
     {
-#if (USING_MOBILE || UNITY_EDITOR)
+#if (UNITY_ANDROID || UNITY_EDITOR)
         gameObject.SetActive(shouldBeActiveOnMobile);
 #else   
     gameObject.SetActive(!shouldBeActiveOnMobile);
