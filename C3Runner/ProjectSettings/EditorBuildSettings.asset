@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainSceneFix.unity
     guid: 670f346df9c5ba248a339226b731eb79
+  - enabled: 0
+    path: Assets/2D/GrapplingHooks/Scenes/GrapplingHooks2D.unity
+    guid: 3cf942e002cd4334cba012a2197e8f6d
   m_configObjects: {}
