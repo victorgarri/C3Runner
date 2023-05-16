@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public BoxCollider2D bc;
 
+    
     [Header("Inputs")] public bool jumping = false;
 
     public int collisionCount = 0;
