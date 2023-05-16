@@ -309,7 +309,7 @@ public class Player3D : NetworkBehaviour
 
                 inputWASD.Normalize();
                 inputArrows.Normalize();
-                ResetInput();
+                //ResetInput();
             }
         }
     }
@@ -542,12 +542,12 @@ public class Player3D : NetworkBehaviour
     public Vector2 GetInputMovement()
     {
         //reset input
-        //inputHandlerWASD = Vector2.zero;
-        #if !(USING_MOBILE||UNITY_EDITOR)
+        inputHandlerWASD = Vector2.zero;
+        //#if !(USING_MOBILE||UNITY_EDITOR)
             inputHandlerWASD = pi.actions["Movement"].ReadValue<Vector2>().normalized;
-        #else
-            inputHandlerWASD = FixedJoystickMovement.Direction.normalized;
-        #endif
+        //#else
+            //inputHandlerWASD = FixedJoystickMovement.Direction.normalized;
+        //#endif
 
 
         return inputHandlerWASD;
@@ -556,12 +556,12 @@ public class Player3D : NetworkBehaviour
     public Vector2 GetInputCamera()
     {
         //reset input
-        //inputHandlerArrows = Vector2.zero;
-        #if !(USING_MOBILE||UNITY_EDITOR)
-            inputHandlerArrows = pi.actions["Camera"].ReadValue<Vector2>().normalized;
-        #else
+        inputHandlerArrows = Vector2.zero;
+        //#if !(USING_MOBILE||UNITY_EDITOR)
+           // inputHandlerArrows = pi.actions["Camera"].ReadValue<Vector2>().normalized;
+       // #else
             inputHandlerArrows = FixedJoystickCameraMovement.Direction.normalized;
-        #endif
+       // #endif
 
         return inputHandlerArrows;
     }
@@ -569,10 +569,10 @@ public class Player3D : NetworkBehaviour
     public bool GetInputButtonSouth()
     {
         //reset inputç
-        //inputHandlerButtonSouth = false;
-        #if !(USING_MOBILE||UNITY_EDITOR)
+        inputHandlerButtonSouth = false;
+        //#if !(USING_MOBILE||UNITY_EDITOR)
             inputHandlerButtonSouth = pi.actions["Jump"].WasPressedThisFrame();
-        #endif
+       // #endif
         
 
         return inputHandlerButtonSouth;
