@@ -73,6 +73,7 @@ public class Player3D : NetworkBehaviour
     Vector3 zero;
     public int spot = 1;
     [SyncVar] public bool in2DGame;
+    CapFramerate capFramerate;
 
     //Canvas UI
     public Text spotText;
@@ -201,6 +202,10 @@ public class Player3D : NetworkBehaviour
 
         fram = cam.GetCinemachineComponent<CinemachineComposer>();
 
+        capFramerate = GameObject.Find("CapFramerate").GetComponent<CapFramerate>();
+
+
+
         if (!localPlayer())
         {
             DisableFeatures();
@@ -208,6 +213,9 @@ public class Player3D : NetworkBehaviour
 
         if (focused && localPlayer())
         {
+#if (UNITY_ANDROID || UNITY_EDITOR)
+            cam.m_Lens.FarClipPlane = capFramerate.renderDistance;
+#endif
             pi = GetComponent<PlayerInput>();
             //gameObject.transform.Find("Canvas").GetComponent<Animator>().Play("FadeIn");
             GetComponent<Renderer>().material.color = new Color(0, 1, 1, 0.3f);
