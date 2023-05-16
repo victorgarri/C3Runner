@@ -130,18 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2487231537738200303, guid: 6c75c18eb193fdb4e94181e133285f07, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2487231537738200303, guid: 6c75c18eb193fdb4e94181e133285f07, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2487231537738200303, guid: 6c75c18eb193fdb4e94181e133285f07, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4895414532175648272, guid: 6c75c18eb193fdb4e94181e133285f07, type: 3}
       propertyPath: m_Name
       value: GrapplingHooks2D
