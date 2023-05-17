@@ -46,6 +46,7 @@ namespace C3Runner.Multiplayer
             Player3D player = gamePlayer.GetComponent<Player3D>();
             player.playerColor = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerColor;
             player.playerName = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerName;
+            player.playerType = roomPlayer.GetComponent<NetworkRoomPlayerExt>().playerType;
             //Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA-" + player.playerName);
             return true;
         }

@@ -14,6 +14,8 @@ public class Player3D : NetworkBehaviour
     [Header("Custom Player Data")]
     [SyncVar] public string playerName;
     [SyncVar(hook = nameof(SetColor))] public Color playerColor;
+    [SyncVar(hook = nameof(SetPlayerType))] public float playerType;
+
 
     void SetColor(Color _, Color newColor)
     {
@@ -26,6 +28,21 @@ public class Player3D : NetworkBehaviour
                 material.SetColor("_Color", newColor);
             }
         }
+    }
+
+    void SetPlayerType(float _, float newType)
+    {
+        //when it's 0 this method is never executed FOR SOME REASON
+        var charr = transform.Find("Character").Find("CharType1");
+        SkinnedMeshRenderer smr = charr.GetComponent<SkinnedMeshRenderer>();
+        smr.SetBlendShapeWeight(0, newType);
+
+        switch (newType)
+        {
+            case 0: hairType1.SetActive(true); break;
+            case 100: hairType1.SetActive(false); hairType2.SetActive(true); break;
+        }
+
     }
 
     //PHYSICS
@@ -46,6 +63,8 @@ public class Player3D : NetworkBehaviour
     //Model&Camera
     [Header("Model&Camera")]
     public GameObject model;
+    public GameObject hairType1;
+    public GameObject hairType2;
     Animator anim;
     string VEL = "vel"; string VELY = "vely"; string GROUNDED = "grounded"; string JUMP = "jump";
     CinemachineVirtualCamera cam;

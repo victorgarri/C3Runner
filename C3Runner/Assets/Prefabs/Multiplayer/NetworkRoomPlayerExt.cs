@@ -9,10 +9,9 @@ namespace C3Runner.Multiplayer
     {
         [SyncVar] public bool wantsToSpectate;
         [SyncVar] public string playerName;
-
         [SyncVar] public Color playerColor = Color.clear;
-        //float hue = .5F;
-        float lastHue;
+        [SyncVar] public float playerType; //0 male, 100 female
+
 
         Color player1Color, player2Color, player3Color, player4Color, player5Color, player6Color, player7Color, player8Color;
 
@@ -51,6 +50,7 @@ namespace C3Runner.Multiplayer
             {
                 wantsToSpectate = !wantsToSpectate;
             }
+
         }
 
         public override void OnStartClient()
@@ -92,11 +92,8 @@ namespace C3Runner.Multiplayer
                 GUILayout.BeginArea(new Rect(20f, 600f, 800f, 200f));
 
                 GUI.Toggle(new Rect(0, 0, 800, 20), wantsToSpectate, "(E) Espectar desde host ");
-                ////PLAYER NAME INPUT FIELD
-                //GUI.Label(new Rect(0, 0, 40, 20), "Name: ");
-                //playerName = GUI.TextField(new Rect(30 + 20, 0, 100, 20), playerName == string.Empty ? "PlayerName" + netId : playerName);
 
-                updateSyncVars(wantsToSpectate, playerName, playerColor);
+                updateSyncVars(wantsToSpectate, playerName, playerColor, (int)playerType);
 
                 //
                 GUILayout.EndArea();
@@ -112,14 +109,11 @@ namespace C3Runner.Multiplayer
                 GUI.Label(new Rect(0, 0, 40, 20), "Name: ");
                 playerName = GUI.TextField(new Rect(30 + 20, 0, 100, 20), playerName == string.Empty ? "Player" + netId : playerName, 8);
 
-                //if (playerColor.Equals(Color.clear))
-                //{
-
                 Color c = Color.white;
                 var id = index + 1;
                 switch ((id % 9) + 1)
                 {
-                    case 1: c =player1Color; break;
+                    case 1: c = player1Color; break;
                     case 2: c = player1Color; break;
                     case 3: c = player2Color; break;
                     case 4: c = player3Color; break;
@@ -134,11 +128,12 @@ namespace C3Runner.Multiplayer
                 //playerColor = Color.HSVToRGB((netId % 5) / 5f, 1, 1);
                 playerColor = c;
 
-                //}
-
                 GUI.color = Color.white;
 
-                updateSyncVars(wantsToSpectate, playerName, playerColor);
+                GUI.Label(new Rect(0, 30, 40, 20), "Type: ");
+                playerType = Mathf.Floor(GUI.HorizontalSlider(new Rect(30 + 20, 30, 100, 20), (int)playerType/100, 0, 1) * 100);
+
+                updateSyncVars(wantsToSpectate, playerName, playerColor, (int)playerType);
 
                 //
                 GUILayout.EndArea();
@@ -149,11 +144,12 @@ namespace C3Runner.Multiplayer
 
         //MUY IMPORTANTE, PORQUE SI LA SYNCVAR NO ES ACTUALIZADA DESDE EL SERVIDOR NO LA TOMA EN CUENTA.
         [Command]
-        void updateSyncVars(bool wantsToSpectate, string playerName, Color playerColor)
+        void updateSyncVars(bool wantsToSpectate, string playerName, Color playerColor, int playerType)
         {
             this.wantsToSpectate = wantsToSpectate;
             this.playerName = playerName;
             this.playerColor = playerColor;
+            this.playerType = playerType;
         }
     }
 }
