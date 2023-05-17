@@ -232,6 +232,7 @@ public class Player3D : NetworkBehaviour
 
 #if (UNITY_ANDROID || UNITY_EDITOR)
         gameObject.transform.Find("MobileControls").gameObject.SetActive(false);
+        gameObject.GetComponent<PlayerInput>().enabled = false;
 #endif
         gameObject.transform.Find("Main Camera").gameObject.SetActive(false);
         gameObject.transform.Find("CM player").gameObject.SetActive(false);
@@ -245,9 +246,10 @@ public class Player3D : NetworkBehaviour
     {
         gameObject.GetComponent<AudioSource>().enabled = true;
         inControl = true;
-
+#if (UNITY_ANDROID || UNITY_EDITOR)
         gameObject.transform.Find("MobileControls").gameObject.SetActive(true);
-
+        gameObject.GetComponent<PlayerInput>().enabled = true;
+#endif
         gameObject.transform.Find("Main Camera").gameObject.SetActive(true);
         gameObject.transform.Find("CM player").gameObject.SetActive(true);
         gameObject.transform.Find("Canvas").gameObject.SetActive(true);
