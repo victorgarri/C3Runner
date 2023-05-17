@@ -12,7 +12,6 @@ public class PowerUpHolder : NetworkBehaviour
     PlayerInput pi;
 
     public Image indicatorUIBackImage;
-    Color oldColor;
 
     public Sprite[] powerUpImages;//shell, speedup, invuln, bounce
     public float currentMaxFactor = 1;
