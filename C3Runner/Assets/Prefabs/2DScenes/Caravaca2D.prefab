@@ -1289,6 +1289,11 @@ MonoBehaviour:
   - {fileID: 2658751600901933161, guid: 9a2ab0d605dbef643bb466480de4be25, type: 3}
   - {fileID: 1240700462291613636, guid: a51f434f02fdc5646b7c75db916ffeff, type: 3}
   - {fileID: 4546206035050803243, guid: 05897b577bd21344f99f2e16eda7c511, type: 3}
+  - {fileID: 8034545662891839935, guid: 33f84a9b99a8776469a9ce23e0eb0154, type: 3}
+  - {fileID: 4480414478034799505, guid: fa51b4c3b1d1ddc408d1f6ee57d43463, type: 3}
+  - {fileID: 2658751600901933161, guid: 9a2ab0d605dbef643bb466480de4be25, type: 3}
+  - {fileID: 1240700462291613636, guid: a51f434f02fdc5646b7c75db916ffeff, type: 3}
+  - {fileID: 4546206035050803243, guid: 05897b577bd21344f99f2e16eda7c511, type: 3}
   numProfesorSala: 0
 --- !u!1 &3791129029491858733
 GameObject:
