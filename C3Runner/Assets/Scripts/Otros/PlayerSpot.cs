@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSpot : MonoBehaviour
 {
     public List<Player3D> players = new List<Player3D>();
+    public Text txtSpot;
 
     void Start()
     {
@@ -43,6 +45,19 @@ public class PlayerSpot : MonoBehaviour
             players[i].spot = i + 1;
             players[i].updateSpotUI();
         }
+
+        PaintLeaderboard();
+
         //print(players);
+    }
+
+    void PaintLeaderboard()
+    {
+        string txt = "";
+        for (int i = 0; i < players.Count; i++)
+        {
+            txt += (i+1) + " - " + players[i].playerName + "\n";
+        }
+        txtSpot.text = txt;
     }
 }
