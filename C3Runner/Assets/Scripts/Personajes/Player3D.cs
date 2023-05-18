@@ -80,7 +80,6 @@ public class Player3D : NetworkBehaviour
     //Canvas UI
     [Header("Canvas")]
     public Text spotText;
-    GameObject playerSpots;
 
     //FX&PowerUps
     [Header("FX&PowerUps")]
@@ -198,7 +197,6 @@ public class Player3D : NetworkBehaviour
         fram = cam.GetCinemachineComponent<CinemachineComposer>();
 
         capFramerate = GameObject.Find("CapFramerate").GetComponent<CapFramerate>();
-        playerSpots = GameObject.FindObjectOfType<PlayerSpot>().txtSpot.transform.parent.parent.gameObject;
 
         if (!localPlayer())
         {
@@ -284,7 +282,6 @@ public class Player3D : NetworkBehaviour
         gameObject.transform.Find("Canvas").gameObject.SetActive(false);
         gameObject.transform.Find("PlayerSpot").gameObject.SetActive(false);
         gameObject.transform.Find("PowerUpCanvas").gameObject.SetActive(false);
-        playerSpots.SetActive(false);
     }
 
     public void EnableFeatures()
@@ -300,7 +297,6 @@ public class Player3D : NetworkBehaviour
         gameObject.transform.Find("Canvas").gameObject.SetActive(true);
         gameObject.transform.Find("PlayerSpot").gameObject.SetActive(true);
         gameObject.transform.Find("PowerUpCanvas").gameObject.SetActive(true);
-        playerSpots.SetActive(true);
     }
 
     public void DisableRB()
