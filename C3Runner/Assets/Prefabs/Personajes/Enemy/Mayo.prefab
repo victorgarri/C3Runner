@@ -93,7 +93,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb368bec2c378642985013b44e6dda8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clothes: {fileID: 2100000, guid: e6d054871b4078349b8ee3f1f2f30eac, type: 2}
 --- !u!1001 &3335844277857972083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -183,7 +182,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: eefe3199bcd074f4fa068ea4a2e9c81f, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
