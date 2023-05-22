@@ -9,7 +9,7 @@ TerrainLayer:
   m_Name: ArrowayNew
   m_DiffuseTexture: {fileID: 2800000, guid: 078a541e1bc8532498787a5a52273ee4, type: 3}
   m_NormalMapTexture: {fileID: 0}
-  m_MaskMapTexture: {fileID: 0}
+  m_MaskMapTexture: {fileID: 2800000, guid: 7b02ed1fbdeda344cbbf2b451bd1c2d8, type: 3}
   m_TileSize: {x: 70, y: 70}
   m_TileOffset: {x: 0, y: 0}
   m_Specular: {r: 0, g: 0, b: 0, a: 0}
