@@ -7,6 +7,7 @@ public class AdjustNetworkHUD : MonoBehaviour
 {
     NetworkManagerHUD hud;
     public int offset = 235;
+    public float extraFactor = 1;
 
     void Start()
     {
@@ -16,6 +17,9 @@ public class AdjustNetworkHUD : MonoBehaviour
 
     void FixedUpdate()
     {
-        hud.offsetX = Screen.width - offset;
+        //hud.matrixFactor = extraFactor;
+        hud.offsetX = (int)((Screen.width - offset));
+
+        //GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(CapFramerate.factor * extraFactor, CapFramerate.factor * extraFactor, 1));
     }
 }

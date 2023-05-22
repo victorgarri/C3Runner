@@ -15,6 +15,7 @@ namespace Mirror
 
         public int offsetX;
         public int offsetY;
+        public float matrixFactor = 1;
 
         void Awake()
         {
@@ -23,6 +24,7 @@ namespace Mirror
 
         void OnGUI()
         {
+            GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(matrixFactor, matrixFactor, 1));
             GUILayout.BeginArea(new Rect(10 + offsetX, 40 + offsetY, 215, 9999));
             if (!NetworkClient.isConnected && !NetworkServer.active)
             {
