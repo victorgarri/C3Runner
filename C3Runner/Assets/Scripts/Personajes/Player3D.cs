@@ -274,7 +274,6 @@ public class Player3D : NetworkBehaviour
         inControl = false;
 
 #if (UNITY_ANDROID || UNITY_EDITOR)
-        gameObject.transform.Find("MobileControls").gameObject.SetActive(false);
         gameObject.GetComponent<PlayerInput>().enabled = false;
 #endif
         gameObject.transform.Find("Main Camera").gameObject.SetActive(false);
@@ -289,7 +288,6 @@ public class Player3D : NetworkBehaviour
         gameObject.GetComponent<AudioSource>().enabled = true;
         inControl = true;
 #if (UNITY_ANDROID || UNITY_EDITOR)
-        gameObject.transform.Find("MobileControls").gameObject.SetActive(true);
         gameObject.GetComponent<PlayerInput>().enabled = true;
 #endif
         gameObject.transform.Find("Main Camera").gameObject.SetActive(true);
