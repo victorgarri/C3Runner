@@ -30,6 +30,11 @@ public class OVNIplayer : MonoBehaviour
         StartUp();
     }
 
+    void OnDisable()
+    {
+        readyToGo = false;
+    }
+
     void StartUp()
     {
         //debug
@@ -101,7 +106,7 @@ public class OVNIplayer : MonoBehaviour
         localplayer.pi.enabled = true;
         localplayer.EnableRB();
         localplayer.GetComponent<Player3D>().OVNIToggle();
-        
+
     }
 
 
