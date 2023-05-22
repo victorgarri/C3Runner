@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UIHideDelay : MonoBehaviour
 {
+    public PlayerInput pi;
 
     void Start()
     {
@@ -14,6 +16,7 @@ public class UIHideDelay : MonoBehaviour
     IEnumerator Hide()
     {
         yield return new WaitForSeconds(5);
+        pi.enabled = true;
         gameObject.SetActive(false);
     }
 }
