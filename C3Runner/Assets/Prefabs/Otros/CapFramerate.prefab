@@ -48,5 +48,5 @@ MonoBehaviour:
   fps: 60
   resolutionX: 1366
   resolutionY: 768
-  renderDistance: 200
+  renderDistance: 570
   active: 1

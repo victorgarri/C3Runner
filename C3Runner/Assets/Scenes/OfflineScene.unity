@@ -376,6 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offsetX: 1685
   offsetY: 0
+  matrixFactor: 1
 --- !u!114 &1265278269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,6 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 235
+  extraFactor: 1
 --- !u!1 &1376483009
 GameObject:
   m_ObjectHideFlags: 0
