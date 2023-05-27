@@ -12,9 +12,7 @@ namespace C3Runner.Multiplayer
     [AddComponentMenu("")]
     public class NetworkRoomManagerExt : NetworkRoomManager
     {
-        [Header("Spawner Setup")]
-        [Tooltip("Reward Prefab for the Spawner")]
-        public GameObject rewardPrefab;
+
 
         /// <summary>
         /// This is called on the server when a networked scene finishes loading.
