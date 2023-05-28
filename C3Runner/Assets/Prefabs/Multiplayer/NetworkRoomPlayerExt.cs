@@ -205,7 +205,7 @@ namespace C3Runner.Multiplayer
 
 
                 playerColor = c;
-
+                ifName.transform.parent.Find("txtName").GetComponent<Text>().color = playerColor;
                 //GUI.color = Color.white;
 
                 //GUI.Label(new Rect(0, 30, 40, 20), "Type: ");
