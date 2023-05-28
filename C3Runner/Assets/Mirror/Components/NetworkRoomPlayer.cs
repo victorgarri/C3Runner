@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Mirror
 {
@@ -144,83 +143,11 @@ namespace Mirror
                     return;
 
                 DrawPlayerReadyState();
-                //DrawPlayerReadyButton();
+                DrawPlayerReadyButton();
             }
         }
-
-        public Text txtPlayerNum, txtPlayerStatus, btnRemove, btnReadyCancel, txtBtnReadyCancel;
 
         void DrawPlayerReadyState()
-        {
-            //GUILayout.BeginArea(new Rect(20f + (index * 100), 200f, 90f, 130f));
-
-            txtPlayerNum.text = $"Player [{index + 1}]"; //GUILayout.Label($"Player [{index + 1}]");
-            txtBtnReadyCancel = GameObject.Find("txtBtnReady").GetComponent<Text>();
-            if (readyToBegin)
-                txtPlayerStatus.text = "Ready";//GUILayout.Label("Ready");
-            else
-                txtPlayerStatus.text = "Not Ready";//GUILayout.Label("Not Ready");
-
-            /*if (((isServer && index > 0) || isServerOnly) && GUILayout.Button("REMOVE"))
-            {
-                // This button only shows on the Host for all players other than the Host
-                // Host and Players can't remove themselves (stop the client instead)
-                // Host can kick a Player this way.
-                GetComponent<NetworkIdentity>().connectionToClient.Disconnect();
-            }*/
-
-            //GUILayout.EndArea();
-        }
-
-
-
-        bool btnReadyCancelState = false;
-        public void UpdatePlayerReadyButton()
-        {
-            if (NetworkClient.active && isLocalPlayer)
-            {
-                //GUILayout.BeginArea(new Rect(20f, 300f, 120f, 20f));
-
-                if (readyToBegin)
-                {
-                    //if (GUILayout.Button("Cancel"))
-                    CmdChangeReadyState(false);
-                    txtBtnReadyCancel.text = "Cancel";
-                }
-                else
-                {
-                    //if (GUILayout.Button("Ready"))
-                    CmdChangeReadyState(true);
-                    txtBtnReadyCancel.text = "Ready";
-                }
-
-                //GUILayout.EndArea();
-            }
-        }
-
-        /*void DrawPlayerReadyButton()
-        {
-            if (NetworkClient.active && isLocalPlayer)
-            {
-                //GUILayout.BeginArea(new Rect(20f, 300f, 120f, 20f));
-
-                if (readyToBegin)
-                {
-                    if (GUILayout.Button("Cancel"))
-                        CmdChangeReadyState(false);
-                }
-                else
-                {
-                    if (GUILayout.Button("Ready"))
-                        CmdChangeReadyState(true);
-                }
-
-                GUILayout.EndArea();
-            }
-        }*/
-
-        /*
-         void DrawPlayerReadyState()
         {
             GUILayout.BeginArea(new Rect(20f + (index * 100), 200f, 90f, 130f));
 
@@ -262,8 +189,6 @@ namespace Mirror
                 GUILayout.EndArea();
             }
         }
-         
-         */
 
         #endregion
     }

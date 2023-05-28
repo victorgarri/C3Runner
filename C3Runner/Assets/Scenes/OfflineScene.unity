@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -180,6 +180,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 356d01c44a6ce804fb68297ea056e9b8, type: 3}
+--- !u!114 &446335090 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 607637374753329146, guid: b0886c1bc3a91fd41800c4f4b1bfd19e, type: 3}
+  m_PrefabInstance: {fileID: 1491176670944907569}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &847804596
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +380,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265278263}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
   m_Name: 
@@ -419,6 +430,7 @@ MonoBehaviour:
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
+  btnStartGame: {fileID: 446335090}
 --- !u!114 &1265278270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,6 +648,10 @@ PrefabInstance:
     - target: {fileID: 1491176671143777958, guid: b0886c1bc3a91fd41800c4f4b1bfd19e, type: 3}
       propertyPath: m_Name
       value: CanvasMirrorHUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491176671143777958, guid: b0886c1bc3a91fd41800c4f4b1bfd19e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1491176671143777962, guid: b0886c1bc3a91fd41800c4f4b1bfd19e, type: 3}
       propertyPath: m_Pivot.x

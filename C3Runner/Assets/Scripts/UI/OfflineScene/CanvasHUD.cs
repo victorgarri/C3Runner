@@ -21,7 +21,7 @@ public class CanvasHUD : MonoBehaviour
     public Text clientText;
 
 
-    private static CanvasHUD canvasInstance;
+    public static CanvasHUD canvasInstance;
     void Awake()
     {
         DontDestroyOnLoad(this);
@@ -148,10 +148,11 @@ public class CanvasHUD : MonoBehaviour
             NetworkRoomManager room = NetworkManager.singleton as NetworkRoomManager;
             if (room)
             {
+                //room scene
                 if (room.showRoomGUI && NetworkManager.IsSceneActive(room.RoomScene))
                 {
                     PanelRoom.SetActive(true);
-                    RoomCanvas();
+                    //RoomCanvas();
                 }
                 else
                 {

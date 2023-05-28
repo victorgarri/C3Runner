@@ -1,6 +1,7 @@
 using Cinemachine;
 using UnityEngine;
 using Mirror;
+using UnityEngine.UI;
 
 /*
 	Documentation: https://mirror-networking.gitbook.io/docs/components/network-manager
@@ -23,7 +24,7 @@ namespace C3Runner.Multiplayer
             // spawn the initial batch of Rewards
             //if (sceneName == GameplayScene)
             //    Spawner.InitialSpawn();
-            
+
 
         }
 
@@ -81,17 +82,47 @@ namespace C3Runner.Multiplayer
 #endif
         }
 
+        bool isUISet;
+        Canvas canvas;
+        Text startGameTxt;
+
         public override void OnGUI()
         {
             base.OnGUI();
-
-            if (allPlayersReady && showStartButton && GUI.Button(new Rect(150, 300, 120, 20), "START GAME"))
+            if (!isUISet)
             {
-                // set to false to hide it in the game scene
-                showStartButton = false;
-
-                ServerChangeScene(GameplayScene);
+                SetUpUI();
             }
+
+            if (allPlayersReady && showStartButton && GUI.Button(new Rect(150, 300, 120, 20), "START GAME")) svrChngScene();
+
+            if (btnStartGame != null)
+                btnStartGame.gameObject.SetActive(allPlayersReady && showStartButton);
+
+
+        }
+
+        public Button btnStartGame;
+
+        void SetUpUI()
+        {
+            //btnStartGame = CanvasHUD.canvasInstance.PanelRoom.transform.Find("btnReady").GetComponent<Button>();
+            btnStartGame.onClick.AddListener(delegate { svrChngScene(); });
+
+
+
+
+
+
+
+            isUISet = true;
+        }
+
+        void svrChngScene()
+        {
+            showStartButton = false;
+
+            ServerChangeScene(GameplayScene);
         }
     }
 }
