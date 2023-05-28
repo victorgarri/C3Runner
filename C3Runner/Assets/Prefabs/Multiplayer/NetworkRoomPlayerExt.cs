@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
+using UnityEngine.UI;
 
 namespace C3Runner.Multiplayer
 {
@@ -15,7 +16,7 @@ namespace C3Runner.Multiplayer
 
         Color player1Color, player2Color, player3Color, player4Color, player5Color, player6Color, player7Color, player8Color;
 
-        private void Awake()
+        private void Start()
         {
             Color newCol;
             if (ColorUtility.TryParseHtmlString("#A9E065", out newCol))
@@ -42,6 +43,11 @@ namespace C3Runner.Multiplayer
             if (ColorUtility.TryParseHtmlString("#008F47", out newCol))
                 player8Color = newCol;
 
+
+
+            //setup canvas
+            DrawNameInputFieldCanvas();
+
         }
 
         public void Update()
@@ -53,10 +59,7 @@ namespace C3Runner.Multiplayer
 
         }
 
-        public override void OnStartClient()
-        {
-            //Debug.Log($"OnStartClient {gameObject}");
-        }
+
 
         public override void OnClientEnterRoom()
         {
@@ -80,12 +83,133 @@ namespace C3Runner.Multiplayer
 
         public override void OnGUI()
         {
-            base.OnGUI();
-            DrawNameInputField();
+            //base.OnGUI();
+            //DrawNameInputField();
+        }
+
+        public GameObject PanelRoom;
+        public InputField ifName;
+        public Slider sldType;
+        public Toggle toggleSpectate;
+
+        public override void OnStartClient()
+        {
+            //Debug.Log($"OnStartClient {gameObject}");
+
+            //
+            //var playerList = GameObject.Find("playerList");
+            //if (playerList != null)
+            //    transform.GetChild(0).parent = playerList.transform;
+
+            //set up dependencies
+
+            PanelRoom = GameObject.Find("PanelRoom");
+            ifName = GameObject.Find("ifName").GetComponent<InputField>();
+            sldType = GameObject.Find("sldType").GetComponent<Slider>();
+            toggleSpectate = GameObject.Find("toggleSpectator").GetComponent<Toggle>();
+
+            toggleSpectate.gameObject.SetActive(false);
+            ifName.onValueChanged.AddListener(delegate { updateSyncVarName(ifName.text); });
+            sldType.onValueChanged.AddListener(delegate { updateSyncVarType(sldType.value); });
+
+            toggleSpectate.onValueChanged.AddListener(delegate { updateSyncVarSpectate(toggleSpectate.isOn); });
+
+        }
+
+        void DrawNameInputFieldCanvas()
+        {
+            if (NetworkClient.active && isLocalPlayer && isServer)
+            {
+                toggleSpectate.gameObject.SetActive(true);
+                updateSyncVars(wantsToSpectate, playerName, playerColor, (int)playerType);
+            }
+
+            if (NetworkClient.active && isLocalPlayer)
+            {
+                //GUILayout.BeginArea(new Rect(20f, 400f, 150f, 200f));
+
+                //PLAYER NAME INPUT FIELD
+                //GUI.color = playerColor;
+
+                //GUI.Label(new Rect(0, 0, 40, 20), "Name: ");
+                //playerName = GUI.TextField(new Rect(30 + 20, 0, 100, 20), playerName == string.Empty ? "Player" + netId : playerName, 8);
+
+
+                Color c = Color.white;
+                var id = index + 1;
+                switch ((id % 9) + 1)
+                {
+                    case 1: c = player1Color; break;
+                    case 2: c = player1Color; break;
+                    case 3: c = player2Color; break;
+                    case 4: c = player3Color; break;
+                    case 5: c = player4Color; break;
+                    case 6: c = player5Color; break;
+                    case 7: c = player6Color; break;
+                    case 8: c = player7Color; break;
+                    case 9: c = player8Color; break;
+                }
+
+
+                playerColor = c;
+                ifName.transform.parent.Find("txtName").GetComponent<Text>().color = playerColor;
+                //GUI.color = Color.white;
+
+                //GUI.Label(new Rect(0, 30, 40, 20), "Type: ");
+                //playerType = Mathf.Floor(GUI.HorizontalSlider(new Rect(30 + 20, 30, 100, 20), (int)playerType / 100, 0, 1) * 100);
+
+                //updateSyncVars(wantsToSpectate, playerName, playerColor, (int)playerType);
+
+                //
+                //GUILayout.EndArea();
+                updateSyncVars(wantsToSpectate, playerName, playerColor, (int)playerType);
+            }
+
         }
 
 
-        void DrawNameInputField()
+        //MUY IMPORTANTE, PORQUE SI LA SYNCVAR NO ES ACTUALIZADA DESDE EL SERVIDOR NO LA TOMA EN CUENTA.
+        [Command]
+        void updateSyncVars(bool wantsToSpectate, string playerName, Color playerColor, int playerType)
+        {
+            this.wantsToSpectate = wantsToSpectate;
+            this.playerName = playerName;
+            this.playerColor = playerColor;
+            this.playerType = playerType;
+        }
+
+        [Command]
+        public void updateSyncVarName(string playerName)
+        {
+            this.playerName = playerName;
+        }
+
+        [Command]
+        public void updateSyncVarColor(Color playerColor)
+        {
+            this.playerColor = playerColor;
+        }
+
+        [Command]
+        public void updateSyncVarType(float playerType)
+        {
+            //this.playerType = ((int)playerType / 100) * 100;
+            this.playerType = playerType * 100;
+            sldType.value = this.playerType;
+        }
+
+        [Command]
+        public void updateSyncVarSpectate(bool wantsToSpectate)
+        {
+            this.wantsToSpectate = wantsToSpectate;
+            //something();
+        }
+
+        
+
+        /*
+         
+         void DrawNameInputField()
         {
             if (NetworkClient.active && isLocalPlayer && isServer)
             {
@@ -140,17 +264,7 @@ namespace C3Runner.Multiplayer
             }
 
         }
-
-
-        //MUY IMPORTANTE, PORQUE SI LA SYNCVAR NO ES ACTUALIZADA DESDE EL SERVIDOR NO LA TOMA EN CUENTA.
-        [Command]
-        void updateSyncVars(bool wantsToSpectate, string playerName, Color playerColor, int playerType)
-        {
-            this.wantsToSpectate = wantsToSpectate;
-            this.playerName = playerName;
-            this.playerColor = playerColor;
-            this.playerType = playerType;
-        }
+         */
     }
 }
 

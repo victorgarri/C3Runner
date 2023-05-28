@@ -1,19 +1,40 @@
 using Mirror;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using C3Runner.Multiplayer;
 
 public class CanvasHUD : MonoBehaviour
 {
     public GameObject PanelStart;
+    public GameObject PanelRoom;
     public GameObject PanelStop;
 
     public Button buttonHost, buttonServer, buttonClient, buttonStop;
 
     public InputField inputFieldAddress;
+    public GameObject playerList;
+    public GameObject playerUIPrefab;
+
 
     public Text serverText;
     public Text clientText;
 
+
+    private static CanvasHUD canvasInstance;
+    void Awake()
+    {
+        DontDestroyOnLoad(this);
+
+        if (canvasInstance == null)
+        {
+            canvasInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -30,6 +51,13 @@ public class CanvasHUD : MonoBehaviour
         buttonStop.onClick.AddListener(ButtonStop);
 
         //This updates the Unity canvas, we have to manually call it every change, unlike legacy OnGUI.
+        SetupCanvas();
+        SceneManager.activeSceneChanged += ChangedActiveScene;
+
+    }
+
+    private void ChangedActiveScene(Scene current, Scene next)
+    {
         SetupCanvas();
     }
 
@@ -84,20 +112,26 @@ public class CanvasHUD : MonoBehaviour
 
         if (!NetworkClient.isConnected && !NetworkServer.active)
         {
+            //Start
             if (NetworkClient.active)
             {
+                //Connecting phase
                 PanelStart.SetActive(false);
+                PanelRoom.SetActive(false);
                 PanelStop.SetActive(true);
                 clientText.text = "Connecting to " + NetworkManager.singleton.networkAddress + "..";
             }
             else
             {
+                //MainScene
                 PanelStart.SetActive(true);
+                PanelRoom.SetActive(false);
                 PanelStop.SetActive(false);
             }
         }
         else
         {
+            //Not Start
             PanelStart.SetActive(false);
             PanelStop.SetActive(true);
 
@@ -110,6 +144,36 @@ public class CanvasHUD : MonoBehaviour
             {
                 clientText.text = "Client: address=" + NetworkManager.singleton.networkAddress;
             }
+
+            NetworkRoomManager room = NetworkManager.singleton as NetworkRoomManager;
+            if (room)
+            {
+                if (room.showRoomGUI && NetworkManager.IsSceneActive(room.RoomScene))
+                {
+                    PanelRoom.SetActive(true);
+                    RoomCanvas();
+                }
+                else
+                {
+                    PanelRoom.SetActive(false);
+                }
+            }
+
         }
+    }
+
+    void RoomCanvas()
+    {
+        //var playerList = GameObject.Find("playerList");
+        //if (playerList != null)
+        //    transform.GetChild(0).parent = playerList.transform;
+        var players = NetworkManager.singleton.numPlayers;
+        for (int i = 0; i < players; i++)
+        {
+            //assign whatever it is needed
+            GameObject playerUI = Instantiate(playerUIPrefab);
+            playerUI.transform.parent = playerList.transform;
+        }
+
     }
 }

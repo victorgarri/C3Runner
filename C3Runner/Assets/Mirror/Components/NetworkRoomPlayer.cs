@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Mirror
 {
@@ -97,14 +98,14 @@ namespace Mirror
         /// </summary>
         /// <param name="oldIndex">The old index value</param>
         /// <param name="newIndex">The new index value</param>
-        public virtual void IndexChanged(int oldIndex, int newIndex) {}
+        public virtual void IndexChanged(int oldIndex, int newIndex) { }
 
         /// <summary>
         /// This is a hook that is invoked on clients when a RoomPlayer switches between ready or not ready.
         /// <para>This function is called when the a client player calls CmdChangeReadyState.</para>
         /// </summary>
         /// <param name="newReadyState">New Ready State</param>
-        public virtual void ReadyStateChanged(bool oldReadyState, bool newReadyState) {}
+        public virtual void ReadyStateChanged(bool oldReadyState, bool newReadyState) { }
 
         #endregion
 
@@ -114,12 +115,12 @@ namespace Mirror
         /// This is a hook that is invoked on clients for all room player objects when entering the room.
         /// <para>Note: isLocalPlayer is not guaranteed to be set until OnStartLocalPlayer is called.</para>
         /// </summary>
-        public virtual void OnClientEnterRoom() {}
+        public virtual void OnClientEnterRoom() { }
 
         /// <summary>
         /// This is a hook that is invoked on clients for all room player objects when exiting the room.
         /// </summary>
-        public virtual void OnClientExitRoom() {}
+        public virtual void OnClientExitRoom() { }
 
         #endregion
 
@@ -143,11 +144,83 @@ namespace Mirror
                     return;
 
                 DrawPlayerReadyState();
-                DrawPlayerReadyButton();
+                //DrawPlayerReadyButton();
             }
         }
 
+        public Text txtPlayerNum, txtPlayerStatus, btnRemove, btnReadyCancel, txtBtnReadyCancel;
+
         void DrawPlayerReadyState()
+        {
+            //GUILayout.BeginArea(new Rect(20f + (index * 100), 200f, 90f, 130f));
+
+            txtPlayerNum.text = $"Player [{index + 1}]"; //GUILayout.Label($"Player [{index + 1}]");
+            txtBtnReadyCancel = GameObject.Find("txtBtnReady").GetComponent<Text>();
+            if (readyToBegin)
+                txtPlayerStatus.text = "Ready";//GUILayout.Label("Ready");
+            else
+                txtPlayerStatus.text = "Not Ready";//GUILayout.Label("Not Ready");
+
+            /*if (((isServer && index > 0) || isServerOnly) && GUILayout.Button("REMOVE"))
+            {
+                // This button only shows on the Host for all players other than the Host
+                // Host and Players can't remove themselves (stop the client instead)
+                // Host can kick a Player this way.
+                GetComponent<NetworkIdentity>().connectionToClient.Disconnect();
+            }*/
+
+            //GUILayout.EndArea();
+        }
+
+
+
+        bool btnReadyCancelState = false;
+        public void UpdatePlayerReadyButton()
+        {
+            if (NetworkClient.active && isLocalPlayer)
+            {
+                //GUILayout.BeginArea(new Rect(20f, 300f, 120f, 20f));
+
+                if (readyToBegin)
+                {
+                    //if (GUILayout.Button("Cancel"))
+                    CmdChangeReadyState(false);
+                    txtBtnReadyCancel.text = "Cancel";
+                }
+                else
+                {
+                    //if (GUILayout.Button("Ready"))
+                    CmdChangeReadyState(true);
+                    txtBtnReadyCancel.text = "Ready";
+                }
+
+                //GUILayout.EndArea();
+            }
+        }
+
+        /*void DrawPlayerReadyButton()
+        {
+            if (NetworkClient.active && isLocalPlayer)
+            {
+                //GUILayout.BeginArea(new Rect(20f, 300f, 120f, 20f));
+
+                if (readyToBegin)
+                {
+                    if (GUILayout.Button("Cancel"))
+                        CmdChangeReadyState(false);
+                }
+                else
+                {
+                    if (GUILayout.Button("Ready"))
+                        CmdChangeReadyState(true);
+                }
+
+                GUILayout.EndArea();
+            }
+        }*/
+
+        /*
+         void DrawPlayerReadyState()
         {
             GUILayout.BeginArea(new Rect(20f + (index * 100), 200f, 90f, 130f));
 
@@ -189,6 +262,8 @@ namespace Mirror
                 GUILayout.EndArea();
             }
         }
+         
+         */
 
         #endregion
     }
