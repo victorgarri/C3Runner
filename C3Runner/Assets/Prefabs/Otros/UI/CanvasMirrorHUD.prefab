@@ -810,6 +810,7 @@ MonoBehaviour:
   buttonServer: {fileID: 1491176671878216563}
   buttonClient: {fileID: 1491176670990297650}
   buttonStop: {fileID: 1491176672668033439}
+  buttonStartGame: {fileID: 607637374753329146}
   inputFieldAddress: {fileID: 1491176670596367422}
   playerList: {fileID: 243658974795966201}
   playerUIPrefab: {fileID: 2567770209983493189, guid: 1729118fac24e6f43a7eabd2351b5c60, type: 3}
@@ -2543,6 +2544,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8492568263771779280, guid: 31bd66b4ccc3b60468d445813eab55f6, type: 3}
   m_PrefabInstance: {fileID: 8555167333441852969}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &607637374753329146 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9139155656115198419, guid: 31bd66b4ccc3b60468d445813eab55f6, type: 3}
+  m_PrefabInstance: {fileID: 8555167333441852969}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8689432712768791564 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1021506085194691109, guid: 31bd66b4ccc3b60468d445813eab55f6, type: 3}

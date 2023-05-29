@@ -11,6 +11,7 @@ public class CanvasHUD : MonoBehaviour
     public GameObject PanelStop;
 
     public Button buttonHost, buttonServer, buttonClient, buttonStop;
+    public Button buttonStartGame;
 
     public InputField inputFieldAddress;
     public GameObject playerList;
@@ -155,6 +156,15 @@ public class CanvasHUD : MonoBehaviour
                     {
                         item.GetComponent<RoomPlayerUI>().DeleteSelf();
                     }
+
+                    //foreach (NetworkRoomPlayerExt rp in room.roomSlots)
+                    //{
+                    //    rp.
+                    //}
+
+                    NetworkRoomPlayerExt.indices.Clear();
+                    NetworkRoomPlayerExt.playerUIs.Clear();
+
                     PanelRoom.SetActive(true);
                     //RoomCanvas();
                 }

@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CapFramerate
       objectReference: {fileID: 0}
+    - target: {fileID: 7780268359334558879, guid: 356d01c44a6ce804fb68297ea056e9b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 356d01c44a6ce804fb68297ea056e9b8, type: 3}
 --- !u!1 &1842244830

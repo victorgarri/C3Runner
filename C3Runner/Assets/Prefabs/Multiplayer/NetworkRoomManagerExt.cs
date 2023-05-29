@@ -15,7 +15,7 @@ namespace C3Runner.Multiplayer
     public class NetworkRoomManagerExt : NetworkRoomManager
     {
 
-        
+
         /// <summary>
         /// This is called on the server when a networked scene finishes loading.
         /// </summary>
@@ -23,10 +23,12 @@ namespace C3Runner.Multiplayer
         public override void OnRoomServerSceneChanged(string sceneName)
         {
             // spawn the initial batch of Rewards
-            //if (sceneName == GameplayScene)
-            //    Spawner.InitialSpawn();
+            if (sceneName == RoomScene)
+            {
 
+                SetUpUI();
 
+            }
         }
 
         /// <summary>
@@ -90,16 +92,16 @@ namespace C3Runner.Multiplayer
         public override void OnGUI()
         {
             base.OnGUI();
-            if (!isUISet)
-            {
-                SetUpUI();
-            }
+
 
             if (allPlayersReady && showStartButton && GUI.Button(new Rect(150, 300, 120, 20), "START GAME")) svrChngScene();
 
             if (btnStartGame != null)
                 btnStartGame.gameObject.SetActive(allPlayersReady && showStartButton);
-
+            else
+            {
+                btnStartGame = GameObject.Find("CanvasMirrorHUD").GetComponent<CanvasHUD>().buttonStartGame;
+            }
 
         }
 
@@ -108,6 +110,8 @@ namespace C3Runner.Multiplayer
         void SetUpUI()
         {
             //btnStartGame = CanvasHUD.canvasInstance.PanelRoom.transform.Find("btnReady").GetComponent<Button>();
+            btnStartGame.onClick.RemoveAllListeners();
+
             btnStartGame.onClick.AddListener(delegate { svrChngScene(); });
 
 

@@ -97,7 +97,7 @@ namespace C3Runner.Multiplayer
             if (!indices.Contains(netId))
             {
                 playerUI = Instantiate(PlayerUIprefab).GetComponent<RoomPlayerUI>();
-                playerUI.gameObject.transform.parent = GameObject.Find("playerList").transform;
+                playerUI.gameObject.transform.SetParent(GameObject.Find("playerList").transform);
                 playerUI.btnDisconnect.onClick.AddListener(delegate { DisconnectPlayer(); });
 
 
@@ -113,6 +113,44 @@ namespace C3Runner.Multiplayer
 
         //only once, by the localplayer once another player disconnects, in each client.
         public override void OnClientExitRoom()
+        {
+            /////DCM - ids don't match
+            //remove playerUI by index, then recalculate numbers
+            //foreach (var netId in NetworkRoomManager.singleton.) { }
+            RoomPlayerUI[] listPlayerUI = GameObject.FindObjectsOfType<RoomPlayerUI>();
+            NetworkRoomPlayerExt[] roomplayers = GameObject.FindObjectsOfType<NetworkRoomPlayerExt>();
+            NetworkRoomManager room = NetworkManager.singleton as NetworkRoomManager;
+            var slots = room.roomSlots;
+
+
+
+            foreach (RoomPlayerUI lpui in listPlayerUI)
+            {
+                bool found = false;
+                uint niui = lpui.index;
+                foreach (NetworkRoomPlayerExt rp in slots)
+                {
+                    if(niui == rp.netId)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    //remove from list, then delete
+                    lpui.DeleteSelf();
+                    indices.Remove(niui);
+                    playerUIs.Remove(lpui);
+                }
+            }
+
+
+        }
+
+        /*
+         public override void OnClientExitRoom()
         {
             /////DCM - ids don't match
             //remove playerUI by index, then recalculate numbers
@@ -152,6 +190,7 @@ namespace C3Runner.Multiplayer
 
 
         }
+         */
 
 
         public override void IndexChanged(int oldIndex, int newIndex)
@@ -194,10 +233,11 @@ namespace C3Runner.Multiplayer
                         //GUI
                         DrawPlayerReadyState();
                         DrawPlayerReadyButton();
-                    }
-                    //Canvas
+                        //Canvas
                     DrawPlayerReadyStateCanvas();
                     DrawPlayerReadyButtonCanvas();
+                    }
+                    
                 }
 
             }
@@ -238,7 +278,7 @@ namespace C3Runner.Multiplayer
             try
             {
                 //playerUI.txtPlayerNum.text = $"Player [{index + 1}]";
-                playerUI.txtPlayerNum.text = $"Player [{index + 1}]" + playerName;
+                playerUI.txtPlayerNum.text = playerName;
 
                 if (readyToBegin)
                 {
@@ -283,12 +323,18 @@ namespace C3Runner.Multiplayer
                 if (readyToBegin)
                 {
                     if (GUILayout.Button("CANCEL"))
+                    {
+                        btnReady.transform.GetChild(0).GetComponent<Text>().text = "CANCEL";
                         CmdChangeReadyState(false);
+                    }
                 }
                 else
                 {
                     if (GUILayout.Button("READY"))
+                    {
+                        btnReady.transform.GetChild(0).GetComponent<Text>().text = "READY";
                         CmdChangeReadyState(true);
+                    }
                 }
 
                 GUILayout.EndArea();
@@ -306,6 +352,18 @@ namespace C3Runner.Multiplayer
                     btnReady = GameObject.Find("btnReady").GetComponent<Button>();
                     btnReady.onClick.AddListener(delegate { DrawPlayerReadyButtonCanvasState(); });
                 }
+                else
+                {
+                    if (readyToBegin)
+                    {
+                        btnReady.transform.GetChild(0).GetComponent<Text>().text = "CANCEL";
+
+                    }
+                    else
+                    {
+                        btnReady.transform.GetChild(0).GetComponent<Text>().text = "READY";
+                    }
+                }
 
 
             }
@@ -317,13 +375,13 @@ namespace C3Runner.Multiplayer
             {
                 //set text to Cancel;
 
-                btnReady.transform.GetChild(0).GetComponent<Text>().text = "READY";
+                //btnReady.transform.GetChild(0).GetComponent<Text>().text = "READY";
                 CmdChangeReadyState(false);
 
             }
             else
             {
-                btnReady.transform.GetChild(0).GetComponent<Text>().text = "CANCEL";
+                //btnReady.transform.GetChild(0).GetComponent<Text>().text = "CANCEL";
                 CmdChangeReadyState(true);
             }
         }
