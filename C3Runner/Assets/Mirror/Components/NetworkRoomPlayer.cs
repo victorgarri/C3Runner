@@ -131,23 +131,22 @@ namespace Mirror
         /// </summary>
         public virtual void OnGUI()
         {
-            if (showRoomGUI)
-            {
-                NetworkRoomManager room = NetworkManager.singleton as NetworkRoomManager;
-                if (room)
-                {
-                    if (NetworkManager.IsSceneActive(room.RoomScene))
-                    {
-                        if (room.showRoomGUI)
-                        {
-                            DrawPlayerReadyState();
-                            DrawPlayerReadyButton();
-                        }
-                        DrawPlayerReadyButtonCanvas();
-                    }
 
+            NetworkRoomManager room = NetworkManager.singleton as NetworkRoomManager;
+            if (room)
+            {
+                if (NetworkManager.IsSceneActive(room.RoomScene))
+                {
+                    if (showRoomGUI && room.showRoomGUI)
+                    {
+                        DrawPlayerReadyState();
+                        DrawPlayerReadyButton();
+                    }
+                    DrawPlayerReadyButtonCanvas();
                 }
+
             }
+
         }
 
         void DrawPlayerReadyState()
