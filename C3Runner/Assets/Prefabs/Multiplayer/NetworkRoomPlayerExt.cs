@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 using Mirror;
 using UnityEngine.UI;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 
 namespace C3Runner.Multiplayer
 {
@@ -20,6 +23,7 @@ namespace C3Runner.Multiplayer
         private void Start()
         {
             base.Start();
+
             Color newCol;
             if (ColorUtility.TryParseHtmlString("#A9E065", out newCol))
                 player1Color = newCol;
@@ -86,19 +90,73 @@ namespace C3Runner.Multiplayer
             catch (Exception e) { }
         }
 
+        //se ejecuta 1 vez por cada roomplayer EN CADA CLIENTE. Es decir, si hay 3 jugadores, en total se ejecuta 9 veces, pero sólo 3 en local
         public override void OnClientEnterRoom()
         {
-            //Debug.Log($"OnClientEnterRoom {SceneManager.GetActiveScene().path}");
+            //instantiate playerUI if not already in scene, then sort
+            if (!indices.Contains(netId))
+            {
+                playerUI = Instantiate(PlayerUIprefab).GetComponent<RoomPlayerUI>();
+                playerUI.gameObject.transform.parent = GameObject.Find("playerList").transform;
+                playerUI.btnDisconnect.onClick.AddListener(delegate { DisconnectPlayer(); });
+
+
+                playerUI.index = netId;
+                //AssignIndexToPlayer(playerUI);
+
+                playerUIs.Add(playerUI);
+                indices.Add(netId);
+            }
+
+
         }
 
+        //only once, by the localplayer once another player disconnects, in each client.
         public override void OnClientExitRoom()
         {
-            //Debug.Log($"OnClientExitRoom {SceneManager.GetActiveScene().path}");
+            /////DCM - ids don't match
+            //remove playerUI by index, then recalculate numbers
+            //foreach (var netId in NetworkRoomManager.singleton.) { }
+
+            NetworkRoomManager room = NetworkManager.singleton as NetworkRoomManager;
+            var slots = room.roomSlots;
+
+            foreach (var pUI in playerUIs)
+            {
+                uint ind = pUI.netId;
+                bool found = false;
+
+                foreach (var slot in slots)
+                {
+                    if (slot.GetComponent<NetworkRoomPlayerExt>().playerUI.netId == ind)
+                    {
+                        found = true;
+                    }
+                }
+
+                if (!found)
+                {
+                    indices.Remove(ind);
+                    playerUIs.RemoveAll(s =>
+                    {
+                        uint dum=s.netId;
+                        s.DeleteSelf();
+
+                        return dum == ind;
+                    });
+                }
+            }
+
+            //indices.Remove(netId);
+            //playerUI.DeleteSelf();
+
+
         }
+
 
         public override void IndexChanged(int oldIndex, int newIndex)
         {
-            //Debug.Log($"IndexChanged {newIndex}");
+
         }
 
         public override void ReadyStateChanged(bool oldReadyState, bool newReadyState)
@@ -108,12 +166,174 @@ namespace C3Runner.Multiplayer
 
         public override void OnGUI()
         {
-            base.OnGUI();
+            OnGUIBase();
+            //
             DrawNameInputField();
             DrawNameInputFieldCanvas();
         }
 
+        //////////////////////
+        //////////////////////
+        //////////////////////
 
+        #region Optional UI
+
+        /// <summary>
+        /// Render a UI for the room. Override to provide your own UI
+        /// </summary>
+        public void OnGUIBase()
+        {
+
+            NetworkRoomManager room = NetworkManager.singleton as NetworkRoomManager;
+            if (room)
+            {
+                if (NetworkManager.IsSceneActive(room.RoomScene))
+                {
+                    if (showRoomGUI && room.showRoomGUI)
+                    {
+                        //GUI
+                        DrawPlayerReadyState();
+                        DrawPlayerReadyButton();
+                    }
+                    //Canvas
+                    DrawPlayerReadyStateCanvas();
+                    DrawPlayerReadyButtonCanvas();
+                }
+
+            }
+
+        }
+
+        void DrawPlayerReadyState()
+        {
+            GUILayout.BeginArea(new Rect(20f + (index * 100), 200f, 90f, 130f));
+
+            GUILayout.Label($"Player [{index + 1}]");
+
+            if (readyToBegin)
+                GUILayout.Label("Ready");
+            else
+                GUILayout.Label("Not Ready");
+
+            if (((isServer && index > 0) || isServerOnly) && GUILayout.Button("REMOVE"))
+            {
+                // This button only shows on the Host for all players other than the Host
+                // Host and Players can't remove themselves (stop the client instead)
+                // Host can kick a Player this way.
+                GetComponent<NetworkIdentity>().connectionToClient.Disconnect();
+            }
+
+            GUILayout.EndArea();
+        }
+
+
+        public GameObject PlayerUIprefab;
+        RoomPlayerUI playerUI;
+        public static List<RoomPlayerUI> playerUIs = new List<RoomPlayerUI>();
+        public static List<uint> indices = new List<uint>();
+
+        void DrawPlayerReadyStateCanvas()
+        {
+            //GUILayout.BeginArea(new Rect(20f + (index * 100), 200f, 90f, 130f));
+            try
+            {
+                //playerUI.txtPlayerNum.text = $"Player [{index + 1}]";
+                playerUI.txtPlayerNum.text = $"Player [{index + 1}]" + playerName;
+
+                if (readyToBegin)
+                {
+                    //GUILayout.Label("Ready");
+                    playerUI.txtPlayerStatus.text = "Ready";
+                }
+                else
+                {
+                    //GUILayout.Label("Not Ready");
+                    playerUI.txtPlayerStatus.text = "Not Ready";
+                }
+
+                if (((isServer && index > 0) || isServerOnly)/* && GUILayout.Button("REMOVE")*/)
+                {
+                    // This button only shows on the Host for all players other than the Host
+                    // Host and Players can't remove themselves (stop the client instead)
+                    // Host can kick a Player this way.
+                    //DisconnectPlayer();
+                    playerUI.btnDisconnect.gameObject.SetActive(true);
+                }
+                else
+                {
+                    playerUI.btnDisconnect.gameObject.SetActive(false);
+                }
+            }
+            catch (Exception e) { }
+            //GUILayout.EndArea();
+        }
+
+        void DisconnectPlayer()
+        {
+            if (((isServer && index > 0) || isServerOnly))
+                GetComponent<NetworkIdentity>().connectionToClient.Disconnect();
+        }
+
+        void DrawPlayerReadyButton()
+        {
+            if (NetworkClient.active && isLocalPlayer)
+            {
+                GUILayout.BeginArea(new Rect(20f, 300f, 120f, 20f));
+
+                if (readyToBegin)
+                {
+                    if (GUILayout.Button("CANCEL"))
+                        CmdChangeReadyState(false);
+                }
+                else
+                {
+                    if (GUILayout.Button("READY"))
+                        CmdChangeReadyState(true);
+                }
+
+                GUILayout.EndArea();
+            }
+        }
+
+        Button btnReady;
+
+        void DrawPlayerReadyButtonCanvas()
+        {
+            if (NetworkClient.active && isLocalPlayer)
+            {
+                if (btnReady == null)
+                {
+                    btnReady = GameObject.Find("btnReady").GetComponent<Button>();
+                    btnReady.onClick.AddListener(delegate { DrawPlayerReadyButtonCanvasState(); });
+                }
+
+
+            }
+        }
+
+        void DrawPlayerReadyButtonCanvasState()
+        {
+            if (readyToBegin)
+            {
+                //set text to Cancel;
+
+                btnReady.transform.GetChild(0).GetComponent<Text>().text = "READY";
+                CmdChangeReadyState(false);
+
+            }
+            else
+            {
+                btnReady.transform.GetChild(0).GetComponent<Text>().text = "CANCEL";
+                CmdChangeReadyState(true);
+            }
+        }
+
+
+        #endregion
+
+        //////////////////////
+        //////////////////////
+        //////////////////////
         void DrawNameInputField()
         {
             if (NetworkClient.active && isLocalPlayer && isServer)

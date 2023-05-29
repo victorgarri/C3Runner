@@ -2,6 +2,7 @@ using Cinemachine;
 using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 /*
 	Documentation: https://mirror-networking.gitbook.io/docs/components/network-manager
@@ -14,7 +15,7 @@ namespace C3Runner.Multiplayer
     public class NetworkRoomManagerExt : NetworkRoomManager
     {
 
-
+        
         /// <summary>
         /// This is called on the server when a networked scene finishes loading.
         /// </summary>

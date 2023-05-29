@@ -151,6 +151,10 @@ public class CanvasHUD : MonoBehaviour
                 //room scene
                 if (room.showRoomGUI && NetworkManager.IsSceneActive(room.RoomScene))
                 {
+                    foreach (Transform item in playerList.transform)
+                    {
+                        item.GetComponent<RoomPlayerUI>().DeleteSelf();
+                    }
                     PanelRoom.SetActive(true);
                     //RoomCanvas();
                 }

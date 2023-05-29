@@ -20,6 +20,8 @@ namespace Mirror
     [HelpURL("https://mirror-networking.gitbook.io/docs/components/network-room-manager")]
     public class NetworkRoomManager : NetworkManager
     {
+        List<NetworkRoomPlayer> listOfPlayers = new List<NetworkRoomPlayer>();
+
         public struct PendingPlayer
         {
             public NetworkConnectionToClient conn;

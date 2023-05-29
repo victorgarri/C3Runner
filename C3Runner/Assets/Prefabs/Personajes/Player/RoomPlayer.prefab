@@ -67,11 +67,6 @@ MonoBehaviour:
   showRoomGUI: 1
   readyToBegin: 0
   index: 0
-  txtPlayerNum: {fileID: 0}
-  txtPlayerStatus: {fileID: 0}
-  btnRemove: {fileID: 0}
-  btnReadyCancel: {fileID: 0}
-  txtBtnReadyCancel: {fileID: 0}
   wantsToSpectate: 0
   playerName: 
   playerColor: {r: 0, g: 0, b: 0, a: 0}
@@ -80,3 +75,4 @@ MonoBehaviour:
   ifName: {fileID: 0}
   sldType: {fileID: 0}
   toggleSpectate: {fileID: 0}
+  PlayerUIprefab: {fileID: 2567770209983493189, guid: 1729118fac24e6f43a7eabd2351b5c60, type: 3}
