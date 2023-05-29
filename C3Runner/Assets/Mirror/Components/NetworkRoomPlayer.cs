@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Mirror
 {
@@ -130,20 +131,22 @@ namespace Mirror
         /// </summary>
         public virtual void OnGUI()
         {
-            if (!showRoomGUI)
-                return;
-
-            NetworkRoomManager room = NetworkManager.singleton as NetworkRoomManager;
-            if (room)
+            if (showRoomGUI)
             {
-                if (!room.showRoomGUI)
-                    return;
+                NetworkRoomManager room = NetworkManager.singleton as NetworkRoomManager;
+                if (room)
+                {
+                    if (NetworkManager.IsSceneActive(room.RoomScene))
+                    {
+                        if (room.showRoomGUI)
+                        {
+                            DrawPlayerReadyState();
+                            DrawPlayerReadyButton();
+                        }
+                        DrawPlayerReadyButtonCanvas();
+                    }
 
-                if (!NetworkManager.IsSceneActive(room.RoomScene))
-                    return;
-
-                DrawPlayerReadyState();
-                DrawPlayerReadyButton();
+                }
             }
         }
 
@@ -177,18 +180,52 @@ namespace Mirror
 
                 if (readyToBegin)
                 {
-                    if (GUILayout.Button("Cancel"))
+                    if (GUILayout.Button("READY"))
                         CmdChangeReadyState(false);
                 }
                 else
                 {
-                    if (GUILayout.Button("Ready"))
+                    if (GUILayout.Button("CANCEL"))
                         CmdChangeReadyState(true);
                 }
 
                 GUILayout.EndArea();
             }
         }
+
+        Button btnReady;
+
+        void DrawPlayerReadyButtonCanvas()
+        {
+            if (NetworkClient.active && isLocalPlayer)
+            {
+                if (btnReady == null)
+                {
+                    btnReady = GameObject.Find("btnReady").GetComponent<Button>();
+                    btnReady.onClick.AddListener(delegate { DrawPlayerReadyButtonCanvasState(); });
+                }
+
+
+            }
+        }
+
+        void DrawPlayerReadyButtonCanvasState()
+        {
+            if (readyToBegin)
+            {
+                //set text to Cancel;
+
+                btnReady.transform.GetChild(0).GetComponent<Text>().text = "Cancel";
+                CmdChangeReadyState(false);
+
+            }
+            else
+            {
+                btnReady.transform.GetChild(0).GetComponent<Text>().text = "Ready";
+                CmdChangeReadyState(true);
+            }
+        }
+
 
         #endregion
     }
