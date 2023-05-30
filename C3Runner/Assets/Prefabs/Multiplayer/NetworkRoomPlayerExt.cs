@@ -73,19 +73,31 @@ namespace C3Runner.Multiplayer
 
         public override void OnStartClient()
         {
+            ReferenceForm();
+        }
+
+        //bool referenced = false;
+        void ReferenceForm()
+        {
+            //if (referenced) return; //asqueroso código, pero no se me ocurre nada más ahora mismo
             try
             {
+
                 PanelRoom = CanvasHUD.canvasInstance.PanelRoom;
 
-                ifName = GameObject.Find("ifName").GetComponent<InputField>();
-                sldType = GameObject.Find("sldType").GetComponent<Slider>();
-                toggleSpectate = GameObject.Find("toggleSpectator").GetComponent<Toggle>();
+                ifName = ifName == null ? GameObject.Find("ifName").GetComponent<InputField>() : ifName;
+                sldType = sldType == null ? GameObject.Find("sldType").GetComponent<Slider>() : sldType;
+                toggleSpectate = toggleSpectate == null ? GameObject.Find("toggleSpectator").GetComponent<Toggle>() : toggleSpectate;
 
                 toggleSpectate.gameObject.SetActive(false);
                 ifName.onValueChanged.AddListener(delegate { updateSyncVarName(ifName.text); });
                 sldType.onValueChanged.AddListener(delegate { updateSyncVarType(sldType.value); });
 
                 toggleSpectate.onValueChanged.AddListener(delegate { updateSyncVarSpectate(toggleSpectate.isOn); });
+
+                AddToIndices();
+
+                //referenced = true;
             }
             catch (Exception e) { }
         }
@@ -93,11 +105,20 @@ namespace C3Runner.Multiplayer
         //se ejecuta 1 vez por cada roomplayer EN CADA CLIENTE. Es decir, si hay 3 jugadores, en total se ejecuta 9 veces, pero sólo 3 en local
         public override void OnClientEnterRoom()
         {
+
+            //AddToIndices(); //not reliable
+
+        }
+
+        void AddToIndices()
+        {
             //instantiate playerUI if not already in scene, then sort
             if (!indices.Contains(netId))
             {
                 playerUI = Instantiate(PlayerUIprefab).GetComponent<RoomPlayerUI>();
                 playerUI.gameObject.transform.SetParent(GameObject.Find("playerList").transform);
+                //playerUI.gameObject.transform.parent = (GameObject.Find("playerList").transform);
+                playerUI.transform.localScale = Vector3.one;
                 playerUI.btnDisconnect.onClick.AddListener(delegate { DisconnectPlayer(); });
 
 
@@ -107,16 +128,14 @@ namespace C3Runner.Multiplayer
                 playerUIs.Add(playerUI);
                 indices.Add(netId);
             }
-
-
         }
+
 
         //only once, by the localplayer once another player disconnects, in each client.
         public override void OnClientExitRoom()
         {
             /////DCM - ids don't match
             //remove playerUI by index, then recalculate numbers
-            //foreach (var netId in NetworkRoomManager.singleton.) { }
             RoomPlayerUI[] listPlayerUI = GameObject.FindObjectsOfType<RoomPlayerUI>();
             NetworkRoomPlayerExt[] roomplayers = GameObject.FindObjectsOfType<NetworkRoomPlayerExt>();
             NetworkRoomManager room = NetworkManager.singleton as NetworkRoomManager;
@@ -130,7 +149,7 @@ namespace C3Runner.Multiplayer
                 uint niui = lpui.index;
                 foreach (NetworkRoomPlayerExt rp in slots)
                 {
-                    if(niui == rp.netId)
+                    if (niui == rp.netId)
                     {
                         found = true;
                         break;
@@ -145,70 +164,24 @@ namespace C3Runner.Multiplayer
                     playerUIs.Remove(lpui);
                 }
             }
-
-
         }
+        public override void IndexChanged(int oldIndex, int newIndex) { }
 
-        /*
-         public override void OnClientExitRoom()
-        {
-            /////DCM - ids don't match
-            //remove playerUI by index, then recalculate numbers
-            //foreach (var netId in NetworkRoomManager.singleton.) { }
-
-            NetworkRoomManager room = NetworkManager.singleton as NetworkRoomManager;
-            var slots = room.roomSlots;
-
-            foreach (var pUI in playerUIs)
-            {
-                uint ind = pUI.netId;
-                bool found = false;
-
-                foreach (var slot in slots)
-                {
-                    if (slot.GetComponent<NetworkRoomPlayerExt>().playerUI.netId == ind)
-                    {
-                        found = true;
-                    }
-                }
-
-                if (!found)
-                {
-                    indices.Remove(ind);
-                    playerUIs.RemoveAll(s =>
-                    {
-                        uint dum=s.netId;
-                        s.DeleteSelf();
-
-                        return dum == ind;
-                    });
-                }
-            }
-
-            //indices.Remove(netId);
-            //playerUI.DeleteSelf();
-
-
-        }
-         */
-
-
-        public override void IndexChanged(int oldIndex, int newIndex)
-        {
-
-        }
-
-        public override void ReadyStateChanged(bool oldReadyState, bool newReadyState)
-        {
-            //Debug.Log($"ReadyStateChanged {newReadyState}");
-        }
+        public override void ReadyStateChanged(bool oldReadyState, bool newReadyState) { }
 
         public override void OnGUI()
         {
             OnGUIBase();
-            //
-            DrawNameInputField();
-            DrawNameInputFieldCanvas();
+
+            /*if (referenced)
+            {
+                OnGUIBase();
+            }
+            else
+            {
+                ReferenceForm();
+
+            }*/
         }
 
         //////////////////////
@@ -231,13 +204,18 @@ namespace C3Runner.Multiplayer
                     if (showRoomGUI && room.showRoomGUI)
                     {
                         //GUI
+                        DrawNameInputField();
                         DrawPlayerReadyState();
                         DrawPlayerReadyButton();
-                        //Canvas
-                    DrawPlayerReadyStateCanvas();
-                    DrawPlayerReadyButtonCanvas();
                     }
-                    
+                    //Canvas
+                    try
+                    {
+                        DrawNameInputFieldCanvas();
+                        DrawPlayerReadyStateCanvas();
+                        DrawPlayerReadyButtonCanvas();
+                    }
+                    catch (Exception e) { }
                 }
 
             }
@@ -274,38 +252,21 @@ namespace C3Runner.Multiplayer
 
         void DrawPlayerReadyStateCanvas()
         {
-            //GUILayout.BeginArea(new Rect(20f + (index * 100), 200f, 90f, 130f));
-            try
+            playerUI.txtPlayerNum.text = playerName;
+
+            playerUI.txtPlayerStatus.text = readyToBegin ? "Ready" : "Not Ready";
+
+            if (((isServer && index > 0) || isServerOnly)/* && GUILayout.Button("REMOVE")*/)
             {
-                //playerUI.txtPlayerNum.text = $"Player [{index + 1}]";
-                playerUI.txtPlayerNum.text = playerName;
-
-                if (readyToBegin)
-                {
-                    //GUILayout.Label("Ready");
-                    playerUI.txtPlayerStatus.text = "Ready";
-                }
-                else
-                {
-                    //GUILayout.Label("Not Ready");
-                    playerUI.txtPlayerStatus.text = "Not Ready";
-                }
-
-                if (((isServer && index > 0) || isServerOnly)/* && GUILayout.Button("REMOVE")*/)
-                {
-                    // This button only shows on the Host for all players other than the Host
-                    // Host and Players can't remove themselves (stop the client instead)
-                    // Host can kick a Player this way.
-                    //DisconnectPlayer();
-                    playerUI.btnDisconnect.gameObject.SetActive(true);
-                }
-                else
-                {
-                    playerUI.btnDisconnect.gameObject.SetActive(false);
-                }
+                // This button only shows on the Host for all players other than the Host
+                // Host and Players can't remove themselves (stop the client instead)
+                // Host can kick a Player this way.
+                playerUI.btnDisconnect.gameObject.SetActive(true);
             }
-            catch (Exception e) { }
-            //GUILayout.EndArea();
+            else
+            {
+                playerUI.btnDisconnect.gameObject.SetActive(false);
+            }
         }
 
         void DisconnectPlayer()
@@ -402,7 +363,6 @@ namespace C3Runner.Multiplayer
 
                 updateSyncVars(wantsToSpectate, playerName, playerColor, (int)playerType);
 
-                //
                 GUILayout.EndArea();
             }
 
@@ -431,8 +391,6 @@ namespace C3Runner.Multiplayer
                     case 9: c = player8Color; break;
                 }
 
-
-                //playerColor = Color.HSVToRGB((netId % 5) / 5f, 1, 1);
                 playerColor = c;
 
                 GUI.color = Color.white;
@@ -442,11 +400,11 @@ namespace C3Runner.Multiplayer
 
                 updateSyncVars(wantsToSpectate, playerName, playerColor, (int)playerType);
 
-                //
                 GUILayout.EndArea();
             }
 
         }
+
         void DrawNameInputFieldCanvas()
         {
             if (NetworkClient.active && isLocalPlayer && isServer)
@@ -457,13 +415,7 @@ namespace C3Runner.Multiplayer
 
             if (NetworkClient.active && isLocalPlayer)
             {
-                //GUILayout.BeginArea(new Rect(20f, 400f, 150f, 200f));
 
-                //PLAYER NAME INPUT FIELD
-                //GUI.color = playerColor;
-
-                //GUI.Label(new Rect(0, 0, 40, 20), "Name: ");
-                //playerName = GUI.TextField(new Rect(30 + 20, 0, 100, 20), playerName == string.Empty ? "Player" + netId : playerName, 8);
                 ifName.text = playerName == string.Empty ? "Player" + netId : playerName;
 
                 Color c = Color.white;
@@ -484,17 +436,9 @@ namespace C3Runner.Multiplayer
 
                 playerColor = c;
                 ifName.transform.parent.Find("txtName").GetComponent<Text>().color = playerColor;
-                //GUI.color = Color.white;
-
-                //GUI.Label(new Rect(0, 30, 40, 20), "Type: ");
-                //playerType = Mathf.Floor(GUI.HorizontalSlider(new Rect(30 + 20, 30, 100, 20), (int)playerType / 100, 0, 1) * 100);
 
                 sldType.value = playerType;
 
-                //updateSyncVars(wantsToSpectate, playerName, playerColor, (int)playerType);
-
-                //
-                //GUILayout.EndArea();
                 updateSyncVars(wantsToSpectate, playerName, playerColor, (int)playerType);
             }
 

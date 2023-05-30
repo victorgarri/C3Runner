@@ -94,7 +94,8 @@ namespace C3Runner.Multiplayer
             base.OnGUI();
 
 
-            if (allPlayersReady && showStartButton && GUI.Button(new Rect(150, 300, 120, 20), "START GAME")) svrChngScene();
+            if (showRoomGUI)
+                if (allPlayersReady && showStartButton && GUI.Button(new Rect(150, 300, 120, 20), "START GAME")) svrChngScene();
 
             if (btnStartGame != null)
                 btnStartGame.gameObject.SetActive(allPlayersReady && showStartButton);
