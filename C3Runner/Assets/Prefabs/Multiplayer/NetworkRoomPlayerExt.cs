@@ -58,11 +58,11 @@ namespace C3Runner.Multiplayer
 
         public void Update()
         {
-            if (isServer && Input.GetKeyDown(KeyCode.E))
-            {
-                wantsToSpectate = !wantsToSpectate;
-                if (toggleSpectate != null) toggleSpectate.isOn = wantsToSpectate;
-            }
+            //if (isServer && Input.GetKeyDown(KeyCode.E))
+            //{
+            //    wantsToSpectate = !wantsToSpectate;
+            //    if (toggleSpectate != null) toggleSpectate.isOn = wantsToSpectate;
+            //}
 
         }
 
@@ -474,7 +474,7 @@ namespace C3Runner.Multiplayer
         {
             //this.playerType = ((int)playerType / 100) * 100;
             this.playerType = playerType * 100;
-            sldType.value = this.playerType;
+            //sldType.value = this.playerType;
         }
 
         [Command]
