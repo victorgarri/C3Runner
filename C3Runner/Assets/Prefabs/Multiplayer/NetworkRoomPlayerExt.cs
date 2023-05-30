@@ -87,13 +87,16 @@ namespace C3Runner.Multiplayer
 
                 ifName = ifName == null ? GameObject.Find("ifName").GetComponent<InputField>() : ifName;
                 sldType = sldType == null ? GameObject.Find("sldType").GetComponent<Slider>() : sldType;
-                toggleSpectate = toggleSpectate == null ? GameObject.Find("toggleSpectator").GetComponent<Toggle>() : toggleSpectate;
-
-                toggleSpectate.gameObject.SetActive(false);
+                
                 ifName.onValueChanged.AddListener(delegate { updateSyncVarName(ifName.text); });
                 sldType.onValueChanged.AddListener(delegate { updateSyncVarType(sldType.value); });
 
-                toggleSpectate.onValueChanged.AddListener(delegate { updateSyncVarSpectate(toggleSpectate.isOn); });
+                if (isServer)
+                {
+                    toggleSpectate = toggleSpectate == null ? GameObject.Find("toggleSpectator").GetComponent<Toggle>() : toggleSpectate;
+                    toggleSpectate.gameObject.SetActive(false);
+                    toggleSpectate.onValueChanged.AddListener(delegate { updateSyncVarSpectate(toggleSpectate.isOn); });
+                }
 
                 AddToIndices();
 
@@ -415,8 +418,8 @@ namespace C3Runner.Multiplayer
 
             if (NetworkClient.active && isLocalPlayer)
             {
-
-                ifName.text = playerName == string.Empty ? "Player" + netId : playerName;
+                playerName = ifName.text;
+                playerName = playerName == string.Empty ? "Player" + netId : playerName;
 
                 Color c = Color.white;
                 var id = index + 1;
