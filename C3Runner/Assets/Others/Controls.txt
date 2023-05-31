@@ -1,0 +1,14 @@
+###Controls###
+
+Common:
+-Start or P to hide UI controls (in android if using an external controller or keyboard)
+
+3D game: 
+-WASD/LeftStick to move
+-Arrows/RightStick to move the camera
+-Spacebar/B-button to jump
+-E key/RightTrigger/Touch the icon on the bottom right(on android) to consume a powerup
+
+2D games:
+- Shown on screen
+
